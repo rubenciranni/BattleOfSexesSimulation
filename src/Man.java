@@ -1,3 +1,5 @@
 public interface Man extends Person{
-    void propose(Woman w);
+    default void propose(Woman w) {
+
+    }
 }
