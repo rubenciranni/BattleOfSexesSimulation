@@ -1,2 +1,2 @@
-public class Fast {
+public class Fast extends Thread implements Woman{
 }

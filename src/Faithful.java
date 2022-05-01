@@ -1,2 +1,2 @@
-public class Faithful {
+public class Faithful extends Thread implements Man{
 }

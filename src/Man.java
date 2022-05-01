@@ -1,2 +1,2 @@
-abstract public class Man {
+public interface Man extends Person{
 }

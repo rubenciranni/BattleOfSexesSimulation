@@ -1,2 +1,2 @@
-abstract public class Woman {
+public interface Woman {
 }
