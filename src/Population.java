@@ -1,19 +1,20 @@
 public class Population {
-    public int People;
-    public Boolean Sterility;
+    public int people;
+    public boolean sterility = false;
+    public boolean noise = true;
 
     public static void main(String[] args) {
 
     }
 
-    public void Newborn(){
-        if (!Sterility){
-            People++;
+    public void newborn(){
+        if (!sterility){
+            people++;
         }
 
     }
 
     public void death() {
-        People--;
+        people--;
     }
 }
