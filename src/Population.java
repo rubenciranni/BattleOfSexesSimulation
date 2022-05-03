@@ -1,14 +1,56 @@
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Population {
-    public int people;
-    public boolean sterility = false;
-    public boolean noise = true;
 
+    private boolean sterility = false;
+    public LinkedList initialPopulation;
+    private int numberOfIndividuals;
+    private int numberOfFaithfull;
+    private int numberOfPhilanderers;
+    private int numberOfFast;
+    private int numberOfCoy;
+
+    public Population(boolean sterility, LinkedList initialPopulation, int numberOfIndividuals, int numberOfFaithfull, int numberOfPhilanderers, int numberOfFast, int numberOfCoy) {
+        this.sterility = sterility;
+        this.initialPopulation = initialPopulation;
+        this.numberOfIndividuals = numberOfIndividuals;
+        this.numberOfFaithfull = numberOfFaithfull;
+        this.numberOfPhilanderers = numberOfPhilanderers;
+        this.numberOfFast = numberOfFast;
+        this.numberOfCoy = numberOfCoy;
+    }
+
+    public double getFaithfullState() {
+        return this.numberOfFaithfull/this.numberOfIndividuals;
+    }
+
+    public double getPhilanderersState() {
+        return this.numberOfPhilanderers/this.numberOfIndividuals;
+    }
+
+    public double getFastState() {
+        return this.numberOfFast/this.numberOfIndividuals;
+    }
+
+    public double getCoyState() {
+        return this.numberOfCoy/this.numberOfIndividuals;
+    }
+
+    public HashMap getGlobalState() {
+        HashMap<String, Double> globalState = new HashMap<>();
+        globalState.put("Faithfull", this.getFaithfullState());
+        globalState.put("Philanderers", this.getPhilanderersState());
+        globalState.put("Fast", this.getFastState());
+        globalState.put("Coy", this.getCoyState());
+
+        return globalState;
+    }
 
     public void newborn(Man man, Woman woman){
         if (!sterility){
-            people++;
+            numberOfIndividuals++;
             if (man.getClass().getName() == "Faithful")  {
                 int m = 0;
             }
@@ -37,6 +79,6 @@ public class Population {
     }
 
     public void death() {
-        people--;
+        numberOfIndividuals--;
     }
 }
