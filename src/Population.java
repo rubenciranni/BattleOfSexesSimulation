@@ -3,7 +3,6 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Population {
-
     private boolean sterility = false;
     public LinkedList initialPopulation;
     private int numberOfIndividuals;
@@ -12,8 +11,9 @@ public class Population {
     private int numberOfFast;
     private int numberOfCoy;
 
-    public Population(boolean sterility, LinkedList initialPopulation, int numberOfIndividuals, int numberOfFaithfull, int numberOfPhilanderers, int numberOfFast, int numberOfCoy) {
-        this.sterility = sterility;
+    public Population(LinkedList initialPopulation, int numberOfIndividuals,
+                      int numberOfFaithfull, int numberOfPhilanderers, int numberOfFast, int numberOfCoy) {
+        this.sterility = false;
         this.initialPopulation = initialPopulation;
         this.numberOfIndividuals = numberOfIndividuals;
         this.numberOfFaithfull = numberOfFaithfull;
