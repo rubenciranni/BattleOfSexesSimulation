@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Population {
     private boolean sterility = false;
+    private boolean rebellion = false;
     public LinkedList initialPopulation;
     private int numberOfIndividuals;
     private int numberOfFaithfull;
@@ -48,34 +49,41 @@ public class Population {
         return globalState;
     }
 
-    public void newborn(Man man, Woman woman){
+    public Person newborn(Man man, Woman woman){
         if (!sterility){
             numberOfIndividuals++;
-            if (man.getClass().getName() == "Faithful")  {
-                int m = 0;
-            }
-            else {
-                int m = 1;
-            }
-
-            if (woman.getClass().getName() == "Coy")  {
-                int w = 0;
-            }
-            else {
-                int w = 1;
-            }
-
             Random rand = new Random();
             boolean sex = rand.nextBoolean();
-            int type = Math.round();
-            if (sex) {
 
+            if (sex) {
+                boolean m = false;
+                if (man.getClass().getName() == "Faithful")  {
+                    m = true;
+                }
+                 if (rebellion && rand.nextInt(0, 50) == 49) {
+                     m = !m;
+                 }
+                 if (m) {
+                    return new Faithful();
+                 }
+                return new Philanderers();
             }
             else {
-
+                boolean w = false;
+                if (man.getClass().getName() == "Coy") {
+                    w = true;
+                }
+                if (rebellion && rand.nextInt(0, 50) == 49) {
+                    w = !w;
+                }
+                if (w) {
+                    return new Coy();
+                }
+                return new Fast();
             }
         }
 
+        return null;
     }
 
     public void death() {
