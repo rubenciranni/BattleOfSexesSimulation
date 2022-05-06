@@ -17,15 +17,19 @@ public class Population extends ThreadGroup{
     }
 
     public double getFaithfulState() {
+        return 0;
     }
 
     public double getPhilanderersState() {
+        return 0;
     }
 
     public double getFastState() {
+        return 0;
     }
 
     public double getCoyState() {
+        return 0;
     }
 
     public HashMap getGlobalState() {

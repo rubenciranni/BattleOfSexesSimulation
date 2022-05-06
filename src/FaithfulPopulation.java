@@ -7,7 +7,7 @@ public class FaithfulPopulation extends ThreadGroup{
 
         for(int i = 0; i < size; i++) {
             Population population = (Population) this.getParent().getParent();
-            population.initialPopulationList.add(new FaithfulPopulation.Faithful(this, NameGenerator.generateFaithfulName(i)));
+            population.initialPopulationList.add(new FaithfulPopulation.Faithful(this, RandomNameGenerator.randomNameOfBoy()));
         }
     }
 

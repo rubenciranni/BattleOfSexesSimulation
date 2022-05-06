@@ -7,7 +7,7 @@ public class PhilandererPopulation extends ThreadGroup{
 
         for(int i = 0; i < size; i++) {
             Population population = (Population) this.getParent().getParent();
-            population.initialPopulationList.add(new PhilandererPopulation.Philanderer(this, NameGenerator.generatePhilandererName(i)));
+            population.initialPopulationList.add(new PhilandererPopulation.Philanderer(this, RandomNameGenerator.randomNameOfBoy()));
         }
     }
 

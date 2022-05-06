@@ -7,7 +7,7 @@ public class CoyPopulation extends ThreadGroup{
 
         for(int i = 0; i < size; i++) {
             Population population = (Population) this.getParent().getParent();
-            population.initialPopulationList.add(new Coy(this, NameGenerator.generateCoyName(i)));
+            population.initialPopulationList.add(new Coy(this, RandomNameGenerator.randomNameOfGirl()));
         }
     }
 
