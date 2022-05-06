@@ -1,4 +1,5 @@
 public class NameGenerator {
+
     public static String generateCoyName(int i) {
         return "C" + i;
     }
