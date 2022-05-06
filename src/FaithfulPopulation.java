@@ -1,5 +1,22 @@
 public class FaithfulPopulation extends ThreadGroup{
-    public FaithfulPopulation(ThreadGroup parent, String name) {
+    private int size;
+
+    public FaithfulPopulation(ManPopulation parent, String name, int size) {
         super(parent, name);
+        this.size = size;
+
+        for(int i = 0; i < size; i++) {
+            new FaithfulPopulation.Faithful(this, "F" + i);
+        }
+    }
+
+    public class Faithful extends Thread{
+        public Faithful(ThreadGroup group, String name) {
+            super(group, name);
+        }
+
+        @Override
+        public void run() {
+        }
     }
 }
