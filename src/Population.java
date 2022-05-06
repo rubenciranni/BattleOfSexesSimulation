@@ -7,24 +7,24 @@ public class Population {
     private boolean rebellion = false;
     public LinkedList initialPopulation;
     private int numberOfIndividuals;
-    private int numberOfFaithfull;
+    private int numberOfFaithful;
     private int numberOfPhilanderers;
     private int numberOfFast;
     private int numberOfCoy;
 
-    public Population(LinkedList initialPopulation, int numberOfIndividuals,
-                      int numberOfFaithfull, int numberOfPhilanderers, int numberOfFast, int numberOfCoy) {
+    public Population(LinkedList initialPopulation,
+                      int numberOfFaithful, int numberOfPhilanderers, int numberOfFast, int numberOfCoy) {
         this.sterility = false;
         this.initialPopulation = initialPopulation;
-        this.numberOfIndividuals = numberOfIndividuals;
-        this.numberOfFaithfull = numberOfFaithfull;
+        this.numberOfIndividuals = numberOfCoy+numberOfFaithful+numberOfPhilanderers+numberOfFast;
+        this.numberOfFaithful = numberOfFaithful;
         this.numberOfPhilanderers = numberOfPhilanderers;
         this.numberOfFast = numberOfFast;
         this.numberOfCoy = numberOfCoy;
     }
 
-    public double getFaithfullState() {
-        return this.numberOfFaithfull/this.numberOfIndividuals;
+    public double getFaithfulState() {
+        return this.numberOfFaithful/this.numberOfIndividuals;
     }
 
     public double getPhilanderersState() {
@@ -41,7 +41,7 @@ public class Population {
 
     public HashMap getGlobalState() {
         HashMap<String, Double> globalState = new HashMap<>();
-        globalState.put("Faithfull", this.getFaithfullState());
+        globalState.put("Faithfull", this.getFaithfulState());
         globalState.put("Philanderers", this.getPhilanderersState());
         globalState.put("Fast", this.getFastState());
         globalState.put("Coy", this.getCoyState());
