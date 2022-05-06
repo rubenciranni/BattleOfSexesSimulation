@@ -5,6 +5,7 @@ public class Population extends ThreadGroup{
     private ManPopulation manPopulation;
     private WomanPopulation womanPopulation;
     public LinkedList<Thread> initialPopulationList;
+    public int ID=0;
     private int size;
 
     public Population(String name, int size) {
@@ -16,24 +17,24 @@ public class Population extends ThreadGroup{
         this.manPopulation = new ManPopulation(this, "man population", size/2);
     }
 
-    public double getFaithfulState() {
-        return 0;
+    public float getFaithfulState() {
+        return ((float)this.manPopulation.faithfulPopulation.activeCount()/(float)this.activeCount());
     }
 
-    public double getPhilanderersState() {
-        return 0;
+    public float getPhilanderersState() {
+        return ((float)this.manPopulation.philandererPopulation.activeCount()/(float)this.activeCount());
     }
 
-    public double getFastState() {
-        return 0;
+    public float getFastState() {
+        return ((float)this.womanPopulation.fastPopulation.activeCount()/(float)this.activeCount());
     }
 
-    public double getCoyState() {
-        return 0;
+    public float getCoyState() {
+        return ((float)this.womanPopulation.coyPopulation.activeCount()/(float)this.activeCount());
     }
 
     public HashMap getGlobalState() {
-        HashMap<String, Double> globalState = new HashMap<>();
+        HashMap<String, Float> globalState = new HashMap<>();
         globalState.put("Faithful", this.getFaithfulState());
         globalState.put("Philanderers", this.getPhilanderersState());
         globalState.put("Fast", this.getFastState());

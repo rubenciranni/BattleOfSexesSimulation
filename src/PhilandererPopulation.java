@@ -12,8 +12,11 @@ public class PhilandererPopulation extends ThreadGroup{
     }
 
     public class Philanderer extends Thread{
+        private final int id;
         public Philanderer(ThreadGroup group, String name) {
             super(group, name +  " (Philanderer)");
+            Population population =(Population) (PhilandererPopulation.this).getParent().getParent();
+            this.id=population.ID++;
         }
 
         @Override

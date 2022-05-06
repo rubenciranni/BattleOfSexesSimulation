@@ -1,6 +1,6 @@
 public class ManPopulation extends ThreadGroup{
-    private FaithfulPopulation faithfulPopulation;
-    private PhilandererPopulation philandererPopulation;
+    public FaithfulPopulation faithfulPopulation;
+    public PhilandererPopulation philandererPopulation;
     private int size;
 
     public ManPopulation(Population parent, String name, int size) {

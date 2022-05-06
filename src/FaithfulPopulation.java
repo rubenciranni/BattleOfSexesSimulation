@@ -12,8 +12,11 @@ public class FaithfulPopulation extends ThreadGroup{
     }
 
     public class Faithful extends Thread{
+        private final int id;
         public Faithful(ThreadGroup group, String name) {
             super(group, name + " (Faithful)");
+            Population population =(Population) (FaithfulPopulation.this).getParent().getParent();
+            this.id=population.ID++;
         }
 
         @Override
