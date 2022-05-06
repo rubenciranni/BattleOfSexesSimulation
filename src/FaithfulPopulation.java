@@ -13,7 +13,7 @@ public class FaithfulPopulation extends ThreadGroup{
 
     public class Faithful extends Thread{
         public Faithful(ThreadGroup group, String name) {
-            super(group, name);
+            super(group, name + " (Faithful)");
         }
 
         @Override

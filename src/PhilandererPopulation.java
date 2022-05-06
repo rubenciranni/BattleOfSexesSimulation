@@ -13,7 +13,7 @@ public class PhilandererPopulation extends ThreadGroup{
 
     public class Philanderer extends Thread{
         public Philanderer(ThreadGroup group, String name) {
-            super(group, name);
+            super(group, name +  " (Philanderer)");
         }
 
         @Override

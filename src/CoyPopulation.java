@@ -13,7 +13,7 @@ public class CoyPopulation extends ThreadGroup{
 
     public class Coy extends Thread{
         public Coy(ThreadGroup group, String name) {
-            super(group, name);
+            super(group, name  + " (Coy)");
         }
 
         @Override
