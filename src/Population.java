@@ -40,7 +40,7 @@ public class Population {
 
     public HashMap getGlobalState() {
         HashMap<String, Double> globalState = new HashMap<>();
-        globalState.put("Faithfull", this.getFaithfulState());
+        globalState.put("Faithful", this.getFaithfulState());
         globalState.put("Philanderers", this.getPhilanderersState());
         globalState.put("Fast", this.getFastState());
         globalState.put("Coy", this.getCoyState());
@@ -69,7 +69,7 @@ public class Population {
             }
             else {
                 boolean w = false;
-                if (man.getClass().getName() == "Coy") {
+                if (woman.getClass().getName() == "Coy") {
                     w = true;
                 }
                 if (rebellion && rand.nextInt(0, 50) == 49) {
@@ -81,7 +81,6 @@ public class Population {
                 return new Fast();
             }
         }
-
         return null;
     }
 
