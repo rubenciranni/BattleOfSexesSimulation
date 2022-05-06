@@ -3,7 +3,6 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Simulator {
-    private boolean sterility = false;
     private boolean rebellion = false;
     public LinkedList initialPopulation;
     private int numberOfIndividuals;
@@ -22,31 +21,7 @@ public class Simulator {
         this.numberOfCoy = numberOfCoy;
     }
 
-    public double getFaithfulState() {
-        return this.numberOfFaithful/this.numberOfIndividuals;
-    }
 
-    public double getPhilanderersState() {
-        return this.numberOfPhilanderers/this.numberOfIndividuals;
-    }
-
-    public double getFastState() {
-        return this.numberOfFast/this.numberOfIndividuals;
-    }
-
-    public double getCoyState() {
-        return this.numberOfCoy/this.numberOfIndividuals;
-    }
-
-    public HashMap getGlobalState() {
-        HashMap<String, Double> globalState = new HashMap<>();
-        globalState.put("Faithful", this.getFaithfulState());
-        globalState.put("Philanderers", this.getPhilanderersState());
-        globalState.put("Fast", this.getFastState());
-        globalState.put("Coy", this.getCoyState());
-
-        return globalState;
-    }
 
     /*
     public Person newborn(Man man, Woman woman){
