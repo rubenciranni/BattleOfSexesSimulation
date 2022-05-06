@@ -14,7 +14,6 @@ public class Population {
 
     public Population(LinkedList initialPopulation,
                       int numberOfFaithful, int numberOfPhilanderers, int numberOfFast, int numberOfCoy) {
-        this.sterility = false;
         this.initialPopulation = initialPopulation;
         this.numberOfIndividuals = numberOfCoy+numberOfFaithful+numberOfPhilanderers+numberOfFast;
         this.numberOfFaithful = numberOfFaithful;
