@@ -6,7 +6,7 @@ public class CoyPopulation extends ThreadGroup{
         this.size = size;
 
         for(int i = 0; i < size; i++) {
-            new Coy(this, "C" + i);
+            new Coy(this, NameGenerator.generateCoyName(i));
         }
     }
 

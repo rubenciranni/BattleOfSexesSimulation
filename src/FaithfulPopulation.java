@@ -6,7 +6,7 @@ public class FaithfulPopulation extends ThreadGroup{
         this.size = size;
 
         for(int i = 0; i < size; i++) {
-            new FaithfulPopulation.Faithful(this, "F" + i);
+            new FaithfulPopulation.Faithful(this, NameGenerator.generateFaithfulName(i));
         }
     }
 

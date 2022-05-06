@@ -6,7 +6,7 @@ public class FastPopulation extends ThreadGroup{
         this.size = size;
 
         for(int i = 0; i < size; i++) {
-            new FastPopulation.Fast(this, "S" + i);
+            new FastPopulation.Fast(this, NameGenerator.generateFastName(i));
         }
     }
 
