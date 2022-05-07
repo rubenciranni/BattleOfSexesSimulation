@@ -1,12 +1,12 @@
 public class FastPopulation extends ThreadGroup{
     private int size;
+    private final Population population = (Population) this.getParent().getParent();
 
     public FastPopulation(WomanPopulation parent, String name, int size) {
         super(parent, name);
         this.size = size;
 
         for(int i = 0; i < size; i++) {
-            Population population = (Population) this.getParent().getParent();
             population.initialPopulationList.add(new FastPopulation.Fast(this, RandomNameGenerator.randomNameOfGirl()));
         }
     }
@@ -15,7 +15,6 @@ public class FastPopulation extends ThreadGroup{
         private final int id;
         public Fast(ThreadGroup group, String name) {
             super(group, name + " (Fast)");
-            Population population = (Population) (FastPopulation.this).getParent().getParent();
             this.id = ++population.ID;
         }
 

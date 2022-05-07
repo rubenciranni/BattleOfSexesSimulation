@@ -1,12 +1,12 @@
 public class FaithfulPopulation extends ThreadGroup{
     private int size;
+    private final Population population = (Population) this.getParent().getParent();
 
     public FaithfulPopulation(ManPopulation parent, String name, int size) {
         super(parent, name);
         this.size = size;
 
         for(int i = 0; i < size; i++) {
-            Population population = (Population) this.getParent().getParent();
             population.initialPopulationList.add(new FaithfulPopulation.Faithful(this, RandomNameGenerator.randomNameOfBoy()));
         }
     }
@@ -15,7 +15,6 @@ public class FaithfulPopulation extends ThreadGroup{
         private final int id;
         public Faithful(ThreadGroup group, String name) {
             super(group, name + " (Faithful)");
-            Population population = (Population) (FaithfulPopulation.this).getParent().getParent();
             this.id = ++population.ID;
         }
 
