@@ -15,8 +15,13 @@ public class FastPopulation extends ThreadGroup{
         private final int id;
         public Fast(ThreadGroup group, String name) {
             super(group, name + " (Fast)");
-            Population population =(Population) (FastPopulation.this).getParent().getParent();
-            this.id=population.ID++;
+            Population population = (Population) (FastPopulation.this).getParent().getParent();
+            this.id = ++population.ID;
+        }
+
+        @Override
+        public long getId() {
+            return this.id;
         }
 
         @Override

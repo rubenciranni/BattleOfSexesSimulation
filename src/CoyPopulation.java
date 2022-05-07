@@ -15,8 +15,13 @@ public class CoyPopulation extends ThreadGroup{
         private final int id;
         public Coy(ThreadGroup group, String name) {
             super(group, name  + " (Coy)");
-            Population population =(Population) (CoyPopulation.this).getParent().getParent();
-            this.id=population.ID++;
+            Population population = (Population) (CoyPopulation.this).getParent().getParent();
+            this.id = ++population.ID;
+        }
+
+        @Override
+        public long getId() {
+            return this.id;
         }
 
         @Override
