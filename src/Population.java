@@ -17,6 +17,16 @@ public class Population extends ThreadGroup{
         this.manPopulation = new ManPopulation(this, "man population", size/2);
     }
 
+    public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers) {
+        super(name);
+        this.size = numberOfCoy+numberOfFaithful+numberOfFast+numberOfFast;
+        this.initialPopulationList = new LinkedList<>();
+
+        this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
+        this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
+
+    }
+
     public float getFaithfulState() {
         return ((float)this.manPopulation.faithfulPopulation.activeCount()/(float)this.activeCount());
     }
