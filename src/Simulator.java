@@ -1,27 +1,18 @@
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class Simulator {
-    private boolean rebellion = false;
-    public LinkedList initialPopulation;
-    private int numberOfIndividuals;
-    private int numberOfFaithful;
-    private int numberOfPhilanderers;
-    private int numberOfFast;
-    private int numberOfCoy;
+    private Population population;
+    private final int a; // the evolutionary benefit for having a baby
+    private final int b; // the cost of parenting a child
+    private final int c; // the cost of courtship
 
-    public Simulator(LinkedList initialPopulation,
-                      int numberOfFaithful, int numberOfPhilanderers, int numberOfFast, int numberOfCoy) {
-        this.initialPopulation = initialPopulation;
-        this.numberOfIndividuals = numberOfCoy+numberOfFaithful+numberOfPhilanderers+numberOfFast;
-        this.numberOfFaithful = numberOfFaithful;
-        this.numberOfPhilanderers = numberOfPhilanderers;
-        this.numberOfFast = numberOfFast;
-        this.numberOfCoy = numberOfCoy;
+    public Simulator(Population population, int a, int b, int c) {
+        this.population = population;
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
-
-
 
     /*
     public Person newborn(Man man, Woman woman){
@@ -60,7 +51,5 @@ public class Simulator {
         return null;
     }
 */
-    public void death() {
-        numberOfIndividuals--;
-    }
+
 }

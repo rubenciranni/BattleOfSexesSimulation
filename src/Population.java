@@ -5,7 +5,7 @@ public class Population extends ThreadGroup{
     private ManPopulation manPopulation;
     private WomanPopulation womanPopulation;
     public LinkedList<Thread> initialPopulationList;
-    public int ID=0;
+    public int ID = 0;
     private int size;
 
     public Population(String name, int size) {
@@ -25,6 +25,14 @@ public class Population extends ThreadGroup{
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
         this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
 
+    }
+
+    public ManPopulation getManPopulation() {
+        return manPopulation;
+    }
+
+    public WomanPopulation getWomanPopulation() {
+        return womanPopulation;
     }
 
     public float getFaithfulState() {
