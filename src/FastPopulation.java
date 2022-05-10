@@ -1,26 +1,18 @@
-public class FastPopulation extends ThreadGroup{
-    private int size;
-    private final Population population = (Population) this.getParent().getParent();
+public class FastPopulation extends SubPopulation{
+    public FastPopulation(ThreadGroup parent, String name, int size) {
+        super(parent, name, size);
+    }
 
-    public FastPopulation(WomanPopulation parent, String name, int size) {
-        super(parent, name);
-        this.size = size;
-
-        for(int i = 0; i < size; i++) {
+    @Override
+    public void addToInitialPopulation() {
+        for(int i = 0; i < this.size; i++) {
             population.initialPopulationList.add(new FastPopulation.Fast(this, RandomNameGenerator.randomNameOfGirl()));
         }
     }
 
-    public class Fast extends Thread{
-        private final int id;
+    public class Fast extends SubPopulation.SubType {
         public Fast(ThreadGroup group, String name) {
             super(group, name + " (Fast)");
-            this.id = ++population.ID;
-        }
-
-        @Override
-        public long getId() {
-            return this.id;
         }
 
         @Override

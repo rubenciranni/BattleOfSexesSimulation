@@ -1,26 +1,18 @@
-public class PhilandererPopulation extends ThreadGroup{
-    private int size;
-    private final Population population = (Population) this.getParent().getParent();
+public class PhilandererPopulation extends SubPopulation{
+    public PhilandererPopulation(ThreadGroup parent, String name, int size) {
+        super(parent, name, size);
+    }
 
-    public PhilandererPopulation(ManPopulation parent, String name, int size) {
-        super(parent, name);
-        this.size = size;
-
-        for(int i = 0; i < size; i++) {
+    @Override
+    public void addToInitialPopulation() {
+        for(int i = 0; i < this.size; i++) {
             population.initialPopulationList.add(new PhilandererPopulation.Philanderer(this, RandomNameGenerator.randomNameOfBoy()));
         }
     }
 
-    public class Philanderer extends Thread{
-        private final int id;
+    public class Philanderer extends SubPopulation.SubType {
         public Philanderer(ThreadGroup group, String name) {
-            super(group, name +  " (Philanderer)");
-            this.id = ++population.ID;
-        }
-
-        @Override
-        public long getId() {
-            return this.id;
+            super(group, name + " (Philanderer)");
         }
 
         @Override
