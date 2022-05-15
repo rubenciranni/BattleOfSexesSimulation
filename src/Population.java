@@ -27,6 +27,10 @@ public class Population extends ThreadGroup{
 
     }
 
+    public void IncreaseSize() {
+        size++;
+    }
+
     public ManPopulation getManPopulation() {
         return manPopulation;
     }
