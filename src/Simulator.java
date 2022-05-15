@@ -14,6 +14,9 @@ public class Simulator {
         this.c = c;
     }
 
+
+
+
     /*
     public Person newborn(Man man, Woman woman){
         if (!sterility){
