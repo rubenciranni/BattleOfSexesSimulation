@@ -24,9 +24,7 @@ public class Simulator {
         if (!sterility){
             Random rand = new Random();
             boolean sex = rand.nextBoolean();
-
             if (sex) {
-                ((ManPopulation) man.getPopulation().getParent()).size++;
                 boolean m = false;
                 if (man.getClass().getName() == "Faithful")  {
                     m = true;
@@ -36,6 +34,7 @@ public class Simulator {
                      m = !m;
                  }
                  */
+                ((ManPopulation) man.getPopulation().getParent()).size++;
                  if (m) {
                      FaithfulPopulation father = man.<FaithfulPopulation>getPopulation();
                      father.increaseSize();
@@ -46,7 +45,6 @@ public class Simulator {
                 return  father.new Philanderer(father, RandomNameGenerator.randomNameOfBoy());
             }
             else {
-                ((WomanPopulation) woman.getPopulation().getParent()).size++;
                 boolean w = false;
                 if (woman.getClass().getName() == "Coy") {
                     w = true;
@@ -56,6 +54,7 @@ public class Simulator {
                     w = !w;
                 }
                  */
+                ((WomanPopulation) woman.getPopulation().getParent()).size++;
                 if (w) {
                     CoyPopulation mother = man.<CoyPopulation>getPopulation();
                     mother.increaseSize();
