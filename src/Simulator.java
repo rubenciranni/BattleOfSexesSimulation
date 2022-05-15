@@ -37,9 +37,11 @@ public class Simulator {
                  }
                  */
                  if (m) {
-                     return new FaithfulPopulation.((FaithfulPopulation.Faithful) man);
+                     FaithfulPopulation father = man.<FaithfulPopulation>getPopulation();
+                     return  father.new Faithful(father, RandomNameGenerator.randomNameOfBoy());
                  }
-                return new Philanderers();
+                PhilandererPopulation father = man.<PhilandererPopulation>getPopulation();
+                return  father.new Philanderer(father, RandomNameGenerator.randomNameOfBoy());
             }
             else {
                 boolean w = false;
@@ -50,13 +52,16 @@ public class Simulator {
                 if (noise && rand.nextInt(0, 50) == 49) {
                     w = !w;
                 }
-                */
+                 */
                 if (w) {
-                    return new Coy();
+                    CoyPopulation mother = man.<CoyPopulation>getPopulation();
+                    return  mother.new Coy(mother, RandomNameGenerator.randomNameOfBoy());
                 }
-                return new Fast();
+                FastPopulation mother = man.<FastPopulation>getPopulation();
+                return  mother.new Fast(mother, RandomNameGenerator.randomNameOfBoy());
             }
         }
         return null;
     }
+
 }
