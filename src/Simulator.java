@@ -1,6 +1,3 @@
-import java.util.LinkedList;
-import java.util.Random;
-
 public class Simulator {
     private Population population;
     private final int a; // the evolutionary benefit for having a baby

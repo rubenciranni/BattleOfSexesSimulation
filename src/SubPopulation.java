@@ -18,6 +18,10 @@ public abstract class SubPopulation extends ThreadGroup {
             this.id = ++population.ID;
         }
 
+        public <E extends SubPopulation> E getPopulation() {
+            return (E) SubPopulation.this;
+        }
+
         @Override
         public long getId() {
             return this.id;
