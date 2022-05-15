@@ -8,13 +8,12 @@ public abstract class SubPopulation extends ThreadGroup {
 
         addToInitialPopulation();
     }
-/*
-    public <E extends ThreadGroup> void increaseSize() {
+
+    public void increaseSize() {
          size++;
-         (E)(this.getParent()).size++;
          population.size++;
     }
-*/
+
     public abstract void addToInitialPopulation();
 
     public abstract class SubType extends Thread {

@@ -26,6 +26,7 @@ public class Simulator {
             boolean sex = rand.nextBoolean();
 
             if (sex) {
+                ((ManPopulation) man.getPopulation().getParent()).size++;
                 boolean m = false;
                 if (man.getClass().getName() == "Faithful")  {
                     m = true;
@@ -37,14 +38,15 @@ public class Simulator {
                  */
                  if (m) {
                      FaithfulPopulation father = man.<FaithfulPopulation>getPopulation();
-                     father.<FaithfulPopulation>increaseSize();
+                     father.increaseSize();
                      return  father.new Faithful(father, RandomNameGenerator.randomNameOfBoy());
                  }
                 PhilandererPopulation father = man.<PhilandererPopulation>getPopulation();
-                father.<PhilandererPopulation>increaseSize();
+                father.increaseSize();
                 return  father.new Philanderer(father, RandomNameGenerator.randomNameOfBoy());
             }
             else {
+                ((WomanPopulation) woman.getPopulation().getParent()).size++;
                 boolean w = false;
                 if (woman.getClass().getName() == "Coy") {
                     w = true;
@@ -56,11 +58,11 @@ public class Simulator {
                  */
                 if (w) {
                     CoyPopulation mother = man.<CoyPopulation>getPopulation();
-                    mother.<CoyPopulation>increaseSize();
+                    mother.increaseSize();
                     return  mother.new Coy(mother, RandomNameGenerator.randomNameOfBoy());
                 }
                 FastPopulation mother = man.<FastPopulation>getPopulation();
-                mother.<FastPopulation>increaseSize();
+                mother.increaseSize();
                 return  mother.new Fast(mother, RandomNameGenerator.randomNameOfBoy());
             }
         }
