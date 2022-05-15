@@ -1,4 +1,12 @@
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Random;
+
 public class Simulator {
+    private boolean sterility = false;
+    private boolean noise = false;
+
+
     private Population population;
     private final int a; // the evolutionary benefit for having a baby
     private final int b; // the cost of parenting a child
@@ -12,12 +20,9 @@ public class Simulator {
     }
 
 
-
-
-    /*
-    public Person newborn(Man man, Woman woman){
+    public synchronized SubPopulation.SubType newborn(SubPopulation.SubType man, SubPopulation.SubType woman){
         if (!sterility){
-            numberOfIndividuals++;
+            population.IncreaseSize();
             Random rand = new Random();
             boolean sex = rand.nextBoolean();
 
@@ -26,11 +31,13 @@ public class Simulator {
                 if (man.getClass().getName() == "Faithful")  {
                     m = true;
                 }
-                 if (rebellion && rand.nextInt(0, 50) == 49) {
+                /*
+                 if (noise && rand.nextInt(0, 50) == 49) {
                      m = !m;
                  }
+                 */
                  if (m) {
-                    return new Faithful();
+                     return new FaithfulPopulation.((FaithfulPopulation.Faithful) man);
                  }
                 return new Philanderers();
             }
@@ -39,9 +46,11 @@ public class Simulator {
                 if (woman.getClass().getName() == "Coy") {
                     w = true;
                 }
-                if (rebellion && rand.nextInt(0, 50) == 49) {
+                /*
+                if (noise && rand.nextInt(0, 50) == 49) {
                     w = !w;
                 }
+                */
                 if (w) {
                     return new Coy();
                 }
@@ -50,6 +59,4 @@ public class Simulator {
         }
         return null;
     }
-*/
-
 }
