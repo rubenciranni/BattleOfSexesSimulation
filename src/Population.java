@@ -6,7 +6,7 @@ public class Population extends ThreadGroup{
     private WomanPopulation womanPopulation;
     public LinkedList<Thread> initialPopulationList;
     public int ID = 0;
-    private int size;
+    public int size;
 
     public Population(String name, int size) {
         super(name);

@@ -22,7 +22,6 @@ public class Simulator {
 
     public synchronized SubPopulation.SubType newborn(SubPopulation.SubType man, SubPopulation.SubType woman){
         if (!sterility){
-            population.IncreaseSize();
             Random rand = new Random();
             boolean sex = rand.nextBoolean();
 
@@ -38,9 +37,11 @@ public class Simulator {
                  */
                  if (m) {
                      FaithfulPopulation father = man.<FaithfulPopulation>getPopulation();
+                     father.<FaithfulPopulation>increaseSize();
                      return  father.new Faithful(father, RandomNameGenerator.randomNameOfBoy());
                  }
                 PhilandererPopulation father = man.<PhilandererPopulation>getPopulation();
+                father.<PhilandererPopulation>increaseSize();
                 return  father.new Philanderer(father, RandomNameGenerator.randomNameOfBoy());
             }
             else {
@@ -55,9 +56,11 @@ public class Simulator {
                  */
                 if (w) {
                     CoyPopulation mother = man.<CoyPopulation>getPopulation();
+                    mother.<CoyPopulation>increaseSize();
                     return  mother.new Coy(mother, RandomNameGenerator.randomNameOfBoy());
                 }
                 FastPopulation mother = man.<FastPopulation>getPopulation();
+                mother.<FastPopulation>increaseSize();
                 return  mother.new Fast(mother, RandomNameGenerator.randomNameOfBoy());
             }
         }

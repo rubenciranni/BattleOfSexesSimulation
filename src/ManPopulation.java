@@ -1,7 +1,7 @@
 public class ManPopulation extends ThreadGroup{
     public FaithfulPopulation faithfulPopulation;
     public PhilandererPopulation philandererPopulation;
-    private int size;
+    public int size;
 
     public ManPopulation(Population parent, String name, int size) {
         super(parent, name);
