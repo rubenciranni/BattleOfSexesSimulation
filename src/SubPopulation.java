@@ -18,7 +18,7 @@ public abstract class SubPopulation extends ThreadGroup {
 
     public abstract class SubType extends Thread {
         public final int id;
-        int credit = 0;
+        int credit = 100;
         public SubType(ThreadGroup group, String name) {
             super(group, name);
             this.id = ++population.ID;

@@ -16,6 +16,16 @@ public class CoyPopulation extends SubWomanPopulation {
         }
 
         @Override
+        public void generateOffspringWith(SubManPopulation.ManSubType man) {
+
+        }
+
+        @Override
+        public boolean accepted(SubManPopulation.ManSubType man) {
+            return false;
+        }
+
+        @Override
         public CoyPopulation getPopulation() {
             return CoyPopulation.this;
         }

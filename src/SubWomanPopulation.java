@@ -4,15 +4,35 @@ public abstract class SubWomanPopulation extends SubPopulation {
     }
 
     public abstract class WomanSubType extends SubType {
+        SubManPopulation.ManSubType currentMan;
         public WomanSubType(ThreadGroup group) {
             super(group, RandomNameGenerator.randomNameOfGirl());
         }
 
-        public void generateOffspringWith(SubManPopulation.ManSubType man) {
+        public abstract void generateOffspringWith(SubManPopulation.ManSubType man);
+
+        public abstract boolean accepted(SubManPopulation.ManSubType man);
+
+        public synchronized void proposal(SubManPopulation.ManSubType man) {
+            if (accepted(man)) {
+                currentMan = man;
+                notify();
+            }
+
         }
 
         @Override
         public void run() {
+            while (credit > 0) {
+                try {
+                    wait();
+                    generateOffspringWith(currentMan);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
 
         }
     }
