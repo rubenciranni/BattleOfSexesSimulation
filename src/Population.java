@@ -2,8 +2,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Population extends ThreadGroup{
-    private ManPopulation manPopulation;
-    private WomanPopulation womanPopulation;
+    private final ManPopulation manPopulation;
+    private final WomanPopulation womanPopulation;
     public LinkedList<Thread> initialPopulationList;
     public int ID = 0;
     public int size;

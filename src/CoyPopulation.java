@@ -1,22 +1,23 @@
-public class CoyPopulation extends SubPopulation{
+public class CoyPopulation extends SubWomanPopulation {
     public CoyPopulation(ThreadGroup parent, String name, int size) {
         super(parent, name, size);
     }
 
     @Override
     public void addToInitialPopulation() {
-        for(int i = 0; i < this.size; i++) {
-            population.initialPopulationList.add(new Coy(this, RandomNameGenerator.randomNameOfGirl()));
+        for (int i = 0; i < this.size; i++) {
+            population.initialPopulationList.add(new Coy(this));
         }
     }
 
-    public class Coy extends SubPopulation.SubType {
-        public Coy(ThreadGroup group, String name) {
-            super(group, name + " (Coy)");
+    public class Coy extends WomanSubType {
+        public Coy(ThreadGroup group) {
+            super(group);
         }
 
         @Override
-        public void run() {
+        public CoyPopulation getPopulation() {
+            return CoyPopulation.this;
         }
     }
 
