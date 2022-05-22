@@ -18,14 +18,14 @@ public abstract class SubWomanPopulation extends SubPopulation {
             super(group, RandomNameGenerator.randomNameOfGirl());
         }
 
-        public void generateOffspringWith(SubManPopulation.ManSubType man) {
+        public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
             Random rand = new Random();
             boolean sex = rand.nextBoolean();
             this.updateCredit();
             man.updateCredit();
 
             if (sex) {
-                boolean m = man.getClass().getName() == "Faithful";
+                boolean m = man.getSubType() == "Faithful";
                 /*
                  if (noise && rand.nextInt(0, 50) == 49) {
                      m = !m;
@@ -34,29 +34,29 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 if (m) {
                     FaithfulPopulation fatherPopulation = man.getPopulation();
                     fatherPopulation.increaseSize();
-                    fatherPopulation.new Faithful(fatherPopulation);
+                    fatherPopulation.new Faithful(fatherPopulation).start();
                 }
                 else {
                     PhilandererPopulation father = man.getPopulation();
                     father.increaseSize();
-                    father.new Philanderer(father);
+                    father.new Philanderer(father).start();
                 }
             }
             else {
-                boolean w = this.getClass().getName() == "Coy";
+                boolean w = this.getSubType() == "Coy";
                 /*
                 if (noise && rand.nextInt(0, 50) == 49) {
                     w = !w;
                 }
                  */
                 if (w) {
-                    CoyPopulation mother = man.getPopulation();
+                    CoyPopulation mother = this.getPopulation();
                     mother.increaseSize();
-                    mother.new Coy(mother);
+                    mother.new Coy(mother).start();
                 }
-                FastPopulation mother = man.getPopulation();
+                FastPopulation mother = this.getPopulation();
                 mother.increaseSize();
-                mother.new Fast(mother);
+                mother.new Fast(mother).start();
             }
         }
 
@@ -72,14 +72,11 @@ public abstract class SubWomanPopulation extends SubPopulation {
             notify();
         }
 
-        public synchronized void manWants() {
-            notify();
-        }
-
         @Override
-        public void run() {
+        public synchronized void run() {
             while (credit > 0) {
                 try {
+                    population.queue.put(this);
                     wait();
                     generateOffspringWith(currentMan);
 

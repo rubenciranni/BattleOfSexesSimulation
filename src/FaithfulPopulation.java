@@ -16,13 +16,18 @@ public class FaithfulPopulation extends SubManPopulation {
         }
 
         @Override
+        public String getSubType() {
+            return "Faithful";
+        }
+
+        @Override
         public FaithfulPopulation getPopulation() {
             return FaithfulPopulation.this;
         }
 
         @Override
         public void updateCredit() {
-
+            //TODO implement updateCredit
         }
     }
 }

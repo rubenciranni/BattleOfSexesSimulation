@@ -24,8 +24,9 @@ public abstract class SubPopulation extends ThreadGroup {
         public SubType(ThreadGroup group, String name) {
             super(group, name);
             this.id = ++population.ID;
-            System.out.println("new" + group.getName());
         }
+
+        public abstract String getSubType();
 
         public <E extends SubPopulation> E getPopulation() {
             return (E) SubPopulation.this;

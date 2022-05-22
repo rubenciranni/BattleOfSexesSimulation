@@ -16,8 +16,8 @@ public class FastPopulation extends SubWomanPopulation {
         }
 
         @Override
-        public void generateOffspringWith(SubManPopulation.ManSubType man) {
-
+        public String getSubType() {
+            return "Fast";
         }
 
         @Override
@@ -32,7 +32,7 @@ public class FastPopulation extends SubWomanPopulation {
 
         @Override
         public void updateCredit() {
-
+            //TODO implement updateCredit
         }
     }
 }

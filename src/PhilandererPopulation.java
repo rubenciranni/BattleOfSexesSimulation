@@ -16,13 +16,17 @@ public class PhilandererPopulation extends SubManPopulation {
         }
 
         @Override
+        public String getSubType() {
+            return "Philanderer";
+        }
+        @Override
         public PhilandererPopulation getPopulation() {
             return PhilandererPopulation.this;
         }
 
         @Override
         public void updateCredit() {
-
+            //TODO implement updateCredit
         }
     }
 }

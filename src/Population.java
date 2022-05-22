@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.concurrent.SynchronousQueue;
 
 public class Population extends ThreadGroup{
     private final ManPopulation manPopulation;
@@ -7,11 +8,13 @@ public class Population extends ThreadGroup{
     public LinkedList<Thread> initialPopulationList;
     public int ID = 0;
     public int size;
+    public SynchronousQueue<SubWomanPopulation.WomanSubType> queue;
 
     public Population(String name, int size) {
         super(name);
         this.size = size;
         this.initialPopulationList = new LinkedList<>();
+        this.queue = new SynchronousQueue<>();
 
         this.womanPopulation = new WomanPopulation(this, "woman population", size/2);
         this.manPopulation = new ManPopulation(this, "man population", size/2);

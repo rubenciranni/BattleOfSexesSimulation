@@ -16,13 +16,13 @@ public class CoyPopulation extends SubWomanPopulation {
         }
 
         @Override
-        public void generateOffspringWith(SubManPopulation.ManSubType man) {
-
+        public String getSubType() {
+            return "Coy";
         }
 
         @Override
         public boolean accepted(SubManPopulation.ManSubType man) {
-            return man.getClass().getName() == "Faithful" && this.isSingle;
+            return (man.getClass().getName() == "Faithful") && this.isSingle;
         }
 
         @Override
@@ -30,9 +30,11 @@ public class CoyPopulation extends SubWomanPopulation {
             return CoyPopulation.this;
         }
 
+
+
         @Override
         public void updateCredit() {
-
+            //TODO implement updateCredit
         }
     }
 

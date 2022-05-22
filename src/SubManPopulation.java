@@ -19,22 +19,17 @@ public abstract class SubManPopulation extends SubPopulation {
         @Override
         public void run() {
             while (credit > 0) {
-
-                if (currentWoman == null) {
-                    WomanPopulation womanPopulation = population.getWomanPopulation();
-                    SubWomanPopulation.WomanSubType[] women = new SubWomanPopulation.WomanSubType[1];
-                    womanPopulation.enumerate(women, false);
-                    currentWoman = women[0];
-                    currentWoman.proposal(this);
-                    continue;
-                }
-                else {
-                    try {
+                try {
+                    if (currentWoman == null) {
+                        currentWoman = population.queue.take();
+                        currentWoman.proposal(this);
+                        continue;
+                    } else {
                         sleep(50);
                         currentWoman.heyBabe();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }
