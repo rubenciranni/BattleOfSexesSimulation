@@ -13,6 +13,8 @@ public class CoyPopulation extends SubWomanPopulation {
     public class Coy extends WomanSubType {
         public Coy(ThreadGroup group) {
             super(group);
+            this.setName(this.getName() + " (Coy)");
+            System.out.println(this.getName() + " " + this.getId());
         }
 
         @Override
@@ -22,7 +24,7 @@ public class CoyPopulation extends SubWomanPopulation {
 
         @Override
         public boolean accepted(SubManPopulation.ManSubType man) {
-            return (man.getClass().getName() == "Faithful") && this.isSingle;
+            return (man.getSubType() == "Faithful") && this.isSingle;
         }
 
         @Override

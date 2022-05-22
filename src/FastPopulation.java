@@ -13,6 +13,8 @@ public class FastPopulation extends SubWomanPopulation {
     public class Fast extends WomanSubType {
         public Fast(ThreadGroup group) {
             super(group);
+            this.setName(this.getName() + " (Fast)");
+            System.out.println(this.getName() + " " + this.getId());
         }
 
         @Override
@@ -22,7 +24,7 @@ public class FastPopulation extends SubWomanPopulation {
 
         @Override
         public boolean accepted(SubManPopulation.ManSubType man) {
-            return true;
+            return this.isSingle;
         }
 
         @Override

@@ -12,21 +12,24 @@ public abstract class SubManPopulation extends SubPopulation {
     public abstract class ManSubType extends SubType {
         SubWomanPopulation.WomanSubType currentWoman;
 
+
         public ManSubType(ThreadGroup group) {
             super(group, RandomNameGenerator.randomNameOfBoy());
         }
+
+        public abstract void leaveOrStay(SubWomanPopulation.WomanSubType woman);
 
         @Override
         public void run() {
             while (credit > 0) {
                 try {
-                    if (currentWoman == null) {
-                        currentWoman = population.queue.take();
-                        currentWoman.proposal(this);
-                        continue;
-                    } else {
-                        sleep(50);
-                        currentWoman.heyBabe();
+                    if (isSingle) {
+                        SubWomanPopulation.WomanSubType womanToPropose = population.queue.take();
+                        womanToPropose.proposal(this);
+                    }
+                    else {
+                        // sleep(100);
+                        // currentWoman.heyBabe();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

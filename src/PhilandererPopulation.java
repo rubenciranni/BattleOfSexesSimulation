@@ -13,6 +13,8 @@ public class PhilandererPopulation extends SubManPopulation {
     public class Philanderer extends ManSubType {
         public Philanderer(ThreadGroup group) {
             super(group);
+            this.setName(this.getName() + " (Philanderer)");
+            System.out.println(this.getName() + " " + this.getId());
         }
 
         @Override
@@ -27,6 +29,15 @@ public class PhilandererPopulation extends SubManPopulation {
         @Override
         public void updateCredit() {
             //TODO implement updateCredit
+        }
+
+        @Override
+        public void leaveOrStay(SubWomanPopulation.WomanSubType woman) {
+            this.currentWoman = null;
+            this.isSingle = true;
+            woman.currentMan = null;
+            woman.isSingle = true;
+
         }
     }
 }

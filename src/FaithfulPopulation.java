@@ -13,6 +13,8 @@ public class FaithfulPopulation extends SubManPopulation {
     public class Faithful extends ManSubType {
         public Faithful(ThreadGroup group) {
             super(group);
+            this.setName(this.getName() + " (Faithful)");
+            System.out.println(this.getName() + " " + this.getId());
         }
 
         @Override
@@ -28,6 +30,10 @@ public class FaithfulPopulation extends SubManPopulation {
         @Override
         public void updateCredit() {
             //TODO implement updateCredit
+        }
+
+        @Override
+        public void leaveOrStay(SubWomanPopulation.WomanSubType woman) {
         }
     }
 }
