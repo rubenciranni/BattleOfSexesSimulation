@@ -22,12 +22,17 @@ public class FastPopulation extends SubWomanPopulation {
 
         @Override
         public boolean accepted(SubManPopulation.ManSubType man) {
-            return false;
+            return true;
         }
 
         @Override
         public FastPopulation getPopulation() {
             return FastPopulation.this;
+        }
+
+        @Override
+        public void updateCredit() {
+
         }
     }
 }

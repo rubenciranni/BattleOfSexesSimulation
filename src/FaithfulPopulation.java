@@ -19,5 +19,10 @@ public class FaithfulPopulation extends SubManPopulation {
         public FaithfulPopulation getPopulation() {
             return FaithfulPopulation.this;
         }
+
+        @Override
+        public void updateCredit() {
+
+        }
     }
 }

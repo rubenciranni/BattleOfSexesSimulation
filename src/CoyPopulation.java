@@ -22,12 +22,17 @@ public class CoyPopulation extends SubWomanPopulation {
 
         @Override
         public boolean accepted(SubManPopulation.ManSubType man) {
-            return false;
+            return man.getClass().getName() == "Faithful" && this.isSingle;
         }
 
         @Override
         public CoyPopulation getPopulation() {
             return CoyPopulation.this;
+        }
+
+        @Override
+        public void updateCredit() {
+
         }
     }
 

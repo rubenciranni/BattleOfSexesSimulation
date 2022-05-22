@@ -19,5 +19,10 @@ public class PhilandererPopulation extends SubManPopulation {
         public PhilandererPopulation getPopulation() {
             return PhilandererPopulation.this;
         }
+
+        @Override
+        public void updateCredit() {
+
+        }
     }
 }

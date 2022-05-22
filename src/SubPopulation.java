@@ -19,14 +19,19 @@ public abstract class SubPopulation extends ThreadGroup {
     public abstract class SubType extends Thread {
         public final int id;
         int credit = 100;
+        public boolean isSingle = true;
+
         public SubType(ThreadGroup group, String name) {
             super(group, name);
             this.id = ++population.ID;
+            System.out.println("new" + group.getName());
         }
 
         public <E extends SubPopulation> E getPopulation() {
             return (E) SubPopulation.this;
         }
+
+        public abstract void updateCredit();
 
         @Override
         public long getId() {
