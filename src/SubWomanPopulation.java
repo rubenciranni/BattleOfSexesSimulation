@@ -33,6 +33,8 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 man.currentWoman = this;
                 this.isSingle = false;
                 man.isSingle = false;
+                this.ring = new Object();           //creating a shared object to synchronize them
+                man.ring = this.ring;
                 return true;
             }
             else {
@@ -110,9 +112,11 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     e.printStackTrace();
                 }
             }
-            if (!isSingle) {
-                currentMan.isSingle = true;
-                currentMan.currentWoman = null;
+            synchronized (ring) {
+                if (!isSingle) {
+                    currentMan.currentWoman = null;
+                    currentMan.isSingle = true;
+                }
             }
             SubWomanPopulation.this.decreaseSize();
         }

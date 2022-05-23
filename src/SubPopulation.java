@@ -25,6 +25,7 @@ public abstract class SubPopulation extends ThreadGroup {
         int credit = 100;
         int lifePoints = 10;
         public boolean isSingle = true;
+        public Object ring;
 
         public SubType(ThreadGroup group, String name) {
             super(group, name);

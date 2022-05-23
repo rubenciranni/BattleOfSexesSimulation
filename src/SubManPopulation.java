@@ -55,9 +55,11 @@ public abstract class SubManPopulation extends SubPopulation {
                     e.printStackTrace();
                 }
             }
-            if (!isSingle) {
-                currentWoman.isSingle = true;
-                currentWoman.currentMan = null;
+            synchronized (ring) {
+                if (!isSingle) {
+                    currentWoman.currentMan = null;
+                    currentWoman.isSingle = true;
+                }
             }
             SubManPopulation.this.decreaseSize();
         }

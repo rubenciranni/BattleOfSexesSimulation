@@ -35,8 +35,8 @@ public class PhilandererPopulation extends SubManPopulation {
         @Override
         public void leaveOrStay(SubWomanPopulation.WomanSubType woman) {
             //leaves
-            this.currentWoman = null;
             this.isSingle = true;
+            this.currentWoman = null;
             woman.currentMan = null;
             woman.isSingle = true;
 
