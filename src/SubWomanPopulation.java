@@ -22,24 +22,26 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         public synchronized void proposal(SubManPopulation.ManSubType man) {
             if (accepted(man)) {
-                this.updateCredit(man);
-                man.updateCredit(this);
-                System.out.println(this.getName() + " coupled with " + man.getName());
                 this.currentMan = man;
                 man.currentWoman = this;
                 this.isSingle = false;
                 man.isSingle = false;
                 hey();
             }
+            else {
+                man.hey();
+            }
         }
 
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
-            Random rand = new Random();
-            boolean sex = rand.nextBoolean();
-
-            if (population.size > 1000) {
+            System.out.println(this.getName() + " coupled with " + man.getName());
+            if (population.size > 100) {
                 return;
             }
+            this.updateCredit(man);
+            man.updateCredit(this);
+            Random rand = new Random();
+            boolean sex = rand.nextBoolean();
 
             if (sex) {
                 boolean m = man.getSubType() == "Faithful";
@@ -78,6 +80,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 }
             }
             man.leaveOrStay(this);
+            man.hey();
         }
 
         @Override
@@ -87,12 +90,9 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     if (isSingle) {
                         sleep(100);
                         population.queue.put(this);
-                        wait();
-                        generateOffspringWith(currentMan);
                     }
-                    else {
-                        wait();
-                    }
+                    wait();
+                    generateOffspringWith(currentMan);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

@@ -26,13 +26,14 @@ public abstract class SubManPopulation extends SubPopulation {
                         sleep(100);
                         SubWomanPopulation.WomanSubType womanToPropose = population.queue.take();
                         womanToPropose.proposal(this);
+                        wait();
                     }
-                    /*
+
                     else {
                         sleep(100);
-                        currentWoman.heyBabe();
+                        currentWoman.hey();
                     }
-                    */
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
