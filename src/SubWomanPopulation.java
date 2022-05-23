@@ -18,11 +18,28 @@ public abstract class SubWomanPopulation extends SubPopulation {
             super(group, RandomNameGenerator.randomNameOfGirl());
         }
 
+        public abstract boolean accepted(SubManPopulation.ManSubType man);
+
+        public synchronized void proposal(SubManPopulation.ManSubType man) {
+            if (accepted(man)) {
+                this.updateCredit(man);
+                man.updateCredit(this);
+                System.out.println(this.getName() + " coupled with " + man.getName());
+                this.currentMan = man;
+                man.currentWoman = this;
+                this.isSingle = false;
+                man.isSingle = false;
+                hey();
+            }
+        }
+
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
             Random rand = new Random();
             boolean sex = rand.nextBoolean();
-            this.updateCredit();
-            man.updateCredit();
+
+            if (population.size > 1000) {
+                return;
+            }
 
             if (sex) {
                 boolean m = man.getSubType() == "Faithful";
@@ -33,13 +50,13 @@ public abstract class SubWomanPopulation extends SubPopulation {
                  */
                 if (m) {
                     FaithfulPopulation fatherPopulation = man.getPopulation();
-                    fatherPopulation.increaseSize();
                     fatherPopulation.new Faithful(fatherPopulation).start();
+                    fatherPopulation.increaseSize();
                 }
                 else {
-                    PhilandererPopulation father = man.getPopulation();
-                    father.increaseSize();
-                    father.new Philanderer(father).start();
+                    PhilandererPopulation fatherPopulation = man.getPopulation();
+                    fatherPopulation.new Philanderer(fatherPopulation).start();
+                    fatherPopulation.increaseSize();
                 }
             }
             else {
@@ -50,33 +67,17 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 }
                  */
                 if (w) {
-                    CoyPopulation mother = this.getPopulation();
-                    mother.increaseSize();
-                    mother.new Coy(mother).start();
+                    CoyPopulation motherPopulation = this.getPopulation();
+                    motherPopulation.new Coy(motherPopulation).start();
+                    motherPopulation.increaseSize();
                 }
                 else {
-                    FastPopulation mother = this.getPopulation();
-                    mother.increaseSize();
-                    mother.new Fast(mother).start();
+                    FastPopulation motherPopulation = this.getPopulation();
+                    motherPopulation.new Fast(motherPopulation).start();
+                    motherPopulation.increaseSize();
                 }
             }
             man.leaveOrStay(this);
-        }
-
-        public abstract boolean accepted(SubManPopulation.ManSubType man);
-
-        public void proposal(SubManPopulation.ManSubType man) {
-            if (accepted(man)) {
-                System.out.println(this.getName() + " coupled with " + man.getName());
-                this.currentMan = man;
-                man.currentWoman = this;
-                this.isSingle = false;
-                man.isSingle = false;
-                heyBabe();
-            }
-        }
-        public synchronized void heyBabe() {
-            notify();
         }
 
         @Override
@@ -84,6 +85,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
             while (credit > 0) {
                 try {
                     if (isSingle) {
+                        sleep(100);
                         population.queue.put(this);
                         wait();
                         generateOffspringWith(currentMan);

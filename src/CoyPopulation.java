@@ -23,21 +23,20 @@ public class CoyPopulation extends SubWomanPopulation {
         }
 
         @Override
-        public boolean accepted(SubManPopulation.ManSubType man) {
-            return (man.getSubType() == "Faithful") && this.isSingle;
-        }
-
-        @Override
         public CoyPopulation getPopulation() {
             return CoyPopulation.this;
         }
 
-
-
         @Override
-        public void updateCredit() {
+        public void updateCredit(SubType partner) {
             //TODO implement updateCredit
         }
+
+        @Override
+        public boolean accepted(SubManPopulation.ManSubType man) {
+            return (man.getSubType() == "Faithful") && this.isSingle;
+        }
+
     }
 
 }

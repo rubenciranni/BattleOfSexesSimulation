@@ -15,7 +15,6 @@ public class Population extends ThreadGroup{
         this.size = size;
         this.initialPopulationList = new LinkedList<>();
         this.queue = new SynchronousQueue<>();
-
         this.womanPopulation = new WomanPopulation(this, "woman population", size/2);
         this.manPopulation = new ManPopulation(this, "man population", size/2);
     }
@@ -24,14 +23,9 @@ public class Population extends ThreadGroup{
         super(name);
         this.size = numberOfCoy+numberOfFaithful+numberOfFast+numberOfFast;
         this.initialPopulationList = new LinkedList<>();
-
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
         this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
 
-    }
-
-    public void IncreaseSize() {
-        size++;
     }
 
     public ManPopulation getManPopulation() {

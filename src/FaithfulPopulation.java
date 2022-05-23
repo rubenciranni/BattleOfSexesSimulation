@@ -28,12 +28,13 @@ public class FaithfulPopulation extends SubManPopulation {
         }
 
         @Override
-        public void updateCredit() {
+        public void updateCredit(SubType partner) {
             //TODO implement updateCredit
         }
 
         @Override
         public void leaveOrStay(SubWomanPopulation.WomanSubType woman) {
+            //stays
         }
     }
 }

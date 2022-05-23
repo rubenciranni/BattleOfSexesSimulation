@@ -5,7 +5,6 @@ public abstract class SubPopulation extends ThreadGroup {
     public SubPopulation(ThreadGroup parent, String name, int size) {
         super(parent, name);
         this.size = size;
-
         addToInitialPopulation();
     }
 
@@ -17,8 +16,9 @@ public abstract class SubPopulation extends ThreadGroup {
     public abstract void addToInitialPopulation();
 
     public abstract class SubType extends Thread {
-        public final int id;
+        private final int id;
         int credit = 100;
+        int lifePoints = 5;
         public boolean isSingle = true;
 
         public SubType(ThreadGroup group, String name) {
@@ -32,7 +32,11 @@ public abstract class SubPopulation extends ThreadGroup {
             return (E) SubPopulation.this;
         }
 
-        public abstract void updateCredit();
+        public abstract void updateCredit(SubType partner);
+
+        public synchronized void hey() {
+            notify();
+        }
 
         @Override
         public long getId() {

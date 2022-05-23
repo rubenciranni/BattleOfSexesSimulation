@@ -21,18 +21,20 @@ public class PhilandererPopulation extends SubManPopulation {
         public String getSubType() {
             return "Philanderer";
         }
+
         @Override
         public PhilandererPopulation getPopulation() {
             return PhilandererPopulation.this;
         }
 
         @Override
-        public void updateCredit() {
+        public void updateCredit(SubType partner) {
             //TODO implement updateCredit
         }
 
         @Override
         public void leaveOrStay(SubWomanPopulation.WomanSubType woman) {
+            //leaves
             this.currentWoman = null;
             this.isSingle = true;
             woman.currentMan = null;

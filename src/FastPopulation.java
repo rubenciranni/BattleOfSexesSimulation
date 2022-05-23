@@ -23,18 +23,19 @@ public class FastPopulation extends SubWomanPopulation {
         }
 
         @Override
-        public boolean accepted(SubManPopulation.ManSubType man) {
-            return this.isSingle;
-        }
-
-        @Override
         public FastPopulation getPopulation() {
             return FastPopulation.this;
         }
 
         @Override
-        public void updateCredit() {
+        public void updateCredit(SubType partner) {
             //TODO implement updateCredit
         }
+
+        @Override
+        public boolean accepted(SubManPopulation.ManSubType man) {
+            return this.isSingle;
+        }
+
     }
 }
