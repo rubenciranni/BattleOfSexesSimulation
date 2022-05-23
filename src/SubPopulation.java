@@ -13,12 +13,17 @@ public abstract class SubPopulation extends ThreadGroup {
          population.size++;
     }
 
+    public void decreaseSize() {
+        size--;
+        population.size--;
+    }
+
     public abstract void addToInitialPopulation();
 
     public abstract class SubType extends Thread {
         private final int id;
         int credit = 100;
-        int lifePoints = 5;
+        int lifePoints = 10;
         public boolean isSingle = true;
 
         public SubType(ThreadGroup group, String name) {

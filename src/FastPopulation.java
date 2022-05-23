@@ -34,7 +34,7 @@ public class FastPopulation extends SubWomanPopulation {
 
         @Override
         public boolean accepted(SubManPopulation.ManSubType man) {
-            return this.isSingle;
+            return this.isSingle && true;
         }
 
     }

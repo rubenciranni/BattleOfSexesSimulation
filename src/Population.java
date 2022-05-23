@@ -23,6 +23,7 @@ public class Population extends ThreadGroup{
         super(name);
         this.size = numberOfCoy+numberOfFaithful+numberOfFast+numberOfFast;
         this.initialPopulationList = new LinkedList<>();
+        this.queue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
         this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
 
@@ -37,19 +38,19 @@ public class Population extends ThreadGroup{
     }
 
     public float getFaithfulState() {
-        return ((float)this.manPopulation.faithfulPopulation.activeCount()/(float)this.activeCount());
+        return ((float)this.manPopulation.faithfulPopulation.size/(float)this.size);
     }
 
     public float getPhilanderersState() {
-        return ((float)this.manPopulation.philandererPopulation.activeCount()/(float)this.activeCount());
+        return ((float)this.manPopulation.philandererPopulation.size/(float)this.size);
     }
 
     public float getFastState() {
-        return ((float)this.womanPopulation.fastPopulation.activeCount()/(float)this.activeCount());
+        return ((float)this.womanPopulation.fastPopulation.size/(float)this.size);
     }
 
     public float getCoyState() {
-        return ((float)this.womanPopulation.coyPopulation.activeCount()/(float)this.activeCount());
+        return ((float)this.womanPopulation.coyPopulation.size/(float)this.size);
     }
 
     public HashMap getGlobalState() {

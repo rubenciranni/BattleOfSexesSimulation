@@ -34,7 +34,7 @@ public class CoyPopulation extends SubWomanPopulation {
 
         @Override
         public boolean accepted(SubManPopulation.ManSubType man) {
-            return (man.getSubType() == "Faithful") && this.isSingle;
+            return this.isSingle && (man.getSubType() == "Faithful");
         }
 
     }

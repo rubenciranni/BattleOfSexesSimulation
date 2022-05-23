@@ -9,6 +9,12 @@ public abstract class SubManPopulation extends SubPopulation {
         population.getManPopulation().size++;
     }
 
+    @Override
+    public void decreaseSize() {
+        super.decreaseSize();
+        population.getManPopulation().size--;
+    }
+
     public abstract class ManSubType extends SubType {
         SubWomanPopulation.WomanSubType currentWoman;
 
@@ -20,24 +26,40 @@ public abstract class SubManPopulation extends SubPopulation {
 
         @Override
         public synchronized void run() {
-            while (credit > 0) {
+            while (credit > 0 && lifePoints > 0) {
                 try {
+                    sleep(100);
                     if (isSingle) {
-                        sleep(100);
                         SubWomanPopulation.WomanSubType womanToPropose = population.queue.take();
-                        womanToPropose.proposal(this);
-                        wait();
+                        boolean accepted = womanToPropose.proposal(this);
+                        if (!accepted) {
+                             continue;
+                        }
+                        else {
+                            currentWoman.hey();
+                            wait();
+                            SubWomanPopulation.WomanSubType woman = currentWoman;
+                            leaveOrStay(woman);
+                            woman.hey();
+                        }
                     }
-
                     else {
                         sleep(100);
                         currentWoman.hey();
+                        wait();
+                        currentWoman.hey();
                     }
+                    lifePoints--;
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            if (!isSingle) {
+                currentWoman.isSingle = true;
+                currentWoman.currentMan = null;
+            }
+            SubManPopulation.this.decreaseSize();
         }
     }
 }

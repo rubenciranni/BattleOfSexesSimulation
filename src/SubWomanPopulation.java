@@ -11,8 +11,15 @@ public abstract class SubWomanPopulation extends SubPopulation {
         population.getWomanPopulation().size++;
     }
 
+    @Override
+    public void decreaseSize() {
+        super.decreaseSize();
+        population.getWomanPopulation().size--;
+    }
+
     public abstract class WomanSubType extends SubType {
         SubManPopulation.ManSubType currentMan;
+        private boolean sterility;
 
         public WomanSubType(ThreadGroup group) {
             super(group, RandomNameGenerator.randomNameOfGirl());
@@ -20,22 +27,26 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         public abstract boolean accepted(SubManPopulation.ManSubType man);
 
-        public synchronized void proposal(SubManPopulation.ManSubType man) {
+        public synchronized boolean proposal(SubManPopulation.ManSubType man) {
             if (accepted(man)) {
                 this.currentMan = man;
                 man.currentWoman = this;
                 this.isSingle = false;
                 man.isSingle = false;
-                hey();
+                return true;
             }
             else {
-                man.hey();
+                return false;
             }
         }
 
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
             System.out.println(this.getName() + " coupled with " + man.getName());
             if (population.size > 100) {
+                sterility = true;
+            }
+            if (sterility) {
+                man.hey();
                 return;
             }
             this.updateCredit(man);
@@ -79,13 +90,12 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     motherPopulation.increaseSize();
                 }
             }
-            man.leaveOrStay(this);
             man.hey();
         }
 
         @Override
         public synchronized void run() {
-            while (credit > 0) {
+            while (credit > 0 && lifePoints > 0) {
                 try {
                     if (isSingle) {
                         sleep(100);
@@ -93,11 +103,18 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     }
                     wait();
                     generateOffspringWith(currentMan);
+                    wait();
+                    lifePoints--;
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            if (!isSingle) {
+                currentMan.isSingle = true;
+                currentMan.currentWoman = null;
+            }
+            SubWomanPopulation.this.decreaseSize();
         }
     }
 }
