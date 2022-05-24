@@ -30,7 +30,7 @@ public abstract class SubManPopulation extends SubPopulation {
                 try {
                     sleep(100);
                     if (isSingle) {
-                        SubWomanPopulation.WomanSubType womanToPropose = population.queue.take();
+                        SubWomanPopulation.WomanSubType womanToPropose = population.womenQueue.take();
                         boolean accepted = womanToPropose.proposal(this);
                         if (!accepted) {
                              continue;
