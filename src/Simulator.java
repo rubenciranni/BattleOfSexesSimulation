@@ -25,7 +25,7 @@ public class Simulator {
             t.start();
         }
         boolean IntegerTrueFloatFalse = true;
-        while (true) {
+        while (population.size > 0) {
             Thread.sleep(4);
             System.out.println(population.totalSize()  +"  "+ population.size);
             if (IntegerTrueFloatFalse)

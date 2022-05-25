@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public abstract class SubWomanPopulation extends SubPopulation {
     public SubWomanPopulation(ThreadGroup parent, String name, int size) {
@@ -24,7 +25,6 @@ public abstract class SubWomanPopulation extends SubPopulation {
     public abstract class WomanSubType extends SubType {
         SubManPopulation.ManSubType currentMan;
         private boolean sterility;
-        public boolean alreadyInTheQueue = false;
 
         public WomanSubType(ThreadGroup group) {
             super(group, RandomNameGenerator.randomNameOfGirl());
@@ -40,8 +40,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 man.currentWoman = this;
                 this.isSingle = false;
                 man.isSingle = false;
-                this.ring = new Object();           //creating a shared object to synchronize them
-                man.ring = this.ring;
+                this.ring = man.ring;
                 return true;
             } else {
                 return false;
@@ -52,7 +51,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
             this.updateCredit(man);
             // temporary implementation in order to not destroy your PC
             // ----------------------
-            if (population.size > 300) {
+            if (population.size > 100) {
                 sterility = true;
             }
             // ----------------------
@@ -102,27 +101,13 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         @Override
         public synchronized void run() {
-            // TODO bugfix, after the population reaches 100 people it starts decreasing as expected
-            //  but it never goes to zero, instead it reaches a stable situation which goes on forever.
-            //  Here some examples of stalling situations:
-            //  number of people: 22
-            //  globalState: {Faithful=0.045454547, Coy=0.22727273, Fast=0.0, Philanderers=0.72727275} Why?
-            //  ------
-            //  number of people: 13
-            //  globalState: {Faithful=0.6923077, Coy=0.23076923, Fast=0.0, Philanderers=0.07692308} Why?
-            //  ------
-            //  number of people: 15
-            //  globalState: {Faithful=0.0, Coy=0.06666667, Fast=0.93333334, Philanderers=0.0} More comprehensible, since if
-            //  only women are remaining they wait forever in the queue without any answer
-
             while (credit >= 0 && lifePoints > 0) {
                 try {
                     lifePoints--;
-                    if (!alreadyInTheQueue && isSingle) {
-                        population.womenQueue.put(this);
-                        alreadyInTheQueue = true;
+                    if (isSingle) {
+                        population.womenQueue.offer(this, 400, TimeUnit.MILLISECONDS);
                     }
-                    wait(1000);
+                    wait(400);
                     if (!isSingle) {
                         generateOffspringWith(currentMan);
                         wait();
@@ -132,13 +117,13 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     e.printStackTrace();
                 }
             }
-             synchronized (ring) {
-                 if (!isSingle) {
+            SubWomanPopulation.this.decreaseSize();
+            synchronized (ring) {
+                if (!isSingle) {
                     currentMan.currentWoman = null;
                     currentMan.isSingle = true;
                 }
             }
-            SubWomanPopulation.this.decreaseSize();
         }
     }
 }

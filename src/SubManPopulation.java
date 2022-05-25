@@ -37,10 +37,8 @@ public abstract class SubManPopulation extends SubPopulation {
                     lifePoints--;
                     sleep(100);
                     if (isSingle) {
-                        SubWomanPopulation.WomanSubType womanToPropose = population.womenQueue.poll();
-                        System.out.println(womanToPropose);
+                        SubWomanPopulation.WomanSubType womanToPropose = population.womenQueue.poll(400, TimeUnit.MILLISECONDS);
                         if (womanToPropose != null) {
-                            womanToPropose.alreadyInTheQueue = false;
                             boolean accepted = womanToPropose.proposal(this);
                             if (!accepted) {
                                 womanToPropose.hey();
@@ -64,13 +62,14 @@ public abstract class SubManPopulation extends SubPopulation {
                     e.printStackTrace();
                 }
             }
-             synchronized (ring) {
-                 if (!isSingle) {
-                     currentWoman.currentMan = null;
-                     currentWoman.isSingle = true;
-                 }
-             }
             SubManPopulation.this.decreaseSize();
+            synchronized (ring) {
+                if (!isSingle) {
+                    currentWoman.currentMan = null;
+                    currentWoman.isSingle = true;
+                }
+            }
+
         }
     }
 }
