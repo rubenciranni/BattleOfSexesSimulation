@@ -74,4 +74,14 @@ public class Population extends ThreadGroup{
 
         return globalState;
     }
+
+    public HashMap getPopulations() {
+        HashMap<String, Integer> globalState = new HashMap<>();
+        globalState.put("Faithful", this.manPopulation.faithfulPopulation.size);
+        globalState.put("Philanderers", this.manPopulation.philandererPopulation.size);
+        globalState.put("Fast", this.womanPopulation.fastPopulation.size);
+        globalState.put("Coy", this.womanPopulation.coyPopulation.size);
+
+        return globalState;
+    }
 }

@@ -26,9 +26,13 @@ public class Simulator {
         }
 
         while (true) {
+            boolean IntegerTrueFloatFalse = true;
             Thread.sleep(100);
             System.out.println(population.size);
-            System.out.println(population.getGlobalState());
+            if (IntegerTrueFloatFalse)
+                System.out.println(population.getPopulations());
+            else
+                System.out.println(population.getGlobalState());
             Thread[] list = new Thread[population.activeCount()];
             population.enumerate(list);
             System.out.println(list);
