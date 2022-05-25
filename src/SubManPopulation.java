@@ -33,6 +33,7 @@ public abstract class SubManPopulation extends SubPopulation {
                         SubWomanPopulation.WomanSubType womanToPropose = population.womenQueue.take();
                         boolean accepted = womanToPropose.proposal(this);
                         if (!accepted) {
+                             lifePoints--;
                              continue;
                         }
                         else {

@@ -29,6 +29,9 @@ public class Simulator {
             Thread.sleep(100);
             System.out.println(population.size);
             System.out.println(population.getGlobalState());
+            Thread[] list = new Thread[population.activeCount()];
+            population.enumerate(list);
+            System.out.println(list);
         }
     }
 }

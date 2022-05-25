@@ -44,6 +44,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
             System.out.println(this.getName() + " coupled with " + man.getName());
+            this.updateCredit(man);
             // temporary implementation in order to not destroy your PC
             // ----------------------
             if (population.size > 100) {
@@ -54,7 +55,6 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 man.hey();
                 return;
             }
-            this.updateCredit(man);
             Random rand = new Random();
             boolean sex = rand.nextBoolean();
 
@@ -77,11 +77,11 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 }
             } else {
                 boolean w = this.getSubType() == "Coy";
-                /*
+
                 if (population.noise && rand.nextInt(0, 50) == 49) {
                     w = !w;
                 }
-                 */
+
                 if (w) {
                     CoyPopulation motherPopulation = this.getPopulation();
                     motherPopulation.new Coy(motherPopulation).start();

@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 public class FastPopulation extends SubWomanPopulation {
     public FastPopulation(ThreadGroup parent, String name, int size) {
         super(parent, name, size);
@@ -30,7 +28,7 @@ public class FastPopulation extends SubWomanPopulation {
         }
 
         @Override
-        public void updateCredit(SubManPopulation.@NotNull ManSubType partner) {
+        public void updateCredit(SubManPopulation.ManSubType partner) {
             int a = population.a;
             int b = population.a;
             int c = population.a;
@@ -41,7 +39,6 @@ public class FastPopulation extends SubWomanPopulation {
                 this.credit += (a - b / 2);
                 partner.credit += (a - b / 2);
             }
-
         }
 
         @Override
