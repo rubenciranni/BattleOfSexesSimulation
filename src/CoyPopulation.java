@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 public class CoyPopulation extends SubWomanPopulation {
     public CoyPopulation(ThreadGroup parent, String name, int size) {
         super(parent, name, size);
@@ -28,7 +30,7 @@ public class CoyPopulation extends SubWomanPopulation {
         }
 
         @Override
-        public void updateCredit(SubManPopulation.ManSubType partner) {
+        public void updateCredit(SubManPopulation.@NotNull ManSubType partner) {
             int a = population.a;
             int b = population.b;
             int c = population.c;
