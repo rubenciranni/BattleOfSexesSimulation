@@ -29,7 +29,7 @@ public class CoyPopulation extends SubWomanPopulation {
 
         @Override
         public void updateCredit(SubType partner) {
-            //TODO implement updateCredit
+
         }
 
         @Override

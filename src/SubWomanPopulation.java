@@ -26,6 +26,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
         }
 
         public abstract boolean accepted(SubManPopulation.ManSubType man);
+        public abstract void updateCredit(SubManPopulation.ManSubType partner);
 
         public synchronized boolean proposal(SubManPopulation.ManSubType man) {
             if (accepted(man)) {
@@ -54,7 +55,6 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 return;
             }
             this.updateCredit(man);
-            man.updateCredit(this);
             Random rand = new Random();
             boolean sex = rand.nextBoolean();
 

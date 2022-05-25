@@ -38,8 +38,6 @@ public abstract class SubPopulation extends ThreadGroup {
             return (E) SubPopulation.this;
         }
 
-        public abstract void updateCredit(SubType partner);
-
         public synchronized void hey() {
             notify();
         }
