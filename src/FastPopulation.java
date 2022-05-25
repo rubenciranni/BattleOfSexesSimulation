@@ -28,8 +28,18 @@ public class FastPopulation extends SubWomanPopulation {
         }
 
         @Override
-        public void updateCredit(SubType partner) {
-            //TODO implement updateCredit
+        public void updateCredit(SubManPopulation.ManSubType partner) {
+            int a = population.a;
+            int b = population.a;
+            int c = population.a;
+            if (partner.getSubType() == "Philanderer") {
+                this.credit += (a - b);
+                partner.credit += (a);
+            } else {
+                this.credit += (a - b / 2);
+                partner.credit += (a - b / 2);
+            }
+
         }
 
         @Override

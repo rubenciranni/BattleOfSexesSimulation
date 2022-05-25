@@ -9,10 +9,10 @@ public class Population extends ThreadGroup{
     public int ID = 0;
     public int size;
     public SynchronousQueue<SubWomanPopulation.WomanSubType> womenQueue;
-    public int a; // the evolutionary benefit for having a baby
-    public int b; // the cost of parenting a child
-    public int c; // the cost of courtship
-    public boolean noise;
+    public final int a; // the evolutionary benefit for having a baby
+    public final int b; // the cost of parenting a child
+    public final int c; // the cost of courtship
+    public final boolean noise;
 
     public Population(String name, int size, int a, int b, int c, boolean noise) {
         super(name);
