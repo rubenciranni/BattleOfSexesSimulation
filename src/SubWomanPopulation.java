@@ -6,13 +6,13 @@ public abstract class SubWomanPopulation extends SubPopulation {
     }
 
     @Override
-    public void increaseSize() {
+    public synchronized void increaseSize() {
         super.increaseSize();
         population.getWomanPopulation().size++;
     }
 
     @Override
-    public void decreaseSize() {
+    public synchronized void decreaseSize() {
         super.decreaseSize();
         population.getWomanPopulation().size--;
     }
@@ -26,6 +26,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
         }
 
         public abstract boolean accepted(SubManPopulation.ManSubType man);
+
         public abstract void updateCredit(SubManPopulation.ManSubType partner);
 
         public synchronized boolean proposal(SubManPopulation.ManSubType man) {
@@ -43,11 +44,10 @@ public abstract class SubWomanPopulation extends SubPopulation {
         }
 
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
-            System.out.println(this.getName() + " coupled with " + man.getName());
             this.updateCredit(man);
             // temporary implementation in order to not destroy your PC
             // ----------------------
-            if (population.size > 100) {
+            if (population.size > 300) {
                 sterility = true;
             }
             // ----------------------
@@ -63,7 +63,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 // TODO bugfix, following error appears: class FaithfulPopulation cannot be cast to class
                 //  PhilandererPopulation (FaithfulPopulation and PhilandererPopulation
                 //  are in unnamed module of loader 'app') at line 68 when noise is true
-                if (population.noise && rand.nextInt(0, 50) == 49) {
+                if (population.noise && (rand.nextInt(0, 50) == 49)) {
                     m = !m;
                 }
                 if (m) {
@@ -78,7 +78,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
             } else {
                 boolean w = this.getSubType() == "Coy";
 
-                if (population.noise && rand.nextInt(0, 50) == 49) {
+                if (population.noise && (rand.nextInt(0, 50) == 49)) {
                     w = !w;
                 }
 
@@ -110,10 +110,9 @@ public abstract class SubWomanPopulation extends SubPopulation {
             //  globalState: {Faithful=0.0, Coy=0.06666667, Fast=0.93333334, Philanderers=0.0} More comprehensible, since if
             //  only women are remaining they wait forever in the queue without any answer
 
-            while (credit > 0 && lifePoints > 0) {
+            while (credit >= 0 && lifePoints > 0) {
                 try {
                     if (isSingle) {
-                        sleep(100);
                         population.womenQueue.put(this);
                     }
                     wait();
@@ -125,8 +124,8 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     e.printStackTrace();
                 }
             }
-            synchronized (ring) {
-                if (!isSingle) {
+             synchronized (ring) {
+                 if (!isSingle) {
                     currentMan.currentWoman = null;
                     currentMan.isSingle = true;
                 }

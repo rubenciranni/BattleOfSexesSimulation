@@ -14,7 +14,7 @@ public class FaithfulPopulation extends SubManPopulation {
         public Faithful(ThreadGroup group) {
             super(group);
             this.setName(this.getName() + " (Faithful)");
-            System.out.println(this.getName() + " " + this.getId());
+            //System.out.println(this.getName() + " " + this.getId());
         }
 
         @Override

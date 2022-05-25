@@ -30,7 +30,7 @@ public class Population extends ThreadGroup{
     public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers,
                       int a, int b, int c, boolean noise) {
         super(name);
-        this.size = numberOfCoy+numberOfFaithful+numberOfFast+numberOfFast;
+        this.size = numberOfCoy+numberOfFaithful+numberOfFast+numberOfPhilanderers;
         this.initialPopulationList = new LinkedList<>();
         this.womenQueue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);

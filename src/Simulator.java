@@ -13,7 +13,7 @@ public class Simulator {
     public Simulator(int coyPopulationInitialSize, int fastPopulationInitialSize,
                      int faithfulPopulationInitialSize, int philandererPopulationInitialSize,
                      int a, int b, int c, boolean noise) {
-        this.population = new Population("population", coyPopulationInitialSize, faithfulPopulationInitialSize,
+        this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize,
                 faithfulPopulationInitialSize, philandererPopulationInitialSize, a, b, c, noise);
     }
 
@@ -27,15 +27,15 @@ public class Simulator {
 
         while (true) {
             boolean IntegerTrueFloatFalse = true;
-            Thread.sleep(100);
+            Thread.sleep(4);
             System.out.println(population.size);
             if (IntegerTrueFloatFalse)
                 System.out.println(population.getPopulations());
             else
                 System.out.println(population.getGlobalState());
-            Thread[] list = new Thread[population.activeCount()];
-            population.enumerate(list);
-            System.out.println(list);
+            // Thread[] list = new Thread[population.activeCount()];
+            // population.enumerate(list);
+            // System.out.println(list);
         }
     }
 }

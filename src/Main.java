@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+        /*
         Scanner in=new Scanner(System.in);
         System.out.println("a: the evolutionary benefit for having a baby");
         System.out.println("b: the cost of parenting a child");
@@ -17,8 +18,10 @@ public class Main {
         int c = in.nextInt();
         System.out.print("Insert noise [true/false]: ");
         boolean noise = in.nextBoolean();
-
         Simulator simulator = new Simulator(pop_size, a, b, c, noise);
+
+         */
+        Simulator simulator = new Simulator(1, 0, 1, 0, 15, 20, 3, false);
         simulator.startSimulation();
     }
 }

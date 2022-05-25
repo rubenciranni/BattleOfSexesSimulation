@@ -8,22 +8,22 @@ public abstract class SubPopulation extends ThreadGroup {
         addToInitialPopulation();
     }
 
-    public void increaseSize() {
+    public synchronized void increaseSize() {
          size++;
          population.size++;
     }
 
-    public void decreaseSize() {
-        size--;
-        population.size--;
+    public synchronized void decreaseSize() {
+         size--;
+         population.size--;
     }
 
     public abstract void addToInitialPopulation();
 
     public abstract class SubType extends Thread {
         private final int id;
-        int credit = 100;
-        int lifePoints = 10;
+        int credit = 0;
+        int lifePoints = 5;
         public boolean isSingle = true;
         public Object ring;
 

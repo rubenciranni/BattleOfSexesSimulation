@@ -4,13 +4,13 @@ public abstract class SubManPopulation extends SubPopulation {
     }
 
     @Override
-    public void increaseSize() {
+    public synchronized void increaseSize() {
         super.increaseSize();
         population.getManPopulation().size++;
     }
 
     @Override
-    public void decreaseSize() {
+    public synchronized void decreaseSize() {
         super.decreaseSize();
         population.getManPopulation().size--;
     }
@@ -26,7 +26,7 @@ public abstract class SubManPopulation extends SubPopulation {
 
         @Override
         public synchronized void run() {
-            while (credit > 0 && lifePoints > 0) {
+            while (credit >= 0 && lifePoints > 0) {
                 try {
                     sleep(100);
                     if (isSingle) {
@@ -45,7 +45,6 @@ public abstract class SubManPopulation extends SubPopulation {
                         }
                     }
                     else {
-                        sleep(100);
                         currentWoman.hey();
                         wait();
                         currentWoman.hey();
@@ -56,12 +55,12 @@ public abstract class SubManPopulation extends SubPopulation {
                     e.printStackTrace();
                 }
             }
-            synchronized (ring) {
-                if (!isSingle) {
-                    currentWoman.currentMan = null;
-                    currentWoman.isSingle = true;
-                }
-            }
+             synchronized (ring) {
+                 if (!isSingle) {
+                     currentWoman.currentMan = null;
+                     currentWoman.isSingle = true;
+                 }
+             }
             SubManPopulation.this.decreaseSize();
         }
     }

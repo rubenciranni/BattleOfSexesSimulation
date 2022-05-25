@@ -14,7 +14,7 @@ public class PhilandererPopulation extends SubManPopulation {
         public Philanderer(ThreadGroup group) {
             super(group);
             this.setName(this.getName() + " (Philanderer)");
-            System.out.println(this.getName() + " " + this.getId());
+            //System.out.println(this.getName() + " " + this.getId());
         }
 
         @Override

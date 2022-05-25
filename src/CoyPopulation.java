@@ -14,7 +14,7 @@ public class CoyPopulation extends SubWomanPopulation {
         public Coy(ThreadGroup group) {
             super(group);
             this.setName(this.getName() + " (Coy)");
-            System.out.println(this.getName() + " " + this.getId());
+            //System.out.println(this.getName() + " " + this.getId());
         }
 
         @Override
