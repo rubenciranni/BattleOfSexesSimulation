@@ -21,7 +21,7 @@ public class Main {
         Simulator simulator = new Simulator(pop_size, a, b, c, noise);
 
          */
-        Simulator simulator = new Simulator(1, 0, 1, 0, 15, 20, 3, false);
+        Simulator simulator = new Simulator(0, 0, 1, 0, 15, 20, 3, false);
         simulator.startSimulation();
     }
 }

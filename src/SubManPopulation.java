@@ -1,18 +1,24 @@
+import java.util.concurrent.TimeUnit;
+
 public abstract class SubManPopulation extends SubPopulation {
     public SubManPopulation(ThreadGroup parent, String name, int size) {
         super(parent, name, size);
     }
 
     @Override
-    public synchronized void increaseSize() {
+    public void increaseSize() {
         super.increaseSize();
-        population.getManPopulation().size++;
+        synchronized (population.getManPopulation()) {
+            population.getManPopulation().size++;
+        }
     }
 
     @Override
-    public synchronized void decreaseSize() {
+    public void decreaseSize() {
         super.decreaseSize();
-        population.getManPopulation().size--;
+        synchronized (population.getManPopulation()) {
+            population.getManPopulation().size--;
+        }
     }
 
     public abstract class ManSubType extends SubType {
@@ -28,20 +34,24 @@ public abstract class SubManPopulation extends SubPopulation {
         public synchronized void run() {
             while (credit >= 0 && lifePoints > 0) {
                 try {
+                    lifePoints--;
                     sleep(100);
                     if (isSingle) {
-                        SubWomanPopulation.WomanSubType womanToPropose = population.womenQueue.take();
-                        boolean accepted = womanToPropose.proposal(this);
-                        if (!accepted) {
-                             lifePoints--;
-                             continue;
-                        }
-                        else {
-                            currentWoman.hey();
-                            wait();
-                            SubWomanPopulation.WomanSubType woman = currentWoman;
-                            leaveOrStay(woman);
-                            woman.hey();
+                        SubWomanPopulation.WomanSubType womanToPropose = population.womenQueue.poll();
+                        System.out.println(womanToPropose);
+                        if (womanToPropose != null) {
+                            womanToPropose.alreadyInTheQueue = false;
+                            boolean accepted = womanToPropose.proposal(this);
+                            if (!accepted) {
+                                womanToPropose.hey();
+                                continue;
+                            } else {
+                                currentWoman.hey();
+                                wait();
+                                SubWomanPopulation.WomanSubType woman = currentWoman;
+                                leaveOrStay(woman);
+                                woman.hey();
+                            }
                         }
                     }
                     else {
@@ -49,7 +59,6 @@ public abstract class SubManPopulation extends SubPopulation {
                         wait();
                         currentWoman.hey();
                     }
-                    lifePoints--;
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

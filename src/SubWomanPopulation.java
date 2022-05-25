@@ -6,20 +6,25 @@ public abstract class SubWomanPopulation extends SubPopulation {
     }
 
     @Override
-    public synchronized void increaseSize() {
+    public void increaseSize() {
         super.increaseSize();
-        population.getWomanPopulation().size++;
+        synchronized (population.getWomanPopulation()) {
+            population.getWomanPopulation().size++;
+        }
     }
 
     @Override
-    public synchronized void decreaseSize() {
+    public void decreaseSize() {
         super.decreaseSize();
-        population.getWomanPopulation().size--;
+        synchronized (population.getWomanPopulation()) {
+            population.getWomanPopulation().size--;
+        }
     }
 
     public abstract class WomanSubType extends SubType {
         SubManPopulation.ManSubType currentMan;
         private boolean sterility;
+        public boolean alreadyInTheQueue = false;
 
         public WomanSubType(ThreadGroup group) {
             super(group, RandomNameGenerator.randomNameOfGirl());
@@ -112,13 +117,16 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
             while (credit >= 0 && lifePoints > 0) {
                 try {
-                    if (isSingle) {
-                        population.womenQueue.put(this);
-                    }
-                    wait();
-                    generateOffspringWith(currentMan);
-                    wait();
                     lifePoints--;
+                    if (!alreadyInTheQueue && isSingle) {
+                        population.womenQueue.put(this);
+                        alreadyInTheQueue = true;
+                    }
+                    wait(1000);
+                    if (!isSingle) {
+                        generateOffspringWith(currentMan);
+                        wait();
+                    }
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
