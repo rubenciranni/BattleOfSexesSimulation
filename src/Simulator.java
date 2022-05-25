@@ -24,15 +24,15 @@ public class Simulator {
         for (SubPopulation.SubType t : population.initialPopulationList) {
             t.start();
         }
-
+        boolean IntegerTrueFloatFalse = true;
         while (true) {
-            boolean IntegerTrueFloatFalse = true;
             Thread.sleep(4);
-            System.out.println(population.size);
+            System.out.println(population.totalSize()  +"  "+ population.size);
             if (IntegerTrueFloatFalse)
                 System.out.println(population.getPopulations());
             else
                 System.out.println(population.getGlobalState());
+
             // Thread[] list = new Thread[population.activeCount()];
             // population.enumerate(list);
             // System.out.println(list);

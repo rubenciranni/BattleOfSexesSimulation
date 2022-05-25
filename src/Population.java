@@ -84,4 +84,8 @@ public class Population extends ThreadGroup{
 
         return globalState;
     }
+
+    public int totalSize() {
+        return this.manPopulation.faithfulPopulation.size+this.manPopulation.philandererPopulation.size+this.womanPopulation.fastPopulation.size+this.womanPopulation.coyPopulation.size;
+    }
 }
