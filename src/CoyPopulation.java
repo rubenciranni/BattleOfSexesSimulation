@@ -36,8 +36,8 @@ public class CoyPopulation extends SubWomanPopulation {
                 this.credit += 0;
                 partner.credit += 0;
             } else {
-                this.credit += a - b / 2 - c;
-                partner.credit += a - b / 2 - c;
+                this.credit += (a - b / 2 - c);
+                partner.credit += (a - b / 2 - c);
             }
         }
 
