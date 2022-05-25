@@ -1,71 +1,34 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Random;
-
 public class Simulator {
-    private boolean sterility = false;
-    private boolean noise = false;
+    // removed field sterility because it has been displaced in SubWomanPopulation.WomanSubType
+    // removed fields a, b, c, noise because it has been displaced in Population
+    // removed method newBorn because it has been displaced inside SubWomanPopulation.WomanSubType
+    // (it is now called generateOffspringWith)
+    // TODO remove this comments once understood
+    private final Population population;
 
-
-    private Population population;
-    private final int a; // the evolutionary benefit for having a baby
-    private final int b; // the cost of parenting a child
-    private final int c; // the cost of courtship
-
-    public Simulator(Population population, int a, int b, int c) {
-        this.population = population;
-        this.a = a;
-        this.b = b;
-        this.c = c;
+    public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
+        this.population = new Population("population", populationInitialSize, a, b, c, noise);
     }
 
+    public Simulator(int coyPopulationInitialSize, int fastPopulationInitialSize,
+                     int faithfulPopulationInitialSize, int philandererPopulationInitialSize,
+                     int a, int b, int c, boolean noise) {
+        this.population = new Population("population", coyPopulationInitialSize, faithfulPopulationInitialSize,
+                faithfulPopulationInitialSize, philandererPopulationInitialSize, a, b, c, noise);
+    }
 
-    public synchronized SubPopulation.SubType newborn(SubPopulation.SubType man, SubPopulation.SubType woman){
-        if (!sterility){
-            Random rand = new Random();
-            boolean sex = rand.nextBoolean();
-            if (sex) {
-                boolean m = false;
-                if (man.getClass().getName() == "Faithful")  {
-                    m = true;
-                }
-                /*
-                 if (noise && rand.nextInt(0, 50) == 49) {
-                     m = !m;
-                 }
-                 */
-                ((ManPopulation) man.getPopulation().getParent()).size++;
-                 if (m) {
-                     FaithfulPopulation father = man.<FaithfulPopulation>getPopulation();
-                     father.increaseSize();
-                     return  father.new Faithful(father, RandomNameGenerator.randomNameOfBoy());
-                 }
-                PhilandererPopulation father = man.<PhilandererPopulation>getPopulation();
-                father.increaseSize();
-                return  father.new Philanderer(father, RandomNameGenerator.randomNameOfBoy());
-            }
-            else {
-                boolean w = false;
-                if (woman.getClass().getName() == "Coy") {
-                    w = true;
-                }
-                /*
-                if (noise && rand.nextInt(0, 50) == 49) {
-                    w = !w;
-                }
-                 */
-                ((WomanPopulation) woman.getPopulation().getParent()).size++;
-                if (w) {
-                    CoyPopulation mother = man.<CoyPopulation>getPopulation();
-                    mother.increaseSize();
-                    return  mother.new Coy(mother, RandomNameGenerator.randomNameOfBoy());
-                }
-                FastPopulation mother = man.<FastPopulation>getPopulation();
-                mother.increaseSize();
-                return  mother.new Fast(mother, RandomNameGenerator.randomNameOfBoy());
-            }
+    public void startSimulation() throws InterruptedException {
+        //sorts initialPopulationList in alphabetic order
+        population.initialPopulationList.sort((Thread o1, Thread o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+
+        for (SubPopulation.SubType t : population.initialPopulationList) {
+            t.start();
         }
-        return null;
-    }
 
+        while (true) {
+            Thread.sleep(100);
+            System.out.println(population.size);
+            System.out.println(population.getGlobalState());
+        }
+    }
 }
