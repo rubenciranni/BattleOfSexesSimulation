@@ -1,8 +1,6 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        // TODO implement user input to decide parameters for simulator's constructor,
-        //  and what constructor to use between the two
         Scanner in=new Scanner(System.in);
         System.out.println("a: the evolutionary benefit for having a baby");
         System.out.println("b: the cost of parenting a child");
