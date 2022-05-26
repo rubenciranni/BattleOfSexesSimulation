@@ -24,7 +24,6 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
     public abstract class WomanSubType extends SubType {
         SubManPopulation.ManSubType currentMan;
-        private static boolean sterility;
 
         public WomanSubType(ThreadGroup group) {
             super(group, RandomNameGenerator.randomNameOfGirl());
@@ -52,10 +51,10 @@ public abstract class SubWomanPopulation extends SubPopulation {
             // temporary implementation in order to not destroy your PC
             // ----------------------
             if (population.size > 1000) {
-                sterility = true;
+                population.sterility = true;
             }
             // ----------------------
-            if (sterility) {
+            if (population.sterility) {
                 man.hey();
                 return;
             }

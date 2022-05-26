@@ -13,6 +13,7 @@ public class Population extends ThreadGroup{
     public final int b; // the cost of parenting a child
     public final int c; // the cost of courtship
     public final boolean noise;
+    public boolean sterility = false;
 
     public Population(String name, int size, int a, int b, int c, boolean noise) {
         super(name);
