@@ -37,7 +37,7 @@ public abstract class SubManPopulation extends SubPopulation {
                     lifePoints--;
                     sleep(100);
                     if (isSingle) {
-                        SubWomanPopulation.WomanSubType womanToPropose = population.womenQueue.poll(400, TimeUnit.MILLISECONDS);
+                        SubWomanPopulation.WomanSubType womanToPropose = population.womenQueue.poll(100, TimeUnit.MILLISECONDS);
                         if (womanToPropose != null) {
                             boolean accepted = womanToPropose.proposal(this);
                             if (!accepted) {
@@ -51,8 +51,7 @@ public abstract class SubManPopulation extends SubPopulation {
                                 woman.hey();
                             }
                         }
-                    }
-                    else {
+                    } else {
                         currentWoman.hey();
                         wait();
                         currentWoman.hey();
