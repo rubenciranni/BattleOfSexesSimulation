@@ -26,8 +26,8 @@ public abstract class SubPopulation extends ThreadGroup {
 
     public abstract class SubType extends Thread {
         private final int id;
-        int credit = 0;
-        int lifePoints = 5;
+        public int  credit = 0;
+        public int lifePoints = 5;
         public boolean isSingle = true;
         public Object ring = new Object();
 

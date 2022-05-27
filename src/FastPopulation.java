@@ -30,8 +30,8 @@ public class FastPopulation extends SubWomanPopulation {
         @Override
         public void updateCredit(SubManPopulation.ManSubType partner) {
             int a = population.a;
-            int b = population.a;
-            int c = population.a;
+            int b = population.b;
+            int c = population.c;
             if (partner.getSubType() == "Philanderer") {
                 this.credit += (a - b);
                 partner.credit += (a);

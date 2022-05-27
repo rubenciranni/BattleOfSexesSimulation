@@ -50,7 +50,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
             this.updateCredit(man);
             // temporary implementation in order to not destroy your PC
             // ----------------------
-            if (population.size > 1000) {
+            if (population.size > 1500) {
                 population.sterility = true;
             }
             // ----------------------
@@ -102,6 +102,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
         public synchronized void run() {
             while (credit >= 0 && lifePoints > 0) {
                 try {
+                    sleep(100);
                     lifePoints--;
                     if (isSingle) {
                         population.womenQueue.offer(this, 100, TimeUnit.MILLISECONDS);

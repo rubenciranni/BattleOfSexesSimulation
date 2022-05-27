@@ -68,7 +68,6 @@ public abstract class SubManPopulation extends SubPopulation {
                     currentWoman.isSingle = true;
                 }
             }
-
         }
     }
 }
