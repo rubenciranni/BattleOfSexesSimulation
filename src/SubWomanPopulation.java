@@ -24,6 +24,8 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
     public abstract class WomanSubType extends SubType {
         SubManPopulation.ManSubType currentMan;
+        private boolean grimmyIsOut = false;
+
 
         public WomanSubType(ThreadGroup group) {
             super(group, RandomNameGenerator.randomNameOfGirl());
@@ -50,8 +52,9 @@ public abstract class SubWomanPopulation extends SubPopulation {
             this.updateCredit(man);
             // temporary implementation in order to not destroy your PC
             // ----------------------
-            if (population.size > 1500) {
+            if (population.size > 1500 && !grimmyIsOut) {
                 new GrimReaper(population, 1500).start();
+                grimmyIsOut = true;
             }
             // ----------------------
             if (population.sterility) {
