@@ -15,4 +15,11 @@ public class ManPopulation extends ThreadGroup {
         this.philandererPopulation = new PhilandererPopulation(this, "philanderer population", numberOfPhilanderers);
     }
 
+    public FaithfulPopulation getFaithfulPopulation() {
+        return faithfulPopulation;
+    }
+
+    public PhilandererPopulation getPhilandererPopulation() {
+        return philandererPopulation;
+    }
 }

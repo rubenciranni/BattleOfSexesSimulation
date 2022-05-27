@@ -14,4 +14,12 @@ public class WomanPopulation extends ThreadGroup {
         this.coyPopulation = new CoyPopulation(this, "coy population", numberOfCoy);
         this.fastPopulation = new FastPopulation(this, "fast population", numberOfFast);
     }
+
+    public CoyPopulation getCoyPopulation() {
+        return coyPopulation;
+    }
+
+    public FastPopulation getFastPopulation() {
+        return fastPopulation;
+    }
 }

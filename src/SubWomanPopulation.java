@@ -51,7 +51,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
             // temporary implementation in order to not destroy your PC
             // ----------------------
             if (population.size > 1500) {
-                population.sterility = true;
+                new GrimReaper(population, 1500).start();
             }
             // ----------------------
             if (population.sterility) {
@@ -70,11 +70,11 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     m = !m;
                 }
                 if (m) {
-                    FaithfulPopulation fatherPopulation = man.getPopulation();
+                    FaithfulPopulation fatherPopulation = population.getManPopulation().faithfulPopulation;
                     fatherPopulation.new Faithful(fatherPopulation).start();
                     fatherPopulation.increaseSize();
                 } else {
-                    PhilandererPopulation fatherPopulation = man.getPopulation();
+                    PhilandererPopulation fatherPopulation = population.getManPopulation().philandererPopulation;
                     fatherPopulation.new Philanderer(fatherPopulation).start();
                     fatherPopulation.increaseSize();
                 }
@@ -86,11 +86,11 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 }
 
                 if (w) {
-                    CoyPopulation motherPopulation = this.getPopulation();
+                    CoyPopulation motherPopulation = population.getWomanPopulation().coyPopulation;
                     motherPopulation.new Coy(motherPopulation).start();
                     motherPopulation.increaseSize();
                 } else {
-                    FastPopulation motherPopulation = this.getPopulation();
+                    FastPopulation motherPopulation = population.getWomanPopulation().fastPopulation;
                     motherPopulation.new Fast(motherPopulation).start();
                     motherPopulation.increaseSize();
                 }
