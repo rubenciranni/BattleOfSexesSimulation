@@ -89,4 +89,11 @@ public class Population extends ThreadGroup{
     public int totalSize() {
         return this.manPopulation.faithfulPopulation.size+this.manPopulation.philandererPopulation.size+this.womanPopulation.fastPopulation.size+this.womanPopulation.coyPopulation.size;
     }
+
+    public synchronized void modifySterility(boolean newSterilityValue, boolean finishedNewValue) {
+        if (!GrimReaper.finished) {
+            sterility = newSterilityValue;
+        }
+        GrimReaper.finished = finishedNewValue;
+    }
 }

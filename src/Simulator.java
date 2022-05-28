@@ -1,5 +1,8 @@
 public class Simulator {
     private final Population population;
+    static private boolean IntegerTrueFloatFalse = true;
+    static boolean print = false;
+    static int Time = 1;
 
     public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
         this.population = new Population("population", populationInitialSize, a, b, c, noise);
@@ -19,14 +22,16 @@ public class Simulator {
         for (SubPopulation.SubType t : population.initialPopulationList) {
             t.start();
         }
-        boolean IntegerTrueFloatFalse = true;
         while (population.size > 0) {
-            Thread.sleep(4);
-            System.out.println(population.totalSize()  +"  "+ population.size);
-            if (IntegerTrueFloatFalse)
-                System.out.println(population.getPopulations());
-            else
-                System.out.println(population.getGlobalState());
+            Thread.sleep(50);
+            if (print) {
+                System.out.println(population.totalSize() + "  " + population.size);
+                Thread.sleep(Time);
+                if (IntegerTrueFloatFalse)
+                    System.out.println(population.getPopulations());
+                else
+                    System.out.println(population.getGlobalState());
+            }
         }
     }
 }

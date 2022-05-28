@@ -23,8 +23,11 @@ public abstract class SubWomanPopulation extends SubPopulation {
     }
 
     public abstract class WomanSubType extends SubType {
+
         SubManPopulation.ManSubType currentMan;
-        private boolean grimmyIsOut = false;
+        static boolean grimmyIsOut;
+
+
 
 
         public WomanSubType(ThreadGroup group) {
@@ -52,9 +55,10 @@ public abstract class SubWomanPopulation extends SubPopulation {
             this.updateCredit(man);
             // temporary implementation in order to not destroy your PC
             // ----------------------
+            // TODO it happened sometimes that execution didn't end. Try and see if this happens also to you.
             if (population.size > 1500 && !grimmyIsOut) {
-                new GrimReaper(population, 1500).start();
                 grimmyIsOut = true;
+                new GrimReaper(population, 1500).start();
             }
             // ----------------------
             if (population.sterility) {
