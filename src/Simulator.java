@@ -2,7 +2,7 @@ public class Simulator {
     private final Population population;
     static private boolean IntegerTrueFloatFalse = true;
     static boolean print = false;
-    static int Time = 1;
+    static int Time = 1000;
 
     public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
         this.population = new Population("population", populationInitialSize, a, b, c, noise);

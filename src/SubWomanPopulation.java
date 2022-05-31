@@ -38,6 +38,13 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         public abstract void updateCredit(SubManPopulation.ManSubType partner);
 
+        public synchronized static boolean isNotGrimmyOut() {
+            if (grimmyIsOut)
+                return false;
+            grimmyIsOut = true;
+            return true;
+        }
+
         public synchronized boolean proposal(SubManPopulation.ManSubType man) {
             if (accepted(man)) {
                 this.currentMan = man;
@@ -56,8 +63,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
             // temporary implementation in order to not destroy your PC
             // ----------------------
             // TODO it happened sometimes that execution didn't end. Try and see if this happens also to you.
-            if (population.size > 1500 && !grimmyIsOut) {
-                grimmyIsOut = true;
+            if (population.size > 1500 && isNotGrimmyOut()) {
                 new GrimReaper(population, 1500).start();
             }
             // ----------------------

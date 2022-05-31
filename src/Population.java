@@ -76,12 +76,32 @@ public class Population extends ThreadGroup{
         return globalState;
     }
 
+    public HashMap getGlobalStateToPrint() {
+        HashMap<String, Float> globalState = new HashMap<>();
+        globalState.put("Faithful:\t\t", this.getFaithfulState());
+        globalState.put("Philanderers:\t", this.getPhilanderersState());
+        globalState.put("Fast:\t\t\t", this.getFastState());
+        globalState.put("Coy:\t\t\t", this.getCoyState());
+
+        return globalState;
+    }
+
+    public HashMap getPopulationsToPrint() {
+        HashMap<String, Integer> globalState = new HashMap<>();
+        globalState.put("Faithful:\t\t", this.manPopulation.faithfulPopulation.size);
+        globalState.put("Philanderers:\t", this.manPopulation.philandererPopulation.size);
+        globalState.put("Fast:\t\t\t", this.womanPopulation.fastPopulation.size);
+        globalState.put("Coy:\t\t\t", this.womanPopulation.coyPopulation.size);
+
+        return globalState;
+    }
+
     public HashMap getPopulations() {
         HashMap<String, Integer> globalState = new HashMap<>();
-        globalState.put("Faithful", this.manPopulation.faithfulPopulation.size);
-        globalState.put("Philanderers", this.manPopulation.philandererPopulation.size);
-        globalState.put("Fast", this.womanPopulation.fastPopulation.size);
-        globalState.put("Coy", this.womanPopulation.coyPopulation.size);
+        globalState.put("Faithful:", this.manPopulation.faithfulPopulation.size);
+        globalState.put("Philanderers:", this.manPopulation.philandererPopulation.size);
+        globalState.put("Fast:", this.womanPopulation.fastPopulation.size);
+        globalState.put("Coy:", this.womanPopulation.coyPopulation.size);
 
         return globalState;
     }
@@ -93,7 +113,7 @@ public class Population extends ThreadGroup{
     public synchronized void modifySterility(boolean newSterilityValue, boolean finishedNewValue) {
         if (!GrimReaper.finished) {
             sterility = newSterilityValue;
+            GrimReaper.finished = finishedNewValue;
         }
-        GrimReaper.finished = finishedNewValue;
     }
 }
