@@ -1,8 +1,8 @@
 public class Simulator {
     private final Population population;
     private static boolean IntegerTrueFloatFalse = true;
-    static boolean print = false;
-    static int TIME = 1000;
+    static boolean print = true;
+    static int TIME = 10;
 
     public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
         this.population = new Population("population", populationInitialSize, a, b, c, noise);
@@ -25,8 +25,9 @@ public class Simulator {
         while (population.size > 0) {
             Thread.sleep(50);
             if (print) {
-                System.out.println(population.totalSize() + "  " + population.size);
                 Thread.sleep(TIME);
+                System.out.println(population.totalSize() + "  " + population.size);
+
                 if (IntegerTrueFloatFalse)
                     System.out.println(population.getPopulations());
                 else

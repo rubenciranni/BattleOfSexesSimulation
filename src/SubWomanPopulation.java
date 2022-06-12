@@ -63,8 +63,8 @@ public abstract class SubWomanPopulation extends SubPopulation {
             // temporary implementation in order to not destroy your PC
             // ----------------------
             // TODO it happened sometimes that execution didn't end. Try and see if this happens also to you.
-            if (population.size > 1500 && isNotGrimmyOut()) {
-                new GrimReaper(population, 1500).start();
+            if (population.size > 1200 && isNotGrimmyOut()) {
+                new GrimReaper(population, 1100).start();
             }
             // ----------------------
             if (population.sterility) {
@@ -76,9 +76,6 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
             if (sex) {
                 boolean m = man.getSubType() == "Faithful";
-                // TODO bugfix, following error appears: class FaithfulPopulation cannot be cast to class
-                //  PhilandererPopulation (FaithfulPopulation and PhilandererPopulation
-                //  are in unnamed module of loader 'app') at line 68 when noise is true
                 if (population.noise && (rand.nextInt(0, 50) == 49)) {
                     m = !m;
                 }
@@ -115,8 +112,9 @@ public abstract class SubWomanPopulation extends SubPopulation {
         public synchronized void run() {
             while (credit >= 0 && lifePoints > 0) {
                 try {
-                    sleep(100);
                     lifePoints--;
+                    //System.out.println(this.getSubType() +"  "+ this.credit);
+                    sleep(100);
                     if (isSingle) {
                         population.womenQueue.offer(this, 100, TimeUnit.MILLISECONDS);
                     }

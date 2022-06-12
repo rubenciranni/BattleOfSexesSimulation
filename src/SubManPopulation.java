@@ -34,10 +34,11 @@ public abstract class SubManPopulation extends SubPopulation {
         public synchronized void run() {
             while (credit >= 0 && lifePoints > 0) {
                 try {
+                    //System.out.println(this.getSubType() +"  "+ this.credit);
                     lifePoints--;
                     sleep(100);
                     if (isSingle) {
-                        SubWomanPopulation.WomanSubType womanToPropose = (SubWomanPopulation.WomanSubType) population.womenQueue.poll(100, TimeUnit.MILLISECONDS);
+                        SubWomanPopulation.WomanSubType womanToPropose = population.womenQueue.poll(100, TimeUnit.MILLISECONDS);
                         if (womanToPropose != null) {
                             boolean accepted = womanToPropose.proposal(this);
                             if (!accepted) {
