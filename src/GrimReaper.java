@@ -46,7 +46,7 @@ public class GrimReaper extends Thread {
                         System.out.println(i +": "+ ActiveState.get((String)i));
                     }
                     System.out.println("\n");
-                    Simulator.Time = 1000;
+                    Simulator.TIME = 1000;
                     Simulator.print = true;
                 }
             }
