@@ -2,6 +2,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public abstract class SubWomanPopulation extends SubPopulation {
+    int infMor = population.getInfMor();
+    int noiseChance = population.getNoiseChance();
     public SubWomanPopulation(ThreadGroup parent, String name, int size) {
         super(parent, name, size);
     }
@@ -59,51 +61,57 @@ public abstract class SubWomanPopulation extends SubPopulation {
         }
 
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
-            this.updateCredit(man);
-            // temporary implementation in order to not destroy your PC
-            // ----------------------
-            // TODO it happened sometimes that execution didn't end. Try and see if this happens also to you.
-            if (population.size > 1200 && isNotGrimmyOut()) {
-                new GrimReaper(population, 1100).start();
-            }
-            // ----------------------
-            if (population.sterility) {
-                man.hey();
-                return;
-            }
             Random rand = new Random();
-            boolean sex = rand.nextBoolean();
-
-            if (sex) {
-                boolean m = man.getSubType() == "Faithful";
-                if (population.noise && (rand.nextInt(0, 50) == 49)) {
-                    m = !m;
+            if (rand.nextInt(0, infMor) == 0) {
+                this.updateCredit(man);
+                // temporary implementation in order to not destroy your PC
+                // ----------------------
+                // TODO it happened sometimes that execution didn't end. Try and see if this happens also to you.
+                if (population.size > 1200 && isNotGrimmyOut()) {
+                    new GrimReaper(population, 1100).start();
                 }
-                if (m) {
-                    FaithfulPopulation fatherPopulation = population.getManPopulation().faithfulPopulation;
-                    fatherPopulation.new Faithful(fatherPopulation).start();
-                    fatherPopulation.increaseSize();
+                // ----------------------
+                if (population.sterility) {
+                    man.hey();
+                    return;
+                }
+                boolean sex = rand.nextBoolean();
+
+                if (sex) {
+                    boolean m = man.getSubType() == "Faithful";
+                    if (population.noise && (rand.nextInt(0, 50) == 49)) {
+                        m = !m;
+                    }
+                    if (m) {
+                        FaithfulPopulation fatherPopulation = population.getManPopulation().faithfulPopulation;
+                        fatherPopulation.new Faithful(fatherPopulation).start();
+                        fatherPopulation.increaseSize();
+                    } else {
+                        PhilandererPopulation fatherPopulation = population.getManPopulation().philandererPopulation;
+                        fatherPopulation.new Philanderer(fatherPopulation).start();
+                        fatherPopulation.increaseSize();
+                    }
                 } else {
-                    PhilandererPopulation fatherPopulation = population.getManPopulation().philandererPopulation;
-                    fatherPopulation.new Philanderer(fatherPopulation).start();
-                    fatherPopulation.increaseSize();
-                }
-            } else {
-                boolean w = this.getSubType() == "Coy";
+                    boolean w = this.getSubType() == "Coy";
 
-                if (population.noise && (rand.nextInt(0, 50) == 49)) {
-                    w = !w;
-                }
+                    if (population.noise && (rand.nextInt(0, noiseChance) == 0)) {
+                        w = !w;
+                    }
 
-                if (w) {
-                    CoyPopulation motherPopulation = population.getWomanPopulation().coyPopulation;
-                    motherPopulation.new Coy(motherPopulation).start();
-                    motherPopulation.increaseSize();
-                } else {
-                    FastPopulation motherPopulation = population.getWomanPopulation().fastPopulation;
-                    motherPopulation.new Fast(motherPopulation).start();
-                    motherPopulation.increaseSize();
+                    if (w) {
+                        CoyPopulation motherPopulation = population.getWomanPopulation().coyPopulation;
+                        motherPopulation.new Coy(motherPopulation).start();
+                        motherPopulation.increaseSize();
+                    } else {
+                        FastPopulation motherPopulation = population.getWomanPopulation().fastPopulation;
+                        motherPopulation.new Fast(motherPopulation).start();
+                        motherPopulation.increaseSize();
+                    }
                 }
+                try {
+                    sleep(1000);
+                }
+                catch (InterruptedException e) {}
             }
             man.hey();
         }

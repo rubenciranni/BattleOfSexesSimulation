@@ -8,6 +8,10 @@ public class Population extends ThreadGroup{
     public LinkedList<SubPopulation.SubType> initialPopulationList;
     public int ID = 0;
     public int size;
+    public int infMor = 1;
+    public int startCredit = 0;
+    public int life = 5;
+    public int noiseChance = 50;
     public SynchronousQueue<SubWomanPopulation.WomanSubType> womenQueue;
     public final int a; // the evolutionary benefit for having a baby
     public final int b; // the cost of parenting a child
@@ -40,6 +44,47 @@ public class Population extends ThreadGroup{
         this.b = b;
         this.c = c;
         this.noise = noise;
+    }
+
+    public Population (String name, int coy, int fast, int faith, int phil, int infMor, int startCredit, int life, int a,int b, int c, int noiseChance) {
+        super(name);
+        this.size = coy+faith+fast+phil;
+        this.initialPopulationList = new LinkedList<>();
+        this.womenQueue = new SynchronousQueue<>();
+        this.womanPopulation = new WomanPopulation(this, "woman population", coy, fast);
+        this.manPopulation = new ManPopulation(this, "man population", faith, phil);
+        this.infMor = infMor;
+        this.startCredit = startCredit;
+        this.life = life;
+        this.noiseChance = noiseChance;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.noise = true;
+    }
+
+    public Population (String name, int coy, int fast, int faith, int phil, int infMor, int startCredit, int life, int a,int b, int c) {
+        super(name);
+        this.size = coy+faith+fast+phil;
+        this.initialPopulationList = new LinkedList<>();
+        this.womenQueue = new SynchronousQueue<>();
+        this.womanPopulation = new WomanPopulation(this, "woman population", coy, fast);
+        this.manPopulation = new ManPopulation(this, "man population", faith, phil);
+        this.infMor = infMor;
+        this.startCredit = startCredit;
+        this.life = life;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.noise = false;
+    }
+
+    public synchronized int getNoiseChance() {
+        return noiseChance;
+    }
+
+    public synchronized int getInfMor() {
+        return infMor;
     }
 
     public ManPopulation getManPopulation() {

@@ -2,7 +2,7 @@ public class Simulator {
     private final Population population;
     private static boolean IntegerTrueFloatFalse = true;
     static boolean print = true;
-    static int TIME = 10;
+    static int TIME = 1000;
 
     public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
         this.population = new Population("population", populationInitialSize, a, b, c, noise);
@@ -13,6 +13,14 @@ public class Simulator {
                      int a, int b, int c, boolean noise) {
         this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize,
                 faithfulPopulationInitialSize, philandererPopulationInitialSize, a, b, c, noise);
+    }
+
+    public Simulator (int coy, int fast, int faith, int phil, int infMor, int startCredit, int life, int a,int b, int c, int noiseChance) {
+        this.population = new Population("population", coy, fast, faith, phil, infMor, startCredit, life, a, b, c, noiseChance);
+    }
+
+    public Simulator (int coy, int fast, int faith, int phil, int infMor, int startCredit, int life, int a,int b, int c) {
+        this.population = new Population("population", coy, fast, faith, phil, infMor, startCredit, life, a, b, c);
     }
 
     public void startSimulation() throws InterruptedException {
