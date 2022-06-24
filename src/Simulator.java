@@ -15,12 +15,12 @@ public class Simulator {
                 faithfulPopulationInitialSize, philandererPopulationInitialSize, a, b, c, noise);
     }
 
-    public Simulator (int coy, int fast, int faith, int phil, int infMor, int startCredit, int life, int a,int b, int c, int noiseChance) {
-        this.population = new Population("population", coy, fast, faith, phil, infMor, startCredit, life, a, b, c, noiseChance);
+    public Simulator (int coyPopulationInitialSize, int fastPopulationInitialSize, int faithfulPopulationInitialSize, int philandererPopulationInitialSize, int infantMortality, int startCredit, int life, int a,int b, int c, int noiseChance) {
+        this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize, faithfulPopulationInitialSize, philandererPopulationInitialSize, infantMortality, startCredit, life, a, b, c, noiseChance);
     }
 
-    public Simulator (int coy, int fast, int faith, int phil, int infMor, int startCredit, int life, int a,int b, int c) {
-        this.population = new Population("population", coy, fast, faith, phil, infMor, startCredit, life, a, b, c);
+    public Simulator (int coyPopulationInitialSize, int fastPopulationInitialSize, int faithfulPopulationInitialSize, int philandererPopulationInitialSize, int infantMortality, int startCredit, int life, int a,int b, int c) {
+        this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize, faithfulPopulationInitialSize, philandererPopulationInitialSize, infantMortality, startCredit, life, a, b, c);
     }
 
     public void startSimulation() throws InterruptedException {
@@ -28,7 +28,7 @@ public class Simulator {
         population.initialPopulationList.sort((Thread o1, Thread o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
 
         for (SubPopulation.SubType t : population.initialPopulationList) {
-            t.start();
+            population.world.execute(t);
         }
         while (population.size > 0) {
             Thread.sleep(50);

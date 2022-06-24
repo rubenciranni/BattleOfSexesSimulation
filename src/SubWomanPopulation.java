@@ -2,8 +2,9 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public abstract class SubWomanPopulation extends SubPopulation {
-    int infMor = population.getInfMor();
+    int infantMortality = population.getInfantMortality();
     int noiseChance = population.getNoiseChance();
+
     public SubWomanPopulation(ThreadGroup parent, String name, int size) {
         super(parent, name, size);
     }
@@ -27,10 +28,6 @@ public abstract class SubWomanPopulation extends SubPopulation {
     public abstract class WomanSubType extends SubType {
 
         SubManPopulation.ManSubType currentMan;
-        static boolean grimmyIsOut;
-
-
-
 
         public WomanSubType(ThreadGroup group) {
             super(group, RandomNameGenerator.randomNameOfGirl());
@@ -39,13 +36,6 @@ public abstract class SubWomanPopulation extends SubPopulation {
         public abstract boolean accepted(SubManPopulation.ManSubType man);
 
         public abstract void updateCredit(SubManPopulation.ManSubType partner);
-
-        public synchronized static boolean isNotGrimmyOut() {
-            if (grimmyIsOut)
-                return false;
-            grimmyIsOut = true;
-            return true;
-        }
 
         public synchronized boolean proposal(SubManPopulation.ManSubType man) {
             if (accepted(man)) {
@@ -62,19 +52,8 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
             Random rand = new Random();
-            if (rand.nextInt(0, infMor) == 0) {
+            if (rand.nextInt(0, infantMortality) == 0 && !population.sterility) {
                 this.updateCredit(man);
-                // temporary implementation in order to not destroy your PC
-                // ----------------------
-                // TODO it happened sometimes that execution didn't end. Try and see if this happens also to you.
-                if (population.size > 1200 && isNotGrimmyOut()) {
-                    new GrimReaper(population, 1100).start();
-                }
-                // ----------------------
-                if (population.sterility) {
-                    man.hey();
-                    return;
-                }
                 boolean sex = rand.nextBoolean();
 
                 if (sex) {
@@ -84,11 +63,11 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     }
                     if (m) {
                         FaithfulPopulation fatherPopulation = population.getManPopulation().faithfulPopulation;
-                        fatherPopulation.new Faithful(fatherPopulation).start();
+                        population.world.execute(fatherPopulation.new Faithful(fatherPopulation));
                         fatherPopulation.increaseSize();
                     } else {
                         PhilandererPopulation fatherPopulation = population.getManPopulation().philandererPopulation;
-                        fatherPopulation.new Philanderer(fatherPopulation).start();
+                        population.world.execute(fatherPopulation.new Philanderer(fatherPopulation));
                         fatherPopulation.increaseSize();
                     }
                 } else {
@@ -100,28 +79,27 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
                     if (w) {
                         CoyPopulation motherPopulation = population.getWomanPopulation().coyPopulation;
-                        motherPopulation.new Coy(motherPopulation).start();
+                        population.world.execute(motherPopulation.new Coy(motherPopulation));
                         motherPopulation.increaseSize();
                     } else {
                         FastPopulation motherPopulation = population.getWomanPopulation().fastPopulation;
-                        motherPopulation.new Fast(motherPopulation).start();
+                        population.world.execute(motherPopulation.new Fast(motherPopulation));
                         motherPopulation.increaseSize();
                     }
                 }
                 try {
                     sleep(1000);
+                } catch (InterruptedException e) {
                 }
-                catch (InterruptedException e) {}
             }
             man.hey();
         }
 
         @Override
         public synchronized void run() {
-            while (credit >= 0 && lifePoints > 0) {
+            while (lifePoints > 0) {
                 try {
                     lifePoints--;
-                    //System.out.println(this.getSubType() +"  "+ this.credit);
                     sleep(100);
                     if (isSingle) {
                         population.womenQueue.offer(this, 100, TimeUnit.MILLISECONDS);

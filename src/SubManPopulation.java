@@ -32,9 +32,8 @@ public abstract class SubManPopulation extends SubPopulation {
 
         @Override
         public synchronized void run() {
-            while (credit >= 0 && lifePoints > 0) {
+            while (lifePoints > 0) {
                 try {
-                    //System.out.println(this.getSubType() +"  "+ this.credit);
                     lifePoints--;
                     sleep(100);
                     if (isSingle) {
