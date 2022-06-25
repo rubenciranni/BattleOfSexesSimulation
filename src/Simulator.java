@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Simulator {
     private final Population population;
     private static boolean IntegerTrueFloatFalse = true;
@@ -36,8 +38,19 @@ public class Simulator {
                 Thread.sleep(TIME);
                 System.out.println(population.totalSize() + "  " + population.size);
 
-                if (IntegerTrueFloatFalse)
-                    System.out.println(population.getPopulations());
+                if (IntegerTrueFloatFalse) {
+                    HashMap t = population.getPopulationss();
+                    System.out.println(population.getManPopulation().size + population.getWomanPopulation().size);
+                    if ((int)t.get("Faithful")+(int)t.get("Philanderers") == population.getManPopulation().size){
+                        System.out.println(t.get("Faithful")+" "+ (int)t.get("Philanderers")+" "+population.getManPopulation().size);
+                    }
+                    if ((int)t.get("Faithful")+(int)t.get("Philanderers") != (int)t.get("Men")){
+                        System.out.println(t.get("Faithful")+" "+ (int)t.get("Philanderers")+" "+(int)t.get("Men")+ "****");
+                    }
+                    if ((int)t.get("Coy")+(int)t.get("Fast") != (int)t.get("Women")){
+                        System.out.println(t.get("Coy")+" "+ (int)t.get("Fast")+" "+(int)t.get("Women") +"****");
+                    }
+                }
                 else
                     System.out.println(population.getGlobalState());
             }

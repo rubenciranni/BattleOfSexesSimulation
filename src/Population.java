@@ -100,7 +100,7 @@ public class Population extends ThreadGroup{
     }
 
     public float getPhilanderersState() {
-        return ((float)this.manPopulation.philandererPopulation.size/(float)this.size);
+        return ((float)this.manPopulation.philandererPopulation.size/(float)manPopulation.size);
     }
 
     public float getFastState() {
@@ -109,6 +109,24 @@ public class Population extends ThreadGroup{
 
     public float getCoyState() {
         return ((float)this.womanPopulation.coyPopulation.size/(float)this.size);
+    }
+
+
+
+    public float getFaithfulGen() {
+        return ((float)this.manPopulation.faithfulPopulation.size/(float)manPopulation.size);
+    }
+
+    public float getPhilanderersGen() {
+        return ((float)this.manPopulation.philandererPopulation.size/(float)manPopulation.size);
+    }
+
+    public float getFastGen() {
+        return ((float)this.womanPopulation.fastPopulation.size/(float)womanPopulation.size);
+    }
+
+    public float getCoyGen() {
+        return ((float)this.womanPopulation.coyPopulation.size/(float)womanPopulation.size);
     }
 
     public HashMap getGlobalState() {
@@ -131,22 +149,33 @@ public class Population extends ThreadGroup{
         return globalState;
     }
 
-    public HashMap getPopulationsToPrint() {
-        HashMap<String, Integer> globalState = new HashMap<>();
-        globalState.put("Faithful:\t\t", this.manPopulation.faithfulPopulation.size);
-        globalState.put("Philanderers:\t", this.manPopulation.philandererPopulation.size);
-        globalState.put("Fast:\t\t\t", this.womanPopulation.fastPopulation.size);
-        globalState.put("Coy:\t\t\t", this.womanPopulation.coyPopulation.size);
-
-        return globalState;
-    }
-
     public HashMap getPopulations() {
         HashMap<String, Integer> globalState = new HashMap<>();
         globalState.put("Faithful", this.manPopulation.faithfulPopulation.size);
         globalState.put("Philanderers", this.manPopulation.philandererPopulation.size);
         globalState.put("Fast", this.womanPopulation.fastPopulation.size);
         globalState.put("Coy", this.womanPopulation.coyPopulation.size);
+
+        return globalState;
+    }
+
+    public HashMap getPopulationss() {
+        HashMap<String, Integer> globalState = new HashMap<>();
+        globalState.put("Faithful", this.manPopulation.faithfulPopulation.size);
+        globalState.put("Philanderers", this.manPopulation.philandererPopulation.size);
+        globalState.put("Fast", this.womanPopulation.fastPopulation.size);
+        globalState.put("Coy", this.womanPopulation.coyPopulation.size);
+        globalState.put("Men", this.manPopulation.size);
+        globalState.put("Women", this.womanPopulation.size);
+        return globalState;
+    }
+
+    public HashMap getGenderState() {
+        HashMap<String, Float> globalState = new HashMap<>();
+        globalState.put("Faithful", this.getFaithfulGen());
+        globalState.put("Philanderers", this.getPhilanderersGen());
+        globalState.put("Fast", this.getFastGen());
+        globalState.put("Coy", this.getCoyGen());
 
         return globalState;
     }

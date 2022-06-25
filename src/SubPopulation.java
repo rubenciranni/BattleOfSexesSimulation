@@ -9,15 +9,15 @@ public abstract class SubPopulation extends ThreadGroup {
     }
 
     public synchronized void increaseSize() {
-         size++;
          synchronized (population) {
+             size++;
              population.size++;
          }
     }
 
     public synchronized void decreaseSize() {
-         size--;
         synchronized (population) {
+            size--;
             population.size--;
         }
     }
