@@ -55,36 +55,37 @@ public abstract class SubWomanPopulation extends SubPopulation {
             if (infantMortality == 0 || (rand.nextInt(0, infantMortality) == 0 && !population.sterility)) {
                 this.updateCredit(man);
                 boolean sex = rand.nextBoolean();
-
-                if (sex) {
-                    boolean m = man.getSubType() == "Faithful";
-                    if (population.noise && (rand.nextInt(0, 50) == 49)) {
-                        m = !m;
-                    }
-                    if (m) {
-                        FaithfulPopulation fatherPopulation = population.getManPopulation().faithfulPopulation;
-                        population.world.execute(fatherPopulation.new Faithful(fatherPopulation));
-                        fatherPopulation.increaseSize();
+                for (int i = 0; i < Math.min(3, Math.floor((this.credit+man.credit)/10)); i++) {
+                    if (sex) {
+                        boolean m = man.getSubType() == "Faithful";
+                        if (population.noise && (rand.nextInt(0, 50) == 49)) {
+                            m = !m;
+                        }
+                        if (m) {
+                            FaithfulPopulation fatherPopulation = population.getManPopulation().faithfulPopulation;
+                            population.world.execute(fatherPopulation.new Faithful(fatherPopulation));
+                            fatherPopulation.increaseSize();
+                        } else {
+                            PhilandererPopulation fatherPopulation = population.getManPopulation().philandererPopulation;
+                            population.world.execute(fatherPopulation.new Philanderer(fatherPopulation));
+                            fatherPopulation.increaseSize();
+                        }
                     } else {
-                        PhilandererPopulation fatherPopulation = population.getManPopulation().philandererPopulation;
-                        population.world.execute(fatherPopulation.new Philanderer(fatherPopulation));
-                        fatherPopulation.increaseSize();
-                    }
-                } else {
-                    boolean w = this.getSubType() == "Coy";
+                        boolean w = this.getSubType() == "Coy";
 
-                    if (population.noise && (rand.nextInt(0, noiseChance) == 0)) {
-                        w = !w;
-                    }
+                        if (population.noise && (rand.nextInt(0, noiseChance) == 0)) {
+                            w = !w;
+                        }
 
-                    if (w) {
-                        CoyPopulation motherPopulation = population.getWomanPopulation().coyPopulation;
-                        population.world.execute(motherPopulation.new Coy(motherPopulation));
-                        motherPopulation.increaseSize();
-                    } else {
-                        FastPopulation motherPopulation = population.getWomanPopulation().fastPopulation;
-                        population.world.execute(motherPopulation.new Fast(motherPopulation));
-                        motherPopulation.increaseSize();
+                        if (w) {
+                            CoyPopulation motherPopulation = population.getWomanPopulation().coyPopulation;
+                            population.world.execute(motherPopulation.new Coy(motherPopulation));
+                            motherPopulation.increaseSize();
+                        } else {
+                            FastPopulation motherPopulation = population.getWomanPopulation().fastPopulation;
+                            population.world.execute(motherPopulation.new Fast(motherPopulation));
+                            motherPopulation.increaseSize();
+                        }
                     }
                 }
                 try {
@@ -98,6 +99,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
         @Override
         public synchronized void run() {
             while (lifePoints > 0) {
+                //TODO: make coys great again, and make philanderers a bit less great than now.
                 try {
                     lifePoints--;
                     sleep(100);
