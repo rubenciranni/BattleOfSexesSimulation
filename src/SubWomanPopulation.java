@@ -52,7 +52,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
             Random rand = new Random();
-            if (rand.nextInt(0, infantMortality) == 0 && !population.sterility) {
+            if (infantMortality == 0 || (rand.nextInt(0, infantMortality) == 0 && !population.sterility)) {
                 this.updateCredit(man);
                 boolean sex = rand.nextBoolean();
 

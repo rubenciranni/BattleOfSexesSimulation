@@ -14,7 +14,7 @@ public class Population extends ThreadGroup {
     public LinkedList<SubPopulation.SubType> initialPopulationList;
     public int ID = 0;
     public int size;
-    public int infMor = 1;
+    public  final int infantMortality;
     public int startCredit = 0;
     public int lifePoints = 5;
     public int noiseChance = 50;
@@ -25,6 +25,7 @@ public class Population extends ThreadGroup {
     public Population(String name, int size, int a, int b, int c, boolean noise) {
         super(name);
         this.size = size;
+        this.infantMortality = 0;
         this.initialPopulationList = new LinkedList<>();
         this.womenQueue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", size / 2);
@@ -38,6 +39,7 @@ public class Population extends ThreadGroup {
     public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers, int a, int b, int c, boolean noise) {
         super(name);
         this.size = numberOfCoy + numberOfFaithful + numberOfFast + numberOfPhilanderers;
+        this.infantMortality = 0;
         this.initialPopulationList = new LinkedList<>();
         this.womenQueue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
@@ -55,7 +57,7 @@ public class Population extends ThreadGroup {
         this.womenQueue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
         this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
-        this.infMor = infantMortality;
+        this.infantMortality = infantMortality;
         this.startCredit = startCredit;
         this.lifePoints = lifePoints;
         this.noiseChance = noiseChance;
@@ -72,7 +74,7 @@ public class Population extends ThreadGroup {
         this.womenQueue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
         this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
-        this.infMor = infantMortality;
+        this.infantMortality = infantMortality;
         this.startCredit = startCredit;
         this.lifePoints = lifePoints;
         this.a = a;
@@ -86,7 +88,7 @@ public class Population extends ThreadGroup {
     }
 
     public synchronized int getInfantMortality() {
-        return infMor;
+        return infantMortality;
     }
 
     public ManPopulation getManPopulation() {
@@ -149,7 +151,8 @@ public class Population extends ThreadGroup {
         globalState.put("Philanderers", this.manPopulation.philandererPopulation.size);
         globalState.put("Fast", this.womanPopulation.fastPopulation.size);
         globalState.put("Coy", this.womanPopulation.coyPopulation.size);
-
+        globalState.put("Men", this.manPopulation.size);
+        globalState.put("Women", this.womanPopulation.size);
         return globalState;
     }
 
