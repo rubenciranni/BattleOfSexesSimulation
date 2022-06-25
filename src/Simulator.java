@@ -39,6 +39,16 @@ public class Simulator {
                 System.out.println(population.totalSize() + "  " + population.size);
 
                 if (IntegerTrueFloatFalse) {
+                    System.out.println(population.getGenderState());
+                }
+                else
+                    System.out.println(population.getGlobalState());
+            }
+        }
+    }
+}
+
+/*
                     HashMap t = population.getPopulationss();
                     System.out.println(population.getManPopulation().size + population.getWomanPopulation().size);
                     if ((int)t.get("Faithful")+(int)t.get("Philanderers") == population.getManPopulation().size){
@@ -50,10 +60,4 @@ public class Simulator {
                     if ((int)t.get("Coy")+(int)t.get("Fast") != (int)t.get("Women")){
                         System.out.println(t.get("Coy")+" "+ (int)t.get("Fast")+" "+(int)t.get("Women") +"****");
                     }
-                }
-                else
-                    System.out.println(population.getGlobalState());
-            }
-        }
-    }
-}
+                    */

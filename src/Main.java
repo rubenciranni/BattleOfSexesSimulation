@@ -23,8 +23,12 @@ public class Main {
          */
         //Simulator simulator = new Simulator(16, 16, 16, 16, 15, 20, 3, false);
 
-        Simulator simulator = new Simulator(16, 16, 16, 16, 25, 5,100,15, 20, 3);
+        Simulator simulator = new Simulator(16, 16, 16, 16, 2, 5,100,15, 20, 3);
         simulator.startSimulation();
+        // 5/8 = 0.625 Faithful,
+        // 3/8 = 0.375 Philanderers,
+        // 5/6 = 0.8333 Coy
+        // 1/6 = 0.1666 Fast
     }
 }
 // TODO: still sometimes it doesn't end for me (Luigi) this time 1 faithful and 1 fast left

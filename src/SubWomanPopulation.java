@@ -62,7 +62,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
             Random rand = new Random();
-            if (rand.nextInt(0, infMor) == 0) {
+            if (infMor == 0 || rand.nextInt(0, infMor) != 0) {
                 this.updateCredit(man);
                 // temporary implementation in order to not destroy your PC
                 // ----------------------
