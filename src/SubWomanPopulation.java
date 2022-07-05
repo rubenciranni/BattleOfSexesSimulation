@@ -53,9 +53,8 @@ public abstract class SubWomanPopulation extends SubPopulation {
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
             Random rand = new Random();
             this.updateCredit(man);
-            int localInfantMortality = (int) Math.round(infantMortality / (1 + Math.exp(0.1*this.credit)));
-            System.out.println(infantMortality);
-            if ((infantMortality == 0 || (rand.nextInt(0, localInfantMortality) == 0)) && !population.sterility) {
+            //int localInfantMortality = (int) Math.ceil(infantMortality / (1 + Math.exp(0.1*(this.credit + man.credit))));
+            if ((infantMortality == 0 || (rand.nextInt(0, infantMortality) == 0)) && !population.sterility) {
                 boolean sex = rand.nextBoolean();
                 if (sex) {
                     boolean m = man.getSubType() == "Faithful";
@@ -87,10 +86,6 @@ public abstract class SubWomanPopulation extends SubPopulation {
                         population.world.execute(motherPopulation.new Fast(motherPopulation));
                         motherPopulation.increaseSize();
                     }
-                }
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
                 }
             }
             man.hey();

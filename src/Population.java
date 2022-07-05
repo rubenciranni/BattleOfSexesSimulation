@@ -53,11 +53,11 @@ public class Population extends ThreadGroup {
     public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers, int infantMortality, int startCredit, int lifePoints, int a, int b, int c, int noiseChance) {
         super(name);
         this.size = numberOfCoy + numberOfFaithful + numberOfFast + numberOfPhilanderers;
+        this.infantMortality = infantMortality;
         this.initialPopulationList = new LinkedList<>();
         this.womenQueue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
         this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
-        this.infantMortality = infantMortality;
         this.startCredit = startCredit;
         this.lifePoints = lifePoints;
         this.noiseChance = noiseChance;
@@ -70,11 +70,11 @@ public class Population extends ThreadGroup {
     public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers, int infantMortality, int startCredit, int lifePoints, int a, int b, int c) {
         super(name);
         this.size = numberOfCoy + numberOfFaithful + numberOfFast + numberOfPhilanderers;
+        this.infantMortality = infantMortality;
         this.initialPopulationList = new LinkedList<>();
         this.womenQueue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
         this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
-        this.infantMortality = infantMortality;
         this.startCredit = startCredit;
         this.lifePoints = lifePoints;
         this.a = a;
