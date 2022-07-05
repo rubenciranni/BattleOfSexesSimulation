@@ -88,7 +88,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     }
                 }
                 try {
-                    sleep(1000);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -99,7 +99,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
         @Override
         public synchronized void run() {
             //TODO: make coys great again, and make philanderers a bit less great than now.
-            while (lifePoints > 0) {
+            while (lifePoints > 0 && !population.death) {
                 try {
                     lifePoints--;
                     sleep(100);

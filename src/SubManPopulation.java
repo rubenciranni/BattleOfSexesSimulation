@@ -32,7 +32,7 @@ public abstract class SubManPopulation extends SubPopulation {
 
         @Override
         public synchronized void run() {
-            while (lifePoints > 0) {
+            while (lifePoints > 0 && !population.death) {
                 try {
                     lifePoints--;
                     sleep(100);
