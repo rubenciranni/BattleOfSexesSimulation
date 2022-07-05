@@ -23,8 +23,7 @@ public class Main {
          */
         //Simulator simulator = new Simulator(16, 16, 16, 16, 15, 20, 3, false);
 
-        Simulator simulator = new Simulator(16, 16, 16, 16, 25, 10,5,15, 20, 3);
+        Simulator simulator = new Simulator(0, 16, 0, 16, 100, 5,5,15, 20, 3);
         simulator.startSimulation();
     }
 }
-// TODO: still sometimes it doesn't end for me (Luigi) this time 1 faithful and 1 fast left

@@ -14,7 +14,7 @@ public class Population extends ThreadGroup {
     public LinkedList<SubPopulation.SubType> initialPopulationList;
     public int ID = 0;
     public int size;
-    public  final int infantMortality;
+    public final int infantMortality;
     public int startCredit = 0;
     public int lifePoints = 5;
     public int noiseChance = 50;
