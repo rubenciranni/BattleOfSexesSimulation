@@ -23,7 +23,7 @@ public class Main {
          */
         //Simulator simulator = new Simulator(16, 16, 16, 16, 15, 20, 3, false);
 
-        Simulator simulator = new Simulator(16, 16, 16, 16, 5, 10,5,15, 20, 3);
+        Simulator simulator = new Simulator(16, 16, 16, 16, 25, 10,5,15, 20, 3);
         simulator.startSimulation();
     }
 }

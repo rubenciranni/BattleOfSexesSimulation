@@ -48,13 +48,14 @@ public class Simulator {
                 difference[n] = activeState.get(i) - previousState.get(i);
                 sum += abs(difference[n++]);
             }
+            sum = sum / 4;
             System.out.println(sum);
-            if (sum < 0.005) {
+            if (sum < 0.001) {
                 counter++;
             }
 
             if (print) {
-                System.out.println(population.totalSize() + "  " + population.size);
+                System.out.println(population.getTotalSize() + "  " + population.size);
 
                 if (IntegerTrueFloatFalse)
                     System.out.println(population.getPopulations());
@@ -83,7 +84,7 @@ public class Simulator {
         while (population.size > 0) {
             if (print) {
                 Thread.sleep(TIME);
-                System.out.println(population.totalSize() + "  " + population.size);
+                System.out.println(population.getTotalSize() + "  " + population.size);
 
                 if (IntegerTrueFloatFalse)
                     System.out.println(population.getPopulations());
