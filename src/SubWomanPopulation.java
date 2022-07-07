@@ -99,7 +99,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
         @Override
         public synchronized void run() {
             //TODO: make coys great again, and make philanderers a bit less great than now.
-            while (lifePoints > 0 && !population.death) {
+            while (lifePoints > 0 && !population.death && credit >= 0) {
                 try {
                     lifePoints--;
                     sleep(100);
