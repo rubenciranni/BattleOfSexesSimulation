@@ -1,3 +1,5 @@
+import javafx.application.Application;
+
 import java.util.HashMap;
 
 import static java.lang.Math.abs;
@@ -37,7 +39,8 @@ public class Simulator {
         }
 
         HashMap<String, Float> previousState = population.getGlobalState();
-
+        //TODO: Try to run this without the whole thing glitching. Tried closing already and creating another stage so something is wrong...
+        Application.launch(pie_FX.class,null);
         while (true) {
             Thread.sleep(TIME);
             HashMap<String, Float> activeState = population.getGlobalState();

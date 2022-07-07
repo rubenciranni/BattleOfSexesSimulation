@@ -5,8 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-    //Controller for the javafx GUI
+//Controller for the javafx GUI
     public class FX_controller {
 
         @FXML
@@ -62,6 +63,7 @@ import javafx.scene.text.Text;
 
         @FXML
         void init(ActionEvent event) {
+            Stage stage = (Stage) start_button.getScene().getWindow();
             int initialSize = Integer.valueOf(InitialSize.getText());
             int infantMortality = Integer.valueOf(InfantMortality.getText());
             int startCredit = Integer.valueOf(StartingCredit.getText());
@@ -70,11 +72,16 @@ import javafx.scene.text.Text;
             int b = Integer.valueOf(bpoints.getText());
             int c = Integer.valueOf(cpoints.getText());
             Simulator simulator = new Simulator(initialSize, infantMortality, startCredit, lifePoints, a, b, c);
+            stage.close();
+
             try {
                 simulator.startSimulation();
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
+
+
+
 
 
         }
