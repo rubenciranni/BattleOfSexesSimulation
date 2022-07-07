@@ -23,8 +23,8 @@ public class Simulator {
         this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize, faithfulPopulationInitialSize, philandererPopulationInitialSize, infantMortality, startCredit, life, a, b, c, noiseChance);
     }
 
-    public Simulator(int coyPopulationInitialSize, int fastPopulationInitialSize, int faithfulPopulationInitialSize, int philandererPopulationInitialSize, int infantMortality, int startCredit, int life, int a, int b, int c) {
-        this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize, faithfulPopulationInitialSize, philandererPopulationInitialSize, infantMortality, startCredit, life, a, b, c);
+    public Simulator(int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c) {
+        this.population = new Population("population", initialSize, infantMortality, startCredit, life, a, b, c);
     }
 
     public void startSimulation() throws InterruptedException {

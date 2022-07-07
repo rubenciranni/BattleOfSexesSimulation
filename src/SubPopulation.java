@@ -41,7 +41,6 @@ public abstract class SubPopulation extends ThreadGroup {
             countLife++;
             lifePoints--;
             int deltaCredit = this.credit / (countLife*countLife);
-            System.out.println(deltaCredit);
             lifePoints += deltaCredit;
             this.credit -= deltaCredit;
         }

@@ -84,6 +84,24 @@ public class Population extends ThreadGroup {
         this.noise = false;
     }
 
+    public Population(String name, int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c) {
+        super(name);
+        this.size = initialSize;
+        this.infantMortality = infantMortality;
+        this.startCredit = startCredit;
+        this.lifePoints = life;
+        this.initialPopulationList = new LinkedList<>();
+        this.womenQueue = new SynchronousQueue<>();
+        this.womanPopulation = new WomanPopulation(this, "woman population", size / 2);
+        this.manPopulation = new ManPopulation(this, "man population", size / 2);
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.noise = true;
+
+
+    }
+
     public synchronized int getNoiseChance() {
         return noiseChance;
     }
