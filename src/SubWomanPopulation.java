@@ -67,7 +67,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     if (population.noise && (rand.nextInt(0, 50) == 49)) {
                         m = !m;
                     }
-                    if (m) {
+                    if (m && rand.nextInt(0, 10) < 6) {
                         FaithfulPopulation fatherPopulation = population.getManPopulation().faithfulPopulation;
                         population.world.execute(fatherPopulation.new Faithful(fatherPopulation));
                         fatherPopulation.increaseSize();

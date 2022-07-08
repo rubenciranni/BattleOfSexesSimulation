@@ -57,7 +57,6 @@ public abstract class SubManPopulation extends SubPopulation {
                         wait();
                         currentWoman.hey();
                     }
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
