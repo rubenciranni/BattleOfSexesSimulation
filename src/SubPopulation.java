@@ -25,15 +25,24 @@ public abstract class SubPopulation extends ThreadGroup {
     public abstract void addToInitialPopulation();
 
     public abstract class SubType extends Thread {
+        private int countLife = 0;
         private final int id;
         public int credit = population.startCredit;
-        public int lifePoints = population.life;
+        public int lifePoints = population.lifePoints;
         public boolean isSingle = true;
         public Object ring = new Object();
 
         public SubType(ThreadGroup group, String name) {
             super(group, name);
             this.id = ++population.ID;
+        }
+
+        public void updateLifePoints() {
+            countLife++;
+            lifePoints--;
+            int deltaCredit = this.credit / (countLife*countLife);
+            lifePoints += deltaCredit;
+            this.credit -= deltaCredit;
         }
 
         public abstract String getSubType();
