@@ -84,24 +84,11 @@ public class Simulator {
                     System.out.println("\n");
                     Simulator.TIME = 1000;
                     Simulator.print = true;
+                    FXController.notSimulation = true;
                     break;
                 }
             }
-
-
         }
-        while (population.size > 0) {
-            if (print) {
-                Thread.sleep(TIME);
-                System.out.println(population.getTotalSize() + "  " + population.size);
-
-                if (IntegerTrueFloatFalse)
-                    System.out.println(population.getPopulations());
-                else
-                    System.out.println(population.getGlobalState());
-            }
-        }
-
     }
 }
 

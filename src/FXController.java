@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 //Controller for the javafx GUI
     public class FXController implements Initializable {
+        public static boolean notSimulation = true;
 
         @FXML
         public PieChart pieChart;
@@ -74,23 +75,26 @@ import java.util.ResourceBundle;
 
         @FXML
         void init(ActionEvent event) {
-            Stage stage = (Stage) startButton.getScene().getWindow();
-            int initialSize = Integer.valueOf(this.initialSize.getText());
-            int infantMortality = Integer.valueOf(this.infantMortality.getText());
-            int startCredit = Integer.valueOf(startingCredit.getText());
-            int lifePoints = Integer.valueOf(this.lifePoints.getText());
-            int a = Integer.valueOf(aPoints.getText());
-            int b = Integer.valueOf(bPoints.getText());
-            int c = Integer.valueOf(cPoints.getText());
-            Simulator simulator = new Simulator(initialSize, infantMortality, startCredit, lifePoints, a, b, c,this);
-            Thread simulation = new Thread(() -> {
-                try {
-                    simulator.startSimulation();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
-            simulation.start();
+            if (notSimulation) {
+                notSimulation = false;
+                Stage stage = (Stage) startButton.getScene().getWindow();
+                int initialSize = Integer.valueOf(this.initialSize.getText());
+                int infantMortality = Integer.valueOf(this.infantMortality.getText());
+                int startCredit = Integer.valueOf(startingCredit.getText());
+                int lifePoints = Integer.valueOf(this.lifePoints.getText());
+                int a = Integer.valueOf(aPoints.getText());
+                int b = Integer.valueOf(bPoints.getText());
+                int c = Integer.valueOf(cPoints.getText());
+                Simulator simulator = new Simulator(initialSize, infantMortality, startCredit, lifePoints, a, b, c, this);
+                Thread simulation = new Thread(() -> {
+                    try {
+                        simulator.startSimulation();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+                simulation.start();
+            }
         }
 
 
