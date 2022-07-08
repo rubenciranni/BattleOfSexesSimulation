@@ -59,7 +59,7 @@ public class Simulator {
                 }
                 sum = sum / 4;
                 System.out.println(sum);
-                if (sum < 0.001) {
+                if (sum < 0.0005) {
                     countSmallDeltas++;
                 }
 
@@ -77,15 +77,18 @@ public class Simulator {
                     population.sterility = true;
                     population.death = true;
                     HashMap<String, Float> perfectState = population.getPerfectValues();
+                    float[] errorCounter = new float[4];
+                    n = 0;
 
                     System.out.println("the sum of the differences is " + sum + ";\nEach difference is:");
                     System.out.println("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]);
                     System.out.println("\n\nFinal vs Perfect Values:");
                     for (String i : activeState.keySet()) {
-                        System.out.println(i + ": " + activeState.get(i));
-                        System.out.println(i + ": " + perfectState.get(i)+"\n");
+                        System.out.println(i + " (Simulation): " + activeState.get(i));
+                        System.out.println(i + " (Prediction): " + perfectState.get(i)+"\n");
+                        errorCounter[n++] = Math.abs(perfectState.get(i)-activeState.get(i));
                     }
-                    System.out.println("\n");
+                    System.out.println("\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%");
                     Simulator.TIME = 1000;
                     Simulator.print = true;
                     FXController.notSimulation = true;

@@ -132,4 +132,12 @@ import java.util.ResourceBundle;
     }
 }
 
+// TODO: larger pie chart, smaller things on the left (make space for textarea), centered "Insert Data:",
+//       bigger window on opening, modify initial size strange behaviour on enlarging window
+// TODO: Start button doesn't function properly after 1st execution
+// TODO: ADD stop button
 
+
+// TODO: Beautify code
+
+// TODO: Try with different values see if it still works!
