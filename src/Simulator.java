@@ -1,4 +1,4 @@
-import javafx.application.Application;
+import javafx.application.Platform;
 
 import java.util.HashMap;
 
@@ -8,8 +8,8 @@ public class Simulator {
     private final Population population;
     private static boolean IntegerTrueFloatFalse = true;
     static boolean print = true;
-    static int TIME = 1000;
-    public FX_controller mygui;
+    static int TIME = 10;
+    public FXController myGui;
 
     public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
         this.population = new Population("population", populationInitialSize, a, b, c, noise);
@@ -26,14 +26,15 @@ public class Simulator {
         this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize, faithfulPopulationInitialSize, philandererPopulationInitialSize, infantMortality, startCredit, life, a, b, c, noiseChance);
     }
 
-    public Simulator(int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c, FX_controller gui) {
-        this.mygui=gui;
+    public Simulator(int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c, FXController gui) {
+        this.myGui =gui;
         this.population = new Population("population", initialSize, infantMortality, startCredit, life, a, b, c);
     }
 
     public void startSimulation() throws InterruptedException {
         //sorts initialPopulationList in alphabetic order
         population.initialPopulationList.sort((Thread o1, Thread o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+        int countSmallDeltas = 0;
         int counter = 0;
 
         for (SubPopulation.SubType t : population.initialPopulationList) {
@@ -41,48 +42,50 @@ public class Simulator {
         }
 
         HashMap<String, Float> previousState = population.getGlobalState();
-        //TODO: Try to run this without the whole thing glitching. Tried closing already and creating another stage so something is wrong...
-        //Application.launch(pie_FX.class,null);
+
         while (true) {
-            mygui.pieset(population);
+            counter++;
+            Platform.runLater(new Thread(() -> {myGui.updatePie(population);}));
             Thread.sleep(TIME);
             HashMap<String, Float> activeState = population.getGlobalState();
-            float difference[] = new float[4];
-            int n = 0;
-            float sum = 0;
-            for (String i : activeState.keySet()) {
-                difference[n] = activeState.get(i) - previousState.get(i);
-                sum += abs(difference[n++]);
-            }
-            sum = sum / 4;
-            System.out.println(sum);
-            if (sum < 0.001) {
-                counter++;
-            }
-
-            if (print) {
-                System.out.println(population.getTotalSize() + "  " + population.size);
-
-                if (IntegerTrueFloatFalse)
-                    System.out.println(population.getPopulations());
-                else
-                    System.out.println(population.getGlobalState());
-            }
-            previousState = activeState;
-
-            if (counter == 5) {
-                population.sterility = true;
-                population.death = true;
-                System.out.println("the sum of the differences is " + sum + ";\nEach difference is:");
-                System.out.println("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]);
-                System.out.println("\n\nFinal Values:");
+            if (counter % 100 == 0) {
+                float difference[] = new float[4];
+                int n = 0;
+                float sum = 0;
                 for (String i : activeState.keySet()) {
-                    System.out.println(i + ": " + activeState.get(i));
+                    difference[n] = activeState.get(i) - previousState.get(i);
+                    sum += abs(difference[n++]);
                 }
-                System.out.println("\n");
-                Simulator.TIME = 1000;
-                Simulator.print = true;
-                break;
+                sum = sum / 4;
+                System.out.println(sum);
+                if (sum < 0.001) {
+                    countSmallDeltas++;
+                }
+
+                if (print) {
+                    System.out.println(population.getTotalSize() + "  " + population.size);
+
+                    if (IntegerTrueFloatFalse)
+                        System.out.println(population.getPopulations());
+                    else
+                        System.out.println(population.getGlobalState());
+                }
+                previousState = activeState;
+
+                if (countSmallDeltas == 5) {
+                    population.sterility = true;
+                    population.death = true;
+                    System.out.println("the sum of the differences is " + sum + ";\nEach difference is:");
+                    System.out.println("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]);
+                    System.out.println("\n\nFinal Values:");
+                    for (String i : activeState.keySet()) {
+                        System.out.println(i + ": " + activeState.get(i));
+                    }
+                    System.out.println("\n");
+                    Simulator.TIME = 1000;
+                    Simulator.print = true;
+                    break;
+                }
             }
 
 

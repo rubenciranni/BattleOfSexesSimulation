@@ -102,6 +102,16 @@ public class Population extends ThreadGroup {
 
     }
 
+    public double getStateFromName(String name) {
+        switch (name) {
+            case "Coy": return this.getCoyState();
+            case "Fast": return this.getFastState();
+            case "Faithful": return this.getFaithfulState();
+            case "Philanderer": return this.getPhilanderersState();
+        }
+        return 0.00;
+    }
+
     public synchronized int getNoiseChance() {
         return noiseChance;
     }
@@ -149,19 +159,19 @@ public class Population extends ThreadGroup {
         return globalState;
     }
     public float getFaithfulState() {
-        return ((float)this.manPopulation.faithfulPopulation.size/(float)manPopulation.size);
+        return ((float)this.manPopulation.faithfulPopulation.size/(float) size);
     }
 
     public float getPhilanderersState() {
-        return ((float)this.manPopulation.philandererPopulation.size/(float)manPopulation.size);
+        return ((float)this.manPopulation.philandererPopulation.size/(float) size);
     }
 
     public float getFastState() {
-        return ((float)this.womanPopulation.fastPopulation.size/(float)womanPopulation.size);
+        return ((float)this.womanPopulation.fastPopulation.size/(float) size);
     }
 
     public float getCoyState() {
-        return ((float)this.womanPopulation.coyPopulation.size/(float)womanPopulation.size);
+        return ((float)this.womanPopulation.coyPopulation.size/(float) size);
     }
 
     public HashMap getGlobalState() {

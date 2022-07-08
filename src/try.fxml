@@ -41,82 +41,82 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FX_controller">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXController">
   <children>
-    <AnchorPane fx:id="mainpane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="mainPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-        <Label fx:id="is_label" alignment="CENTER" layoutX="14.0" layoutY="104.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="Initial size:" textAlignment="CENTER" wrapText="false" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="104.0">
+        <Label fx:id="isLabel" alignment="CENTER" layoutX="14.0" layoutY="104.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="Initial size:" textAlignment="CENTER" wrapText="false" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="544.0" AnchorPane.topAnchor="104.0">
           <font>
             <Font size="18.0" />
           </font>
         </Label>
-            <Button fx:id="start_button" layoutX="320.0" layoutY="328.0" mnemonicParsing="false" onAction="#init" prefHeight="61.0" prefWidth="122.0" text="Start" />
-            <TextField fx:id="InfantMortality" layoutX="114.0" layoutY="146.0" prefHeight="28.0" prefWidth="151.0">
+            <Button fx:id="startButton" layoutX="320.0" layoutY="328.0" mnemonicParsing="false" onAction="#init" prefHeight="61.0" prefWidth="122.0" text="Start" />
+            <TextField fx:id="infantMortality" layoutX="114.0" layoutY="146.0" prefHeight="28.0" prefWidth="151.0">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="InitialSize" layoutX="114.0" layoutY="103.0" prefHeight="28.0" prefWidth="151.0">
+            <TextField fx:id="initialSize" layoutX="114.0" layoutY="103.0" prefHeight="28.0" prefWidth="151.0">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="StartingCredit" layoutX="114.0" layoutY="188.0" prefHeight="28.0" prefWidth="151.0">
+            <TextField fx:id="startingCredit" layoutX="114.0" layoutY="188.0" prefHeight="28.0" prefWidth="151.0">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="LifePoints" layoutX="114.0" layoutY="231.0" prefHeight="28.0" prefWidth="151.0">
+            <TextField fx:id="lifePoints" layoutX="114.0" layoutY="231.0" prefHeight="28.0" prefWidth="151.0">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="apoints" layoutX="114.0" layoutY="274.0" prefHeight="28.0" prefWidth="151.0" text="15">
+            <TextField fx:id="aPoints" layoutX="114.0" layoutY="274.0" prefHeight="28.0" prefWidth="151.0" text="15">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="bpoints" layoutX="114.0" layoutY="316.0" prefHeight="28.0" prefWidth="151.0" text="20">
+            <TextField fx:id="bPoints" layoutX="114.0" layoutY="316.0" prefHeight="28.0" prefWidth="151.0" text="20">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="cpoints" layoutX="114.0" layoutY="359.0" prefHeight="28.0" prefWidth="151.0" text="3">
+            <TextField fx:id="cPoints" layoutX="114.0" layoutY="359.0" prefHeight="28.0" prefWidth="151.0" text="3">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Label fx:id="im_label" alignment="CENTER" layoutX="14.0" layoutY="147.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="Mortality:" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="imLabel" alignment="CENTER" layoutX="14.0" layoutY="147.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="Mortality:" textAlignment="CENTER" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="ic_label" alignment="CENTER" layoutX="14.0" layoutY="188.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="Credit:" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="icLabel" alignment="CENTER" layoutX="14.0" layoutY="188.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="Credit:" textAlignment="CENTER" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lp_label" alignment="CENTER" layoutX="14.0" layoutY="232.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="Life:" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="lpLabel" alignment="CENTER" layoutX="14.0" layoutY="232.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="Life:" textAlignment="CENTER" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="a_label" alignment="CENTER" layoutX="14.0" layoutY="275.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="a:" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="aLabel" alignment="CENTER" layoutX="14.0" layoutY="275.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="a:" textAlignment="CENTER" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="b_label" alignment="CENTER" layoutX="14.0" layoutY="317.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="b:" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="bLabel" alignment="CENTER" layoutX="14.0" layoutY="317.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="b:" textAlignment="CENTER" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="c_label" alignment="CENTER" layoutX="14.0" layoutY="360.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="c:" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="cLabel" alignment="CENTER" layoutX="14.0" layoutY="360.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="c:" textAlignment="CENTER" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Text fx:id="biglabel" layoutX="25.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert data:" wrappingWidth="141.9830722808838">
+            <Text fx:id="bigLabel" layoutX="25.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert data:" wrappingWidth="141.9830722808838">
                <font>
                   <Font size="28.0" />
                </font>

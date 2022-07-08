@@ -3,10 +3,12 @@ import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+
 //Starter for the javafx interface
 public class SimulatorFX extends Application{
     public static void main(String[] args) {
         launch(args);
+
     }
 
     @Override
