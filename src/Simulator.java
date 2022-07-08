@@ -9,6 +9,7 @@ public class Simulator {
     private static boolean IntegerTrueFloatFalse = true;
     static boolean print = true;
     static int TIME = 1000;
+    public FX_controller mygui;
 
     public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
         this.population = new Population("population", populationInitialSize, a, b, c, noise);
@@ -25,7 +26,8 @@ public class Simulator {
         this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize, faithfulPopulationInitialSize, philandererPopulationInitialSize, infantMortality, startCredit, life, a, b, c, noiseChance);
     }
 
-    public Simulator(int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c) {
+    public Simulator(int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c, FX_controller gui) {
+        this.mygui=gui;
         this.population = new Population("population", initialSize, infantMortality, startCredit, life, a, b, c);
     }
 
@@ -40,8 +42,9 @@ public class Simulator {
 
         HashMap<String, Float> previousState = population.getGlobalState();
         //TODO: Try to run this without the whole thing glitching. Tried closing already and creating another stage so something is wrong...
-        Application.launch(pie_FX.class,null);
+        //Application.launch(pie_FX.class,null);
         while (true) {
+            mygui.pieset(population);
             Thread.sleep(TIME);
             HashMap<String, Float> activeState = population.getGlobalState();
             float difference[] = new float[4];

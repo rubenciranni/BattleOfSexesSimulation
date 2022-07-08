@@ -1,5 +1,10 @@
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -7,8 +12,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 //Controller for the javafx GUI
-    public class FX_controller {
+    public class FX_controller implements Initializable {
+
+        @FXML
+        public PieChart pieChart;
 
         @FXML
         private TextField StartingCredit;
@@ -71,8 +82,7 @@ import javafx.stage.Stage;
             int a = Integer.valueOf(apoints.getText());
             int b = Integer.valueOf(bpoints.getText());
             int c = Integer.valueOf(cpoints.getText());
-            Simulator simulator = new Simulator(initialSize, infantMortality, startCredit, lifePoints, a, b, c);
-            stage.close();
+            Simulator simulator = new Simulator(initialSize, infantMortality, startCredit, lifePoints, a, b, c,this);
 
             try {
                 simulator.startSimulation();
@@ -86,6 +96,47 @@ import javafx.stage.Stage;
 
         }
 
+
+    private ObservableList<PieChart.Data> getChartData() {
+        ObservableList<PieChart.Data> answer = FXCollections.observableArrayList();
+        answer.addAll(
+                new PieChart.Data("Coy", 0.25),
+                new PieChart.Data("Fast", 0.25),
+                new PieChart.Data("Faithful", 0.25),
+                new PieChart.Data("Philanderers", 0.25)
+        );
+        return answer;
     }
+
+    public void pieset(Population population){
+            pieChart.setData(getChartTrueData(population));
+    }
+
+    public ObservableList<PieChart.Data> getChartTrueData(Population population) {
+        ObservableList<PieChart.Data> answer = FXCollections.observableArrayList();
+        answer.addAll(
+                new PieChart.Data("Coy", 33),
+                new PieChart.Data("Fast", 33),
+                new PieChart.Data("Faithful", 33),
+                new PieChart.Data("Philanderers", 0)
+        );
+        return answer;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<PieChart.Data> pieChartData = getChartData();
+
+        pieChartData.forEach(data ->
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                data.getName(), ": ", data.pieValueProperty()
+                        )
+                )
+        );
+
+        pieChart.getData().addAll(pieChartData);
+    }
+}
 
 

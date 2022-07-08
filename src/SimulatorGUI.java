@@ -48,7 +48,7 @@ public class SimulatorGUI extends JPanel {
                 int a = Integer.valueOf(aField.getText());
                 int b = Integer.valueOf(bField.getText());
                 int c = Integer.valueOf(cField.getText());
-                Simulator simulator = new Simulator(initialSize, infantMortality, startCredit, lifePoints, a, b, c);
+                Simulator simulator = new Simulator(initialSize, infantMortality, startCredit, lifePoints, a, b, c,null);
                 try {
                     simulator.startSimulation();
                 } catch (InterruptedException ex) {
