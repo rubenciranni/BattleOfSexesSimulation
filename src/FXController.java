@@ -104,7 +104,7 @@ import java.util.ResourceBundle;
                 new PieChart.Data("Coy", 0.25),
                 new PieChart.Data("Fast", 0.25),
                 new PieChart.Data("Faithful", 0.25),
-                new PieChart.Data("Philanderers", 0.25)
+                new PieChart.Data("Philanderer", 0.25)
         );
         return answer;
     }

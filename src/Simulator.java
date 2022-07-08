@@ -9,6 +9,7 @@ public class Simulator {
     private static boolean IntegerTrueFloatFalse = true;
     static boolean print = true;
     static int TIME = 10;
+    boolean finalVal = true;
     public FXController myGui;
 
     public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
@@ -47,7 +48,7 @@ public class Simulator {
             counter++;
             Platform.runLater(new Thread(() -> {myGui.updatePie(population);}));
             Thread.sleep(TIME);
-            HashMap<String, Float> activeState = population.getGlobalState();
+            HashMap<String, Float> activeState = population.getGlobalGenderState();
             if (counter % 100 == 0) {
                 float difference[] = new float[4];
                 int n = 0;
@@ -75,11 +76,14 @@ public class Simulator {
                 if (countSmallDeltas == 5) {
                     population.sterility = true;
                     population.death = true;
+                    HashMap<String, Float> perfectState = population.getPerfectValues();
+
                     System.out.println("the sum of the differences is " + sum + ";\nEach difference is:");
                     System.out.println("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]);
-                    System.out.println("\n\nFinal Values:");
+                    System.out.println("\n\nFinal vs Perfect Values:");
                     for (String i : activeState.keySet()) {
                         System.out.println(i + ": " + activeState.get(i));
+                        System.out.println(i + ": " + perfectState.get(i)+"\n");
                     }
                     System.out.println("\n");
                     Simulator.TIME = 1000;
