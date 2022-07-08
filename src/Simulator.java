@@ -27,7 +27,7 @@ public class Simulator {
     }
 
     public Simulator(int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c, FXController gui) {
-        this.myGui =gui;
+        this.myGui = gui;
         this.population = new Population("population", initialSize, infantMortality, startCredit, life, a, b, c);
     }
 

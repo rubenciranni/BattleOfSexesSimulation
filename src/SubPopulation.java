@@ -40,7 +40,7 @@ public abstract class SubPopulation extends ThreadGroup {
         public void updateLifePoints() {
             countLife++;
             lifePoints--;
-            int deltaCredit = this.credit / (countLife*countLife);
+            int deltaCredit = this.credit / (countLife);
             lifePoints += deltaCredit;
             this.credit -= deltaCredit;
         }

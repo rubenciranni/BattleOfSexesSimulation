@@ -27,33 +27,37 @@ public class Population extends ThreadGroup {
         super(name);
         this.size = size;
         this.infantMortality = 0;
-        this.initialPopulationList = new LinkedList<>();
-        this.womenQueue = new SynchronousQueue<>();
-        this.womanPopulation = new WomanPopulation(this, "woman population", size / 2);
-        this.manPopulation = new ManPopulation(this, "man population", size / 2);
         this.a = a;
         this.b = b;
         this.c = c;
         this.noise = noise;
+        this.initialPopulationList = new LinkedList<>();
+        this.womenQueue = new SynchronousQueue<>();
+        this.womanPopulation = new WomanPopulation(this, "woman population", size / 2);
+        this.manPopulation = new ManPopulation(this, "man population", size / 2);
     }
 
     public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers, int a, int b, int c, boolean noise) {
         super(name);
         this.size = numberOfCoy + numberOfFaithful + numberOfFast + numberOfPhilanderers;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.noise = noise;
         this.infantMortality = 0;
         this.initialPopulationList = new LinkedList<>();
         this.womenQueue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
         this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.noise = noise;
     }
 
     public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers, int infantMortality, int startCredit, int lifePoints, int a, int b, int c, int noiseChance) {
         super(name);
         this.size = numberOfCoy + numberOfFaithful + numberOfFast + numberOfPhilanderers;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.noise = true;
         this.infantMortality = infantMortality;
         this.initialPopulationList = new LinkedList<>();
         this.womenQueue = new SynchronousQueue<>();
@@ -62,15 +66,15 @@ public class Population extends ThreadGroup {
         this.startCredit = startCredit;
         this.lifePoints = lifePoints;
         this.noiseChance = noiseChance;
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.noise = true;
     }
 
     public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers, int infantMortality, int startCredit, int lifePoints, int a, int b, int c) {
         super(name);
         this.size = numberOfCoy + numberOfFaithful + numberOfFast + numberOfPhilanderers;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.noise = false;
         this.infantMortality = infantMortality;
         this.initialPopulationList = new LinkedList<>();
         this.womenQueue = new SynchronousQueue<>();
@@ -78,14 +82,14 @@ public class Population extends ThreadGroup {
         this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
         this.startCredit = startCredit;
         this.lifePoints = lifePoints;
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.noise = false;
     }
 
     public Population(String name, int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c) {
         super(name);
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.noise = true;
         this.size = initialSize;
         this.infantMortality = infantMortality;
         this.startCredit = startCredit;
@@ -94,12 +98,6 @@ public class Population extends ThreadGroup {
         this.womenQueue = new SynchronousQueue<>();
         this.womanPopulation = new WomanPopulation(this, "woman population", size / 2);
         this.manPopulation = new ManPopulation(this, "man population", size / 2);
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.noise = true;
-
-
     }
 
     public double getStateFromName(String name) {
