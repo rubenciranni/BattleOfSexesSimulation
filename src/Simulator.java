@@ -68,9 +68,12 @@ public class Simulator {
                 if (sum < 0.0005) {
                     countSmallDeltas++;
                 }
+                /*
                 else {
                     countSmallDeltas = 0;
                 }
+                */
+
                 if (print) {
                     System.out.println(population.getTotalSize() + "  " + population.size);
 
