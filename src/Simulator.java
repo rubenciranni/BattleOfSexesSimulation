@@ -68,10 +68,9 @@ public class Simulator {
                 if (sum < 0.0005) {
                     countSmallDeltas++;
                 }
-                else{
+                else {
                     countSmallDeltas = 0;
                 }
-
                 if (print) {
                     System.out.println(population.getTotalSize() + "  " + population.size);
 
@@ -89,7 +88,8 @@ public class Simulator {
                     float[] errorCounter = new float[4];
                     n = 0;
                     String toTextArea="";
-                    toTextArea += print("\n\nThe sum of the differences is " + sum + ";\n\nEach difference is:");
+                    System.out.println("\n");
+                    toTextArea += print("The sum of the differences is " + sum + ";\n\nEach difference is:");
                     toTextArea += print("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]);
                     toTextArea += print("\n\nFinal vs Perfect Values:\n");
                     for (String i : activeState.keySet()) {
@@ -99,8 +99,7 @@ public class Simulator {
                     }
                     toTextArea += print("\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%");
                     myGui.setOutputText(toTextArea);
-                    FXController.notSimulation = true;
-
+                    myGui.notSimulation = true;
                     break;
                 }
             }

@@ -18,8 +18,7 @@ import java.util.ResourceBundle;
 
 //Controller for the javafx GUI
     public class FXController implements Initializable {
-        public static boolean notSimulation = true;
-
+        public boolean notSimulation = true;
         public Simulator simulator;
 
         @FXML
