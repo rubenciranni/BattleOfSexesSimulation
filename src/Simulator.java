@@ -79,16 +79,17 @@ public class Simulator {
                     HashMap<String, Float> perfectState = population.getPerfectValues();
                     float[] errorCounter = new float[4];
                     n = 0;
-
-                    System.out.println("the sum of the differences is " + sum + ";\nEach difference is:");
-                    System.out.println("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]);
-                    System.out.println("\n\nFinal vs Perfect Values:");
+                    String toTextArea="";
+                    System.out.println("the sum of the differences is " + sum + ";\nEach difference is:"); toTextArea+="The sum of the differences is " + sum + ";\nEach difference is:\n";
+                    System.out.println("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]); toTextArea+="Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3] +"\n";
+                    System.out.println("\n\nFinal vs Perfect Values:"); toTextArea+="\n\nFinal vs Perfect Values:\n";
                     for (String i : activeState.keySet()) {
-                        System.out.println(i + " (Simulation): " + activeState.get(i));
-                        System.out.println(i + " (Prediction): " + perfectState.get(i)+"\n");
+                        System.out.println(i + " (Simulation): " + activeState.get(i)); toTextArea+=i + " (Simulation): " + activeState.get(i)+"\n";
+                        System.out.println(i + " (Prediction): " + perfectState.get(i)+"\n"); toTextArea+=i + " (Prediction): " + perfectState.get(i)+"\n\n";
                         errorCounter[n++] = Math.abs(perfectState.get(i)-activeState.get(i));
                     }
-                    System.out.println("\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%");
+                    System.out.println("\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%"); toTextArea+="\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%";
+                    myGui.setOutputText(toTextArea);
                     Simulator.TIME = 1000;
                     Simulator.print = true;
                     FXController.notSimulation = true;

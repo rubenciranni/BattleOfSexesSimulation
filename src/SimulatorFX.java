@@ -15,7 +15,7 @@ public class SimulatorFX extends Application{
     public void start(Stage primaryStage) throws Exception {
         Parent root=FXMLLoader.load(getClass().getResource("try.fxml"));
         primaryStage.setTitle("Simulator");
-        primaryStage.setScene(new Scene(root, 640,412));
+        primaryStage.setScene(new Scene(root, 800,600));
         primaryStage.show();
     }
 }

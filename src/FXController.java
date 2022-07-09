@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -74,6 +75,10 @@ import java.util.ResourceBundle;
         private Button startButton;
 
         @FXML
+        private TextArea textArea;
+
+
+    @FXML
         void init(ActionEvent event) {
             if (notSimulation) {
                 notSimulation = false;
@@ -114,6 +119,10 @@ import java.util.ResourceBundle;
         for (PieChart.Data d : oldData) {
             d.setPieValue(population.getStateFromName(d.getName()));
         }
+    }
+
+    public void setOutputText(String toTextArea){
+        textArea.setText(toTextArea);
     }
 
     @Override
