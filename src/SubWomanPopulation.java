@@ -104,7 +104,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         @Override
         public synchronized void run() {
-            while (lifePoints > 0 && !population.death & credit >= 0) {
+            while (lifePoints > 0 && !population.death && credit>=0)  {
                 try {
                     updateLifePoints();
                     sleep(100);
