@@ -46,7 +46,7 @@
   <children>
     <AnchorPane fx:id="mainPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="600.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="startButton" layoutX="456.0" layoutY="437.0" mnemonicParsing="false" onAction="#init" prefHeight="70.0" prefWidth="134.0" text="Start">
+            <Button fx:id="startButton" layoutX="446.0" layoutY="457.0" mnemonicParsing="false" onAction="#init" prefHeight="70.0" prefWidth="134.0" text="Start">
                <font>
                   <Font size="24.0" />
                </font></Button>
@@ -70,17 +70,17 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="aPoints" layoutX="298.0" layoutY="46.0" prefHeight="24.0" prefWidth="100.0" text="15">
+            <TextField fx:id="aPoints" layoutX="303.0" layoutY="46.0" prefHeight="24.0" prefWidth="100.0" text="15">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="bPoints" layoutX="298.0" layoutY="85.0" prefHeight="24.0" prefWidth="100.0" text="20">
+            <TextField fx:id="bPoints" layoutX="303.0" layoutY="85.0" prefHeight="24.0" prefWidth="100.0" text="20">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="cPoints" layoutX="298.0" layoutY="125.0" prefHeight="24.0" prefWidth="100.0" text="3">
+            <TextField fx:id="cPoints" layoutX="303.0" layoutY="125.0" prefHeight="24.0" prefWidth="100.0" text="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -115,12 +115,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Text fx:id="bigLabel" layoutX="12.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert data:" wrappingWidth="204.38303565979004">
+            <Text fx:id="bigLabel" layoutX="114.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Initial parameters" wrappingWidth="204.38303565979004">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <PieChart fx:id="pieChart" layoutX="403.0" layoutY="32.0" prefHeight="359.0" prefWidth="394.0" title="Global state " />
+            <PieChart fx:id="pieChart" layoutX="403.0" layoutY="22.0" prefHeight="355.0" prefWidth="388.0" title="Global state " />
             <Label fx:id="isLabel" layoutX="14.0" layoutY="46.0" prefHeight="30.0" prefWidth="90.0" text="Initial size:">
                <font>
                   <Font size="18.0" />
@@ -131,7 +131,7 @@
                   <Font size="14.0" />
                </font>
             </TextArea>
-            <Button fx:id="stopButton" layoutX="610.0" layoutY="437.0" mnemonicParsing="false" onAction="#terminate" prefHeight="70.0" prefWidth="134.0" text="Stop">
+            <Button fx:id="stopButton" layoutX="620.0" layoutY="457.0" mnemonicParsing="false" onAction="#terminate" prefHeight="70.0" prefWidth="134.0" text="Stop">
                <font>
                   <Font size="24.0" />
                </font>
