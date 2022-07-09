@@ -23,6 +23,7 @@ public class Population extends ThreadGroup {
     public boolean death = false;
     public ExecutorService world = Executors.newFixedThreadPool(2000);
 
+    /*
     public Population(String name, int size, int a, int b, int c, boolean noise) {
         super(name);
         this.size = size;
@@ -83,7 +84,7 @@ public class Population extends ThreadGroup {
         this.startCredit = startCredit;
         this.lifePoints = lifePoints;
     }
-
+*/
     public Population(String name, int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c) {
         super(name);
         this.a = a;

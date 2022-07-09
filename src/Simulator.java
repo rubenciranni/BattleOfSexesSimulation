@@ -11,7 +11,8 @@ public class Simulator {
     static int TIME = 10;
     boolean finalVal = true;
     public FXController myGui;
-
+    public boolean EndOfEverything = false;
+/*
     public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
         this.population = new Population("population", populationInitialSize, a, b, c, noise);
     }
@@ -26,7 +27,7 @@ public class Simulator {
     public Simulator(int coyPopulationInitialSize, int fastPopulationInitialSize, int faithfulPopulationInitialSize, int philandererPopulationInitialSize, int infantMortality, int startCredit, int life, int a, int b, int c, int noiseChance) {
         this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize, faithfulPopulationInitialSize, philandererPopulationInitialSize, infantMortality, startCredit, life, a, b, c, noiseChance);
     }
-
+*/
     public Simulator(int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c, FXController gui) {
         this.myGui = gui;
         this.population = new Population("population", initialSize, infantMortality, startCredit, life, a, b, c);
@@ -81,7 +82,7 @@ public class Simulator {
                 }
                 previousState = activeState;
 
-                if (countSmallDeltas == 5) {
+                if (countSmallDeltas == 5 || EndOfEverything) {
                     population.sterility = true;
                     population.death = true;
                     HashMap<String, Float> perfectState = population.getPerfectValues();
