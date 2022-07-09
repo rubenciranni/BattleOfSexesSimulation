@@ -50,22 +50,22 @@
                <font>
                   <Font size="24.0" />
                </font></Button>
-          <TextField fx:id="initialSize" layoutX="104.0" layoutY="46.0" prefHeight="24.0" prefWidth="100.0">
+          <TextField fx:id="initialSize" layoutX="104.0" layoutY="46.0" prefHeight="24.0" prefWidth="100.0" text="100">
               <font>
                   <Font size="18.0" />
               </font>
           </TextField>
-          <TextField fx:id="infantMortality" layoutX="104.0" layoutY="85.0" prefHeight="24.0" prefWidth="100.0">
+          <TextField fx:id="infantMortality" layoutX="104.0" layoutY="85.0" prefHeight="24.0" prefWidth="100.0" text="25">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="startingCredit" layoutX="104.0" layoutY="125.0" prefHeight="24.0" prefWidth="100.0">
+            <TextField fx:id="startingCredit" layoutX="104.0" layoutY="125.0" prefHeight="24.0" prefWidth="100.0" text="10">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="lifePoints" layoutX="104.0" layoutY="165.0" prefHeight="24.0" prefWidth="100.0">
+            <TextField fx:id="lifePoints" layoutX="104.0" layoutY="165.0" prefHeight="24.0" prefWidth="100.0" text="5">
                <font>
                   <Font size="18.0" />
                </font>
