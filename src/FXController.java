@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
     public class FXController implements Initializable {
         public static boolean notSimulation = true;
 
+        public Simulator simulator;
+
         @FXML
         public PieChart pieChart;
 
@@ -77,6 +79,9 @@ import java.util.ResourceBundle;
         @FXML
         private TextArea textArea;
 
+        @FXML
+        private Button stopButton;
+
 
     @FXML
         void init(ActionEvent event) {
@@ -90,7 +95,7 @@ import java.util.ResourceBundle;
                 int a = Integer.valueOf(aPoints.getText());
                 int b = Integer.valueOf(bPoints.getText());
                 int c = Integer.valueOf(cPoints.getText());
-                Simulator simulator = new Simulator(initialSize, infantMortality, startCredit, lifePoints, a, b, c, this);
+                this.simulator = new Simulator(initialSize, infantMortality, startCredit, lifePoints, a, b, c, this);
                 Thread simulation = new Thread(() -> {
                     try {
                         simulator.startSimulation();
@@ -101,6 +106,12 @@ import java.util.ResourceBundle;
                 simulation.start();
             }
         }
+
+
+    @FXML
+    void terminate(ActionEvent event) {
+        if (!notSimulation) this.simulator.EndOfEverything=true;
+    }
 
 
     private ObservableList<PieChart.Data> getChartData() {
@@ -124,6 +135,7 @@ import java.util.ResourceBundle;
     public void setOutputText(String toTextArea){
         textArea.setText(toTextArea);
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

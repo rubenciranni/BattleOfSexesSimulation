@@ -46,7 +46,7 @@
   <children>
     <AnchorPane fx:id="mainPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="600.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="startButton" layoutX="509.0" layoutY="408.0" mnemonicParsing="false" onAction="#init" prefHeight="92.0" prefWidth="174.0" text="Start">
+            <Button fx:id="startButton" layoutX="509.0" layoutY="374.0" mnemonicParsing="false" onAction="#init" prefHeight="92.0" prefWidth="174.0" text="Start">
                <font>
                   <Font size="24.0" />
                </font></Button>
@@ -70,17 +70,17 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="aPoints" layoutX="104.0" layoutY="205.0" prefHeight="24.0" prefWidth="100.0" text="15">
+            <TextField fx:id="aPoints" layoutX="298.0" layoutY="46.0" prefHeight="24.0" prefWidth="100.0" text="15">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="bPoints" layoutX="104.0" layoutY="245.0" prefHeight="24.0" prefWidth="100.0" text="20">
+            <TextField fx:id="bPoints" layoutX="298.0" layoutY="85.0" prefHeight="24.0" prefWidth="100.0" text="20">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="cPoints" layoutX="104.0" layoutY="285.0" prefHeight="24.0" prefWidth="100.0" text="3">
+            <TextField fx:id="cPoints" layoutX="298.0" layoutY="125.0" prefHeight="24.0" prefWidth="100.0" text="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -100,17 +100,17 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="aLabel" alignment="CENTER" layoutX="14.0" layoutY="206.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="a:" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="aLabel" alignment="CENTER" layoutX="216.0" layoutY="47.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="a:" textAlignment="CENTER" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="bLabel" alignment="CENTER" layoutX="14.0" layoutY="246.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="b:" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="bLabel" alignment="CENTER" layoutX="216.0" layoutY="86.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="b:" textAlignment="CENTER" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="cLabel" alignment="CENTER" layoutX="14.0" layoutY="286.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="c:" textAlignment="CENTER" wrapText="false">
+            <Label fx:id="cLabel" alignment="CENTER" layoutX="216.0" layoutY="126.0" prefHeight="28.0" prefWidth="82.0" style="&#10;" text="c:" textAlignment="CENTER" wrapText="false">
                <font>
                   <Font size="18.0" />
                </font>
@@ -126,11 +126,16 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextArea fx:id="textArea" editable="false" layoutX="9.0" layoutY="344.0" prefHeight="242.0" prefWidth="393.0" text="Ratios will be displayed at the end of the simulation." wrapText="true">
+            <TextArea fx:id="textArea" editable="false" layoutX="9.0" layoutY="218.0" prefHeight="368.0" prefWidth="394.0" text="Ratios will be displayed at the end of the simulation." wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
             </TextArea>
+            <Button fx:id="stopButton" layoutX="509.0" layoutY="482.0" mnemonicParsing="false" onAction="#terminate" prefHeight="92.0" prefWidth="174.0" text="Stop">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
       </children>
     </AnchorPane>
   </children>

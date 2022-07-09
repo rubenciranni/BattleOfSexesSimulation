@@ -5,7 +5,7 @@ import java.util.HashMap;
 import static java.lang.Math.abs;
 
 public class Simulator {
-    private final Population population;
+    public final Population population;
     private static boolean IntegerTrueFloatFalse = true;
     static boolean print = true;
     static int TIME = 10;
@@ -99,9 +99,8 @@ public class Simulator {
                     }
                     toTextArea += print("\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%");
                     myGui.setOutputText(toTextArea);
-                    Simulator.TIME = 1000;
-                    Simulator.print = true;
                     FXController.notSimulation = true;
+
                     break;
                 }
             }
