@@ -32,6 +32,11 @@ public class Simulator {
         this.population = new Population("population", initialSize, infantMortality, startCredit, life, a, b, c);
     }
 
+    public static String print(String s) {
+        System.out.println(s);
+        return s+"\n";
+    }
+
     public void startSimulation() throws InterruptedException {
         //sorts initialPopulationList in alphabetic order
         population.initialPopulationList.sort((Thread o1, Thread o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
@@ -62,6 +67,9 @@ public class Simulator {
                 if (sum < 0.0005) {
                     countSmallDeltas++;
                 }
+                else{
+                    countSmallDeltas = 0;
+                }
 
                 if (print) {
                     System.out.println(population.getTotalSize() + "  " + population.size);
@@ -80,15 +88,15 @@ public class Simulator {
                     float[] errorCounter = new float[4];
                     n = 0;
                     String toTextArea="";
-                    System.out.println("the sum of the differences is " + sum + ";\nEach difference is:"); toTextArea+="The sum of the differences is " + sum + ";\nEach difference is:\n";
-                    System.out.println("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]); toTextArea+="Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3] +"\n";
-                    System.out.println("\n\nFinal vs Perfect Values:"); toTextArea+="\n\nFinal vs Perfect Values:\n";
+                    toTextArea += print("\n\nThe sum of the differences is " + sum + ";\n\nEach difference is:");
+                    toTextArea += print("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]);
+                    toTextArea += print("\n\nFinal vs Perfect Values:\n");
                     for (String i : activeState.keySet()) {
-                        System.out.println(i + " (Simulation): " + activeState.get(i)); toTextArea+=i + " (Simulation): " + activeState.get(i)+"\n";
-                        System.out.println(i + " (Prediction): " + perfectState.get(i)+"\n"); toTextArea+=i + " (Prediction): " + perfectState.get(i)+"\n\n";
+                        toTextArea += print(i + " (Simulation): " + activeState.get(i));
+                        toTextArea += print(i + " (Prediction): " + perfectState.get(i)+"\n");
                         errorCounter[n++] = Math.abs(perfectState.get(i)-activeState.get(i));
                     }
-                    System.out.println("\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%"); toTextArea+="\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%";
+                    toTextArea += print("\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%");
                     myGui.setOutputText(toTextArea);
                     Simulator.TIME = 1000;
                     Simulator.print = true;
