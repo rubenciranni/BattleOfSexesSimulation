@@ -46,7 +46,7 @@
   <children>
     <AnchorPane fx:id="mainPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="600.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="startButton" layoutX="509.0" layoutY="374.0" mnemonicParsing="false" onAction="#init" prefHeight="92.0" prefWidth="174.0" text="Start">
+            <Button fx:id="startButton" layoutX="456.0" layoutY="437.0" mnemonicParsing="false" onAction="#init" prefHeight="70.0" prefWidth="134.0" text="Start">
                <font>
                   <Font size="24.0" />
                </font></Button>
@@ -120,7 +120,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <PieChart fx:id="pieChart" layoutX="419.0" layoutY="16.0" prefHeight="336.0" prefWidth="354.0" title="Global state " />
+            <PieChart fx:id="pieChart" layoutX="403.0" layoutY="32.0" prefHeight="359.0" prefWidth="394.0" title="Global state " />
             <Label fx:id="isLabel" layoutX="14.0" layoutY="46.0" prefHeight="30.0" prefWidth="90.0" text="Initial size:">
                <font>
                   <Font size="18.0" />
@@ -131,7 +131,7 @@
                   <Font size="14.0" />
                </font>
             </TextArea>
-            <Button fx:id="stopButton" layoutX="509.0" layoutY="482.0" mnemonicParsing="false" onAction="#terminate" prefHeight="92.0" prefWidth="174.0" text="Stop">
+            <Button fx:id="stopButton" layoutX="610.0" layoutY="437.0" mnemonicParsing="false" onAction="#terminate" prefHeight="70.0" prefWidth="134.0" text="Stop">
                <font>
                   <Font size="24.0" />
                </font>
