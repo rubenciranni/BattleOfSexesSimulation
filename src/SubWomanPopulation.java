@@ -4,6 +4,10 @@ import java.util.concurrent.TimeUnit;
 public abstract class SubWomanPopulation extends SubPopulation {
     int infantMortality = population.getInfantMortality();
     int noiseChance = population.getNoiseChance();
+    int a = population.a;
+    int b = population.b;
+    int c = population.c;
+
 
     public SubWomanPopulation(ThreadGroup parent, String name, int size) {
         super(parent, name, size);
@@ -26,7 +30,6 @@ public abstract class SubWomanPopulation extends SubPopulation {
     }
 
     public abstract class WomanSubType extends SubType {
-
         SubManPopulation.ManSubType currentMan;
 
         public WomanSubType(ThreadGroup group) {
@@ -67,7 +70,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     if (population.noise && (rand.nextInt(0, 50) == 49)) {
                         m = !m;
                     }
-                    if (m && rand.nextInt(0, 10) < 6) {
+                    if (m && rand.nextInt(0, 100) < 62) { // (100*(a-b))/(a-b-c)
                         FaithfulPopulation fatherPopulation = population.getManPopulation().faithfulPopulation;
                         population.world.execute(fatherPopulation.new Faithful(fatherPopulation));
                         fatherPopulation.increaseSize();
