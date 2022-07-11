@@ -111,6 +111,7 @@ public class FXController implements Initializable {
                     simulator.startSimulation();
                     startSound.stop();
                     processingSound.stop();
+                    sleep(100);
                     endSound.play();
                     sleep(10000);
                     endSound.stop();
@@ -126,6 +127,11 @@ public class FXController implements Initializable {
             });
             startSound.play();
             simulation.start();
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             processingSound.play();
         }
     }
