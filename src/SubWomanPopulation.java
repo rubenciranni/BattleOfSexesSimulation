@@ -37,6 +37,11 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         public abstract void updateCredit(SubManPopulation.ManSubType partner);
 
+        private boolean noiseTrue(){
+            Random rand = new Random();
+            return rand.nextInt(0, 1000) < (((float)(population.a- population.b)/(population.a- population.b- population.c))*1000);
+        }
+
         public synchronized boolean proposal(SubManPopulation.ManSubType man) {
             if (accepted(man)) {
                 this.currentMan = man;
@@ -55,8 +60,8 @@ public abstract class SubWomanPopulation extends SubPopulation {
         // Therefore none of the two would have any interest in changing her strategy. And similarly for men.
 
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
-            Random rand = new Random();
             this.updateCredit(man);
+            Random rand = new Random();
             //System.out.println(credit + " " + this.getSubType());
             //int localInfantMortality = (int) Math.ceil(infantMortality / (1 + Math.exp(0.2*( (this.credit + man.credit) / 2) ));
             //System.out.println(localInfantMortality + " " + this.credit);
@@ -67,7 +72,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
                     if (population.noise && (rand.nextInt(0, 50) == 49)) {
                         m = !m;
                     }
-                    if (m && rand.nextInt(0, 10) < 6) {
+                    if (m && noiseTrue()) {
                         FaithfulPopulation fatherPopulation = population.getManPopulation().faithfulPopulation;
                         population.world.execute(fatherPopulation.new Faithful(fatherPopulation));
                         fatherPopulation.increaseSize();
