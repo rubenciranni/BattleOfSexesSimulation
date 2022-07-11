@@ -5,28 +5,13 @@ import java.util.HashMap;
 import static java.lang.Math.abs;
 
 public class Simulator {
-    public final Population population;
-    private static boolean IntegerTrueFloatFalse = true;
     static boolean print = true;
     static int TIME = 10;
+    private static final boolean IntegerTrueFloatFalse = true;
+    public final Population population;
     public FXController myGui;
     public boolean EndOfEverything = false;
-/*
-    public Simulator(int populationInitialSize, int a, int b, int c, boolean noise) {
-        this.population = new Population("population", populationInitialSize, a, b, c, noise);
-    }
 
-    public Simulator(int coyPopulationInitialSize, int fastPopulationInitialSize,
-                     int faithfulPopulationInitialSize, int philandererPopulationInitialSize,
-                     int a, int b, int c, boolean noise) {
-        this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize,
-                faithfulPopulationInitialSize, philandererPopulationInitialSize, a, b, c, noise);
-    }
-
-    public Simulator(int coyPopulationInitialSize, int fastPopulationInitialSize, int faithfulPopulationInitialSize, int philandererPopulationInitialSize, int infantMortality, int startCredit, int life, int a, int b, int c, int noiseChance) {
-        this.population = new Population("population", coyPopulationInitialSize, fastPopulationInitialSize, faithfulPopulationInitialSize, philandererPopulationInitialSize, infantMortality, startCredit, life, a, b, c, noiseChance);
-    }
-*/
     public Simulator(int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c, FXController gui) {
         this.myGui = gui;
         this.population = new Population("population", initialSize, infantMortality, startCredit, life, a, b, c);
@@ -34,7 +19,7 @@ public class Simulator {
 
     public static String print(String s) {
         System.out.println(s);
-        return s+"\n";
+        return s + "\n";
     }
 
     public void startSimulation() throws InterruptedException {
@@ -51,11 +36,13 @@ public class Simulator {
 
         while (true) {
             counter++;
-            Platform.runLater(new Thread(() -> {myGui.updatePie(population);}));
+            Platform.runLater(new Thread(() -> {
+                myGui.updatePie(population);
+            }));
             Thread.sleep(TIME);
             HashMap<String, Float> activeState = population.getGlobalGenderState();
             if (counter % 100 == 0) {
-                float difference[] = new float[4];
+                float[] difference = new float[4];
                 int n = 0;
                 float sum = 0;
                 for (String i : activeState.keySet()) {
@@ -89,17 +76,17 @@ public class Simulator {
                     HashMap<String, Float> perfectState = population.getPerfectValues();
                     float[] errorCounter = new float[4];
                     n = 0;
-                    String toTextArea="";
+                    String toTextArea = "";
                     System.out.println("\n");
                     toTextArea += print("The sum of the differences is " + sum + ";\n\nEach difference is:");
                     toTextArea += print("Faithful:\t\t" + difference[0] + "\nCoy:\t\t\t" + difference[1] + "\nFast:\t\t\t" + difference[2] + "\nPhilanderers:\t" + difference[3]);
                     toTextArea += print("\n\nFinal vs Perfect Values:\n");
                     for (String i : activeState.keySet()) {
                         toTextArea += print(i + " (Simulation): " + activeState.get(i));
-                        toTextArea += print(i + " (Prediction): " + perfectState.get(i)+"\n");
-                        errorCounter[n++] = Math.abs(perfectState.get(i)-activeState.get(i));
+                        toTextArea += print(i + " (Prediction): " + perfectState.get(i) + "\n");
+                        errorCounter[n++] = Math.abs(perfectState.get(i) - activeState.get(i));
                     }
-                    toTextArea += print("\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0]+errorCounter[1]+errorCounter[2]+errorCounter[3])*25 + "%");
+                    toTextArea += print("\nMean Of Errors w.r.t Dawkins's prediction: " + (errorCounter[0] + errorCounter[1] + errorCounter[2] + errorCounter[3]) * 25 + "%");
                     myGui.setOutputText(toTextArea);
                     myGui.notSimulation = true;
                     break;

@@ -1,7 +1,6 @@
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
@@ -86,16 +85,17 @@ public class FXController implements Initializable {
     @FXML
     private Button stopButton;
 
-    private  AudioPlayer startSound = new AudioPlayer("Sounds/begin.wav");
-    private  AudioPlayer processingSound = new AudioPlayer("Sounds/processing.wav");
-    private  AudioPlayer endSound = new AudioPlayer("Sounds/end.wav");
+    private final AudioPlayer startSound = new AudioPlayer("Sounds/begin.wav");
+    private final AudioPlayer processingSound = new AudioPlayer("Sounds/processing.wav");
+    private final AudioPlayer endSound = new AudioPlayer("Sounds/end.wav");
 
     public FXController() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
     }
 
     @FXML
-    private void init(ActionEvent event) {
+    private void init() {
         if (notSimulation) {
+            setOutputText("Ratios will be displayed at the end of the simulation.");
             notSimulation = false;
             Stage stage = (Stage) startButton.getScene().getWindow();
             int initialSize = Integer.valueOf(this.initialSize.getText());
@@ -137,8 +137,8 @@ public class FXController implements Initializable {
     }
 
     @FXML
-    private void terminate(ActionEvent event) {
-        if (!notSimulation) this.simulator.EndOfEverything=true;
+    private void terminate() {
+        if (!notSimulation) this.simulator.EndOfEverything = true;
     }
 
     private ObservableList<PieChart.Data> getChartData() {
@@ -152,7 +152,7 @@ public class FXController implements Initializable {
         return answer;
     }
 
-    public void updatePie(Population population){
+    public void updatePie(Population population) {
         ObservableList<PieChart.Data> oldData = pieChart.getData();
         for (PieChart.Data d : oldData) {
             d.setPieValue(population.getStateFromName(d.getName()));
@@ -160,7 +160,7 @@ public class FXController implements Initializable {
     }
 
 
-    public void setOutputText(String toTextArea){
+    public void setOutputText(String toTextArea) {
         textArea.setText(toTextArea);
     }
 

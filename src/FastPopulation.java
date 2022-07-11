@@ -14,7 +14,6 @@ public class FastPopulation extends SubWomanPopulation {
         public Fast(ThreadGroup group) {
             super(group);
             this.setName(this.getName() + " (Fast)");
-            //System.out.println(this.getName() + " " + this.getId());
         }
 
         @Override

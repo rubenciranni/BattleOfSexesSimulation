@@ -1,31 +1,22 @@
+import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+public class AudioPlayer {
 
-public class AudioPlayer
-{
-
+    private final String filePath;
     // to store current position
     Long currentFrame;
     Clip clip;
-
     // current status of clip
     String status;
-
     AudioInputStream audioInputStream;
-    static String filePath;
 
     // constructor to initialize streams and clip
     public AudioPlayer(String filePath)
             throws UnsupportedAudioFileException,
-            IOException, LineUnavailableException
-    {
-        this.filePath = filePath;
+            IOException, LineUnavailableException {
+            this.filePath = filePath;
 
         // create AudioInputStream object
         audioInputStream =
@@ -41,8 +32,7 @@ public class AudioPlayer
 
 
     // Method to play the audio
-    public void play()
-    {
+    public void play() {
         //start the clip
         clip.start();
 
@@ -50,10 +40,8 @@ public class AudioPlayer
     }
 
     // Method to pause the audio
-    public void pause()
-    {
-        if (status.equals("paused"))
-        {
+    public void pause() {
+        if (status.equals("paused")) {
             return;
         }
         this.currentFrame =
@@ -64,8 +52,7 @@ public class AudioPlayer
 
     // Method to resume the audio
     public void resumeAudio() throws UnsupportedAudioFileException,
-            IOException, LineUnavailableException
-    {
+            IOException, LineUnavailableException {
         if (status.equals("play")) {
             return;
         }
@@ -77,8 +64,7 @@ public class AudioPlayer
 
     // Method to restart the audio
     public void restart() throws IOException, LineUnavailableException,
-            UnsupportedAudioFileException
-    {
+            UnsupportedAudioFileException {
         clip.stop();
         clip.close();
         resetAudioStream();
@@ -89,8 +75,7 @@ public class AudioPlayer
 
     // Method to stop the audio
     public void stop() throws UnsupportedAudioFileException,
-            IOException, LineUnavailableException
-    {
+            IOException, LineUnavailableException {
         currentFrame = 0L;
         clip.stop();
         clip.close();
@@ -98,8 +83,7 @@ public class AudioPlayer
 
     // Method to reset audio stream
     public void resetAudioStream() throws UnsupportedAudioFileException, IOException,
-            LineUnavailableException
-    {
+            LineUnavailableException {
         audioInputStream = AudioSystem.getAudioInputStream(
                 new File(filePath).getAbsoluteFile());
         clip.open(audioInputStream);

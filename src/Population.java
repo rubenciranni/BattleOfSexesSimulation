@@ -9,12 +9,12 @@ public class Population extends ThreadGroup {
     public final int b; // the cost of parenting a child
     public final int c; // the cost of courtship
     public final boolean noise;
+    public final int infantMortality;
     private final ManPopulation manPopulation;
     private final WomanPopulation womanPopulation;
     public LinkedList<SubPopulation.SubType> initialPopulationList;
     public int ID = 0;
     public int size;
-    public final int infantMortality;
     public int startCredit = 0;
     public int lifePoints = 5;
     public int noiseChance = 50;
@@ -23,68 +23,6 @@ public class Population extends ThreadGroup {
     public boolean death = false;
     public ExecutorService world = Executors.newFixedThreadPool(1500);
 
-    /*
-    public Population(String name, int size, int a, int b, int c, boolean noise) {
-        super(name);
-        this.size = size;
-        this.infantMortality = 0;
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.noise = noise;
-        this.initialPopulationList = new LinkedList<>();
-        this.womenQueue = new SynchronousQueue<>();
-        this.womanPopulation = new WomanPopulation(this, "woman population", size / 2);
-        this.manPopulation = new ManPopulation(this, "man population", size / 2);
-    }
-
-    public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers, int a, int b, int c, boolean noise) {
-        super(name);
-        this.size = numberOfCoy + numberOfFaithful + numberOfFast + numberOfPhilanderers;
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.noise = noise;
-        this.infantMortality = 0;
-        this.initialPopulationList = new LinkedList<>();
-        this.womenQueue = new SynchronousQueue<>();
-        this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
-        this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
-    }
-
-    public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers, int infantMortality, int startCredit, int lifePoints, int a, int b, int c, int noiseChance) {
-        super(name);
-        this.size = numberOfCoy + numberOfFaithful + numberOfFast + numberOfPhilanderers;
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.noise = true;
-        this.infantMortality = infantMortality;
-        this.initialPopulationList = new LinkedList<>();
-        this.womenQueue = new SynchronousQueue<>();
-        this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
-        this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
-        this.startCredit = startCredit;
-        this.lifePoints = lifePoints;
-        this.noiseChance = noiseChance;
-    }
-
-    public Population(String name, int numberOfCoy, int numberOfFast, int numberOfFaithful, int numberOfPhilanderers, int infantMortality, int startCredit, int lifePoints, int a, int b, int c) {
-        super(name);
-        this.size = numberOfCoy + numberOfFaithful + numberOfFast + numberOfPhilanderers;
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.noise = false;
-        this.infantMortality = infantMortality;
-        this.initialPopulationList = new LinkedList<>();
-        this.womenQueue = new SynchronousQueue<>();
-        this.womanPopulation = new WomanPopulation(this, "woman population", numberOfCoy, numberOfFast);
-        this.manPopulation = new ManPopulation(this, "man population", numberOfFaithful, numberOfPhilanderers);
-        this.startCredit = startCredit;
-        this.lifePoints = lifePoints;
-    }
-*/
     public Population(String name, int initialSize, int infantMortality, int startCredit, int life, int a, int b, int c) {
         super(name);
         this.a = a;
@@ -103,10 +41,14 @@ public class Population extends ThreadGroup {
 
     public double getStateFromName(String name) {
         switch (name) {
-            case "Coy": return this.getCoyState();
-            case "Fast": return this.getFastState();
-            case "Faithful": return this.getFaithfulState();
-            case "Philanderer": return this.getPhilandererState();
+            case "Coy":
+                return this.getCoyState();
+            case "Fast":
+                return this.getFastState();
+            case "Faithful":
+                return this.getFaithfulState();
+            case "Philanderer":
+                return this.getPhilandererState();
         }
         return 0.00;
     }
@@ -157,20 +99,21 @@ public class Population extends ThreadGroup {
         globalState.put("Women", this.womanPopulation.size);
         return globalState;
     }
+
     public float getFaithfulState() {
-        return ((float)this.manPopulation.faithfulPopulation.size/(float) size);
+        return ((float) this.manPopulation.faithfulPopulation.size / (float) size);
     }
 
     public float getPhilandererState() {
-        return ((float)this.manPopulation.philandererPopulation.size/(float) size);
+        return ((float) this.manPopulation.philandererPopulation.size / (float) size);
     }
 
     public float getFastState() {
-        return ((float)this.womanPopulation.fastPopulation.size/(float) size);
+        return ((float) this.womanPopulation.fastPopulation.size / (float) size);
     }
 
     public float getCoyState() {
-        return ((float)this.womanPopulation.coyPopulation.size/(float) size);
+        return ((float) this.womanPopulation.coyPopulation.size / (float) size);
     }
 
     public HashMap getGlobalState() {
@@ -184,19 +127,19 @@ public class Population extends ThreadGroup {
     }
 
     public float getFaithfulGenderState() {
-        return ((float)this.manPopulation.faithfulPopulation.size/(float) manPopulation.size);
+        return ((float) this.manPopulation.faithfulPopulation.size / (float) manPopulation.size);
     }
 
     public float getPhilandererGenderState() {
-        return ((float)this.manPopulation.philandererPopulation.size/(float) manPopulation.size);
+        return ((float) this.manPopulation.philandererPopulation.size / (float) manPopulation.size);
     }
 
     public float getFastGenderState() {
-        return ((float)this.womanPopulation.fastPopulation.size/(float) womanPopulation.size);
+        return ((float) this.womanPopulation.fastPopulation.size / (float) womanPopulation.size);
     }
 
     public float getCoyGenderState() {
-        return ((float)this.womanPopulation.coyPopulation.size/(float) womanPopulation.size);
+        return ((float) this.womanPopulation.coyPopulation.size / (float) womanPopulation.size);
     }
 
     public HashMap getGlobalGenderState() {
@@ -211,10 +154,10 @@ public class Population extends ThreadGroup {
 
     public HashMap getPerfectValues() {
         HashMap<String, Float> ret = new HashMap<>();
-        ret.put("Faithful", (float)(a-b)/(float) (a-b-c));
-        ret.put("Philanderers", (float)(-c)/(float) (a-b-c));
-        ret.put("Coy", (float)(b)/(float) (2*(a-c)));
-        ret.put("Fast", (float)(2*a-b-2*c)/(float) (2*(a-c)));
+        ret.put("Faithful", (float) (a - b) / (float) (a - b - c));
+        ret.put("Philanderers", (float) (-c) / (float) (a - b - c));
+        ret.put("Coy", (float) (b) / (float) (2 * (a - c)));
+        ret.put("Fast", (float) (2 * a - b - 2 * c) / (float) (2 * (a - c)));
 
         return ret;
     }

@@ -1,6 +1,6 @@
 public abstract class SubPopulation extends ThreadGroup {
-    public int size;
     public final Population population = (Population) this.getParent().getParent();
+    public int size;
 
     public SubPopulation(ThreadGroup parent, String name, int size) {
         super(parent, name);
@@ -11,8 +11,8 @@ public abstract class SubPopulation extends ThreadGroup {
     public synchronized void increaseSize() {
         size++;
         synchronized (population) {
-             population.size++;
-         }
+            population.size++;
+        }
     }
 
     public synchronized void decreaseSize() {
@@ -25,12 +25,12 @@ public abstract class SubPopulation extends ThreadGroup {
     public abstract void addToInitialPopulation();
 
     public abstract class SubType extends Thread {
-        private int countLife = 0;
         private final int id;
         public int credit = population.startCredit;
         public int lifePoints = population.lifePoints;
         public boolean isSingle = true;
         public Object ring = new Object();
+        private int countLife = 0;
 
         public SubType(ThreadGroup group, String name) {
             super(group, name);

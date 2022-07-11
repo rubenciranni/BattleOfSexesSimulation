@@ -37,14 +37,15 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         public abstract void updateCredit(SubManPopulation.ManSubType partner);
 
-        private boolean noiseTrue(){
+        private boolean noiseTrue() {
             Random rand = new Random();
-            return rand.nextInt(0, 1000) < (((float)(population.a - population.b)/(population.a- population.b- population.c))*1000);
+            return rand.nextInt(0, 1000) < (((float) (population.a - population.b) / (population.a - population.b - population.c)) * 1000);
         }
 
         public synchronized boolean proposal(SubManPopulation.ManSubType man) {
-            synchronized(new Object()) {
-                synchronized (new Object()){}
+            synchronized (new Object()) {
+                synchronized (new Object()) {
+                }
 
 
             }
@@ -60,17 +61,10 @@ public abstract class SubWomanPopulation extends SubPopulation {
             }
         }
 
-        // When using these values, the system stabilises in a state where 5/6 of the women are coy and 5/8 of the men are faithful.
-        // It is easy to check that this is indeed a stable solution: given these ratios, the average gain of a coy woman,
-        // that is 2 · 5/8 + 0 * 3/8, equals that of a fast, which is 5 · 5/8 − 5 · 3/8.
-        // Therefore none of the two would have any interest in changing her strategy. And similarly for men.
-
         public synchronized void generateOffspringWith(SubManPopulation.ManSubType man) {
             this.updateCredit(man);
             Random rand = new Random();
-            //System.out.println(credit + " " + this.getSubType());
-            //int localInfantMortality = (int) Math.ceil(infantMortality / (1 + Math.exp(0.2*( (this.credit + man.credit) / 2) ));
-            //System.out.println(localInfantMortality + " " + this.credit);
+
             if ((infantMortality == 0 || (rand.nextInt(0, infantMortality) != 0)) && !population.sterility) {
                 boolean sex = rand.nextBoolean();
                 if (sex) {
@@ -115,7 +109,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         @Override
         public synchronized void run() {
-            while (lifePoints > 0 && !population.death && credit>=0)  {
+            while (lifePoints > 0 && !population.death && credit >= 0) {
                 try {
                     updateLifePoints();
                     sleep(100);
