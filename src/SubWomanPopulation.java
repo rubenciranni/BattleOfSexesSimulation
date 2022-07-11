@@ -39,10 +39,15 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         private boolean noiseTrue(){
             Random rand = new Random();
-            return rand.nextInt(0, 1000) < (((float)(population.a- population.b)/(population.a- population.b- population.c))*1000);
+            return rand.nextInt(0, 1000) < (((float)(population.a - population.b)/(population.a- population.b- population.c))*1000);
         }
 
         public synchronized boolean proposal(SubManPopulation.ManSubType man) {
+            synchronized(new Object()) {
+                synchronized (new Object()){}
+
+
+            }
             if (accepted(man)) {
                 this.currentMan = man;
                 man.currentWoman = this;
@@ -54,6 +59,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
                 return false;
             }
         }
+
         // When using these values, the system stabilises in a state where 5/6 of the women are coy and 5/8 of the men are faithful.
         // It is easy to check that this is indeed a stable solution: given these ratios, the average gain of a coy woman,
         // that is 2 · 5/8 + 0 * 3/8, equals that of a fast, which is 5 · 5/8 − 5 · 3/8.

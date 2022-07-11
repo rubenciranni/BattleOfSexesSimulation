@@ -21,7 +21,7 @@ public class Population extends ThreadGroup {
     public SynchronousQueue<SubWomanPopulation.WomanSubType> womenQueue;
     public boolean sterility = false;
     public boolean death = false;
-    public ExecutorService world = Executors.newFixedThreadPool(2000);
+    public ExecutorService world = Executors.newFixedThreadPool(1500);
 
     /*
     public Population(String name, int size, int a, int b, int c, boolean noise) {

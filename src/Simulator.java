@@ -9,7 +9,6 @@ public class Simulator {
     private static boolean IntegerTrueFloatFalse = true;
     static boolean print = true;
     static int TIME = 10;
-    boolean finalVal = true;
     public FXController myGui;
     public boolean EndOfEverything = false;
 /*
