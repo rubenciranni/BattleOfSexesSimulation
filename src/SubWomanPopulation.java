@@ -29,6 +29,8 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         SubManPopulation.ManSubType currentMan;
 
+        public int val() {return (int) (((float) (population.a - population.b) / (population.a - population.b - population.c)) * 100);}
+
         public WomanSubType(ThreadGroup group) {
             super(group, RandomNameGenerator.randomNameOfGirl());
         }
@@ -39,7 +41,7 @@ public abstract class SubWomanPopulation extends SubPopulation {
 
         private boolean noiseTrue() {
             Random rand = new Random();
-            return rand.nextInt(0, 1000) < (((float) (population.a - population.b) / (population.a - population.b - population.c)) * 1000);
+            return rand.nextInt(0, 100) < val();
         }
 
         public synchronized boolean proposal(SubManPopulation.ManSubType man) {
